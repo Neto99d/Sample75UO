@@ -59,7 +59,7 @@ public class NewsViewModel extends ViewModel {
             public void onError(@NonNull Exception e) {
                 setChannel(new Channel(null, null, null, null, null, null, new ArrayList<Article>()));
                 e.printStackTrace();
-                snackbar.postValue("An error has occurred. Please try again");
+                snackbar.postValue("Hay problemas con la página web?. Intente más tarde.");
             }
         });
         parser.execute(urlString);

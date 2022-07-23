@@ -15,5 +15,5 @@
         android:id="@+id/imagenBaner"
         android:layout_width="wrap_content"
         android:layout_height="107dp"
-        android:background="@drawable/uo_baner" />
+        android:background="@drawable/ident_uo" />
 </LinearLayout>
