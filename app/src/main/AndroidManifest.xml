@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.options.PatrimonioActivity"
-            android:label="Patrimonio"></activity>
+            android:label="Patrimonio" />
         <activity
             android:name=".ui.options.NewsActivity"
             android:label="La Tablilla" />

@@ -22,7 +22,6 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
 
     public PatrimonioAdapter(List<Patrimonio> patrimonio) {
         this.patrimonio = patrimonio;
-
     }
 
     public List<Patrimonio> getPatrimonio() {
@@ -60,6 +59,8 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
             super(itemView);
             text = itemView.findViewById(R.id.textPatr);
             image = itemView.findViewById(R.id.imageProfile);
+
+
         }
 
         TextView getText() {

@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -44,7 +45,6 @@ public class PatrimonioActivity extends AppCompatActivity {
     private PatrimonioAdapter nAdapter;
     private RecyclerView mRecyclerView;
     private MutableLiveData<Boolean> status; // Estado de conexion al servicio
-    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +162,7 @@ public class PatrimonioActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
@@ -179,6 +180,5 @@ public class PatrimonioActivity extends AppCompatActivity {
             return null;
         }
     }
-
 
 }
