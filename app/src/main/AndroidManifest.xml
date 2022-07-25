@@ -13,9 +13,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Sample75UO">
-        <activity android:name=".ui.NewsActivity" />
+        android:theme="@style/Theme.Sample75UO"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.options.PatrimonioActivity"
+            android:label="Patrimonio"></activity>
+        <activity
+            android:name=".ui.options.NewsActivity"
+            android:label="La Tablilla" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

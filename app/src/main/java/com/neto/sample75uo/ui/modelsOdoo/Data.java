@@ -1,23 +1,25 @@
 package com.neto.sample75uo.ui.modelsOdoo;
 
-import com.google.gson.JsonArray;
+
+import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 
 public class Data {
-    JsonArray data;
+    ArrayList<JsonObject> data;
 
-    public Data(JsonArray  data) {
+    public Data(ArrayList<JsonObject> data) {
         this.data = data;
     }
 
     public Data() {
     }
 
-
-    public JsonArray  getData() {
+    public ArrayList<JsonObject> getData() {
         return data;
     }
 
-    public void setData(JsonArray  data) {
+    public void setData(ArrayList<JsonObject> data) {
         this.data = data;
     }
 }

@@ -1,4 +1,4 @@
-package com.neto.sample75uo.ui.options;
+package com.neto.sample75uo.ui.options.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 

@@ -21,4 +21,16 @@ public interface RestClient {
     @GET("api/mision.mision")
     Call<Data> getMision(@HeaderMap Map<String, String> params);
 
+    // Objeto Social
+    @GET("api/objeto.objeto")
+    Call<Data> getObjeto(@HeaderMap Map<String, String> params);
+
+    // Vision
+    @GET("api/vision.vision")
+    Call<Data> getVision(@HeaderMap Map<String, String> params);
+
+    // Patrimonio
+    @GET("api/patrimonio.patrimonio")
+    Call<Data> getPatrimonio(@HeaderMap Map<String, String> params);
+
 }
