@@ -10,21 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.neto.sample75uo.R;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
+import com.neto.sample75uo.ui.modelsOdoo.AvisoEspecial;
+import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 
 import java.util.List;
 
-public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder>{
+/*public class AvisoAdapter extends RecyclerView.Adapter<AvisoAdapter.ViewHolder>{
+    private List<AvisoEspecial> aviso;
 
-    private List<Patrimonio> patrimonio;
 
-
-    public PatrimonioAdapter(List<Patrimonio> patrimonio) {
-        this.patrimonio = patrimonio;
+    public AvisoAdapter(List<AvisoEspecial> aviso) {
+        this.aviso = aviso;
     }
 
-    public List<Patrimonio> getPatrimonio() {
-        return patrimonio;
+    public List<AvisoEspecial> getAviso() {
+        return aviso;
     }
 
     @NonNull
@@ -40,25 +40,24 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Patrimonio patrimonio = this.patrimonio.get(position);
-        holder.getText().setText(patrimonio.getContenido());
-        holder.getImage().setImageBitmap(patrimonio.getImagen());
+        AvisoEspecial aviso = this.aviso.get(position);
+        holder.getText().setText(aviso.getContenido());
+        holder.getTextFecha().setText(aviso.getFecha());
     }
 
     @Override
     public int getItemCount() {
-        return this.patrimonio.size();
+        return this.aviso.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
-        private ImageView image;
+        private TextView textFecha;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            text = itemView.findViewById(R.id.textPatr);
-            image = itemView.findViewById(R.id.imageProfile);
-
+            text = itemView.findViewById(R.id.textCont);
+            textFecha = itemView.findViewById(R.id.textFecha);
 
         }
 
@@ -66,9 +65,8 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
             return text;
         }
 
-        ImageView getImage() {
-            return image;
+        TextView getTextFecha() {
+            return textFecha;
         }
     }
-
-}
+}*/

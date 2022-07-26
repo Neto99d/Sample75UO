@@ -18,8 +18,40 @@
             android:title="Institución" />
 
         <item
-            android:id="@+id/nav_prueba"
-            android:title="Prueba" />
+            android:id="@+id/nav_reseña"
+            android:title="Reseña Histórica" />
+
+        <item
+            android:id="@+id/nav_identidad"
+            android:title="Identidad" />
+
+        <item
+            android:id="@+id/nav_patrimonio"
+            android:title="Patrimonio" />
+
+        <item
+            android:id="@+id/nav_rectores"
+            android:title="Rectores" />
+
+        <item
+            android:id="@+id/nav_profemerito"
+            android:title="Profesores Eméritos" />
+
+        <item
+            android:id="@+id/nav_pdtFeu"
+            android:title="Presidentes de la FEU" />
+
+        <item
+            android:id="@+id/nav_honorCausa"
+            android:title="Honoris Causa" />
+
+        <item
+            android:id="@+id/nav_campaña"
+            android:title="Campañas" />
+
+        <item
+            android:id="@+id/nav_aviso"
+            android:title="Avisos Especiales" />
 
         <item
             android:id="@+id/nav_news"

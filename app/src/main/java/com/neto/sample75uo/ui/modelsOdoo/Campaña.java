@@ -1,10 +1,12 @@
 package com.neto.sample75uo.ui.modelsOdoo;
 
+import android.graphics.Bitmap;
+
 public class Campaña {
     String contenido;
-    String imagen;
+    Bitmap imagen;
 
-    public Campaña(String contenido, String imagen) {
+    public Campaña(String contenido, Bitmap imagen) {
         this.contenido = contenido;
         this.imagen = imagen;
     }
@@ -20,11 +22,11 @@ public class Campaña {
         this.contenido = contenido;
     }
 
-    public String getImagen() {
+    public Bitmap getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 }

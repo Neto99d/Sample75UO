@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Base64;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +16,9 @@ import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
+import com.neto.sample75uo.ui.modelsOdoo.HonorCausa;
 import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
+import com.neto.sample75uo.ui.options.Adapters.HonorCausaAdapter;
 import com.neto.sample75uo.ui.options.Adapters.PatrimonioAdapter;
 
 import java.util.ArrayList;
@@ -30,8 +31,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PatrimonioActivity extends AppCompatActivity {
-    private PatrimonioAdapter nAdapter;
+public class HonorCausaActivity extends AppCompatActivity {
+    private HonorCausaAdapter nAdapter;
     private RecyclerView mRecyclerView;
 
 
@@ -39,8 +40,8 @@ public class PatrimonioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_patrimonio);
-        mRecyclerView = findViewById(R.id.recycler_patrimonio);
+        setContentView(R.layout.activity_honor_causa);
+        mRecyclerView = findViewById(R.id.recycler_honorcausa);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
@@ -79,7 +80,7 @@ public class PatrimonioActivity extends AppCompatActivity {
                     //Definimos la URL base del API REST que utilizamos
                     String baseUrl = "http://192.168.99.158:8069/";
 
-                    ArrayList<Patrimonio> patrim = new ArrayList<>();
+                    ArrayList<HonorCausa> honor = new ArrayList<>();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -95,7 +96,7 @@ public class PatrimonioActivity extends AppCompatActivity {
                     params.put("access_token", acceso.getAccesToken());
 
 
-                    Call<Data> callS = service.getPatrimonio(params);
+                    Call<Data> callS = service.getHonorCausa(params);
                     callS.enqueue(new Callback<Data>() {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
@@ -108,14 +109,14 @@ public class PatrimonioActivity extends AppCompatActivity {
 
                                     System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
-                                        Patrimonio patrimonio = new Patrimonio();
-                                        patrimonio.setContenido(data.getData().get(i).get("contenido").getAsString());
+                                        HonorCausa honorC = new HonorCausa();
+                                        honorC.setContenido(data.getData().get(i).get("contenido").getAsString());
                                         /// Se coge el String a partir del primer caracter ' que llega desde el JSon
-                                        patrimonio.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
-                                        patrim.add(patrimonio);
+                                        honorC.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
+                                        honor.add(honorC);
                                     }
 
-                                    nAdapter = new PatrimonioAdapter(patrim);
+                                    nAdapter = new HonorCausaAdapter(honor);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {

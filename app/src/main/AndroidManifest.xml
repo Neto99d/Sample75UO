@@ -15,6 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sample75UO"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.options.PteFeuActivity" android:label="Presidentes de la FEU"/>
+        <activity android:name=".ui.options.CampannaActivity" android:label="Campañas"/>
+        <activity android:name=".ui.options.HonorCausaActivity" android:label="Honoris Causa"/>
+        <activity android:name=".ui.options.ProfeMeritoActivity" android:label="Profesores Eméritos"/>
+        <activity android:name=".ui.options.EstadisticasActivity" android:label="Estadísticas"/>
+        <activity android:name=".ui.options.IdentidadActivity" android:label="Identidad"/>
+        <activity android:name=".ui.options.RectoresActivity" android:label="Rectores"/>
+        <activity android:name=".ui.options.EfemeridesActivity" android:label="Efemérides"/>
+        <activity android:name=".ui.options.FullImageScreenActivity" android:label="Imagen Ampliada"/>
         <activity
             android:name=".ui.options.PatrimonioActivity"
             android:label="Patrimonio" />

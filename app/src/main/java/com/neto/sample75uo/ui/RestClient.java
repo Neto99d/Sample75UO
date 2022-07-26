@@ -33,4 +33,41 @@ public interface RestClient {
     @GET("api/patrimonio.patrimonio")
     Call<Data> getPatrimonio(@HeaderMap Map<String, String> params);
 
+    @GET("api/estadisticas.estadisticas")
+    Call<Data> getEstadisticas(@HeaderMap Map<String, String> params);
+
+    @GET("api/honorcausa.honorcausa")
+    Call<Data> getHonorCausa(@HeaderMap Map<String, String> params);
+
+    @GET("api/identidad.identidad")
+    Call<Data> getIdentidad(@HeaderMap Map<String, String> params);
+
+    @GET("api/multimedia.multimedia")
+    Call<Data> getMultimedia(@HeaderMap Map<String, String> params);
+
+    @GET("api/postales.postales")
+    Call<Data> getPostales(@HeaderMap Map<String, String> params);
+
+    @GET("api/profeemerito.profeemerito")
+    Call<Data> getProfeEmerito(@HeaderMap Map<String, String> params);
+
+    @GET("api/pdtefeu.pdtefeu")
+    Call<Data> getPteFeu(@HeaderMap Map<String, String> params);
+
+    @GET("api/resena.resena")
+    Call<Data> getReseña(@HeaderMap Map<String, String> params);
+
+    @GET("api/aviso.aviso")
+    Call<Data> getAviso(@HeaderMap Map<String, String> params);
+
+    @GET("api/campana.campana")
+    Call<Data> getCampaña(@HeaderMap Map<String, String> params);
+
+    @GET("api/efemerides.efemerides")
+    Call<Data> getEfemerides(@HeaderMap Map<String, String> params);
+
+    @GET("api/rectores.rectores")
+    Call<Data> getRectores(@HeaderMap Map<String, String> params);
+
+
 }

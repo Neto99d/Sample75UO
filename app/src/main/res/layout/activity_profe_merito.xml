@@ -5,14 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="10dp"
-    tools:context=".ui.options.PatrimonioActivity">
-
+    tools:context=".ui.options.ProfeMeritoActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_patrimonio"
+        android:id="@+id/recycler_profemerito"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/activity_patrimonio" />
-
-
+        tools:layout="@layout/activity_profe_merito" />
 </androidx.constraintlayout.widget.ConstraintLayout>

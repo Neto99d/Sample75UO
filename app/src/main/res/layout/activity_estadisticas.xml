@@ -4,15 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    tools:context=".ui.options.PatrimonioActivity">
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_patrimonio"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/activity_patrimonio" />
-
+    tools:context=".ui.options.EstadisticasActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

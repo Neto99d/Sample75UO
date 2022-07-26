@@ -25,7 +25,8 @@
             android:layout_marginBottom="10dp"
             android:clickable="true"
             android:focusable="true"
-            app:srcCompat="@drawable/placeholder" />
+            app:srcCompat="@drawable/placeholder"
+            />
 
     </androidx.cardview.widget.CardView>
 

@@ -1,19 +1,15 @@
 package com.neto.sample75uo.ui.modelsOdoo;
 
-import android.graphics.Bitmap;
-
-public class Efemerides {
+public class AvisoEspecial {
     String contenido;
-    Bitmap imagen;
     String fecha;
 
-    public Efemerides(String contenido, Bitmap imagen, String fecha) {
+    public AvisoEspecial(String contenido,  String fecha) {
         this.contenido = contenido;
-        this.imagen = imagen;
         this.fecha = fecha;
     }
 
-    public Efemerides() {
+    public AvisoEspecial() {
     }
 
     public String getContenido() {
@@ -22,14 +18,6 @@ public class Efemerides {
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
-    }
-
-    public Bitmap getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(Bitmap imagen) {
-        this.imagen = imagen;
     }
 
     public String getFecha() {

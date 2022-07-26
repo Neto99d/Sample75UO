@@ -1,25 +1,18 @@
 package com.neto.sample75uo.ui.modelsOdoo;
 
-public class HonorCausa {
-    String name;
-    String contenido;
-    String imagen;
+import android.graphics.Bitmap;
 
-    public HonorCausa(String name, String contenido, String imagen) {
-        this.name = name;
+public class HonorCausa {
+
+    String contenido;
+    Bitmap imagen;
+
+    public HonorCausa(String contenido, Bitmap imagen) {
         this.contenido = contenido;
         this.imagen = imagen;
     }
 
     public HonorCausa() {
-    }
-
-    public String getNombre() {
-        return name;
-    }
-
-    public void setNombre(String nombre) {
-        this.name = nombre;
     }
 
     public String getContenido() {
@@ -30,11 +23,11 @@ public class HonorCausa {
         this.contenido = contenido;
     }
 
-    public String getImagen() {
+    public Bitmap getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 }

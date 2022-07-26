@@ -10,21 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.neto.sample75uo.R;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
+import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 
 import java.util.List;
 
-public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder>{
+public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHolder>{
 
-    private List<Patrimonio> patrimonio;
+    private List<Campaña> campaña;
 
 
-    public PatrimonioAdapter(List<Patrimonio> patrimonio) {
-        this.patrimonio = patrimonio;
+    public CampannaAdapter(List<Campaña> campaña) {
+        this.campaña = campaña;
     }
 
-    public List<Patrimonio> getPatrimonio() {
-        return patrimonio;
+    public List<Campaña> getcampaña() {
+        return campaña;
     }
 
     @NonNull
@@ -39,15 +39,15 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Patrimonio patrimonio = this.patrimonio.get(position);
-        holder.getText().setText(patrimonio.getContenido());
-        holder.getImage().setImageBitmap(patrimonio.getImagen());
+    public void onBindViewHolder(@NonNull CampannaAdapter.ViewHolder holder, int position) {
+        Campaña campaña = this.campaña.get(position);
+        holder.getText().setText(campaña.getContenido());
+        holder.getImage().setImageBitmap(campaña.getImagen());
     }
 
     @Override
     public int getItemCount() {
-        return this.patrimonio.size();
+        return this.campaña.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,5 +70,4 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
             return image;
         }
     }
-
 }

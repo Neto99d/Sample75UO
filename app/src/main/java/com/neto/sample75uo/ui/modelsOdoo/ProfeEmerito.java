@@ -1,10 +1,12 @@
 package com.neto.sample75uo.ui.modelsOdoo;
 
+import android.graphics.Bitmap;
+
 public class ProfeEmerito {
     String contenido;
-    String imagen;
+    Bitmap imagen;
 
-    public ProfeEmerito(String contenido, String imagen) {
+    public ProfeEmerito(String contenido, Bitmap imagen) {
         this.contenido = contenido;
         this.imagen = imagen;
     }
@@ -12,19 +14,19 @@ public class ProfeEmerito {
     public ProfeEmerito() {
     }
 
-    public String getDescripcion() {
+    public String getContenido() {
         return contenido;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.contenido = descripcion;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
-    public String getImagen() {
+    public Bitmap getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 }

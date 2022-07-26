@@ -10,21 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.neto.sample75uo.R;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
+import com.neto.sample75uo.ui.modelsOdoo.ProfeEmerito;
 
 import java.util.List;
 
-public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder>{
+public class ProfeEmeritoAdapter extends RecyclerView.Adapter<ProfeEmeritoAdapter.ViewHolder>{
+    private List<ProfeEmerito> proemerito;
 
-    private List<Patrimonio> patrimonio;
 
-
-    public PatrimonioAdapter(List<Patrimonio> patrimonio) {
-        this.patrimonio = patrimonio;
+    public ProfeEmeritoAdapter(List<ProfeEmerito> proemerito) {
+        this.proemerito = proemerito;
     }
 
-    public List<Patrimonio> getPatrimonio() {
-        return patrimonio;
+    public List<ProfeEmerito> getProfeEmerito() {
+        return proemerito;
     }
 
     @NonNull
@@ -40,14 +39,14 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Patrimonio patrimonio = this.patrimonio.get(position);
-        holder.getText().setText(patrimonio.getContenido());
-        holder.getImage().setImageBitmap(patrimonio.getImagen());
+        ProfeEmerito proemerito = this.proemerito.get(position);
+        holder.getText().setText(proemerito.getContenido());
+        holder.getImage().setImageBitmap(proemerito.getImagen());
     }
 
     @Override
     public int getItemCount() {
-        return this.patrimonio.size();
+        return this.proemerito.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,5 +69,4 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
             return image;
         }
     }
-
 }

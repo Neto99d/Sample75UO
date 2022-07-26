@@ -29,11 +29,54 @@
         android:label="Institución"
         tools:layout="@layout/mov_fragment" />
 
+    <fragment
+        android:id="@+id/nav_reseña"
+        android:name="com.neto.sample75uo.ui.options.ResennaHistoryFragment"
+        android:label="Historia de la UO"
+        tools:layout="@layout/resenna_history_fragment" />
+
     <activity
-        android:id="@+id/nav_prueba"
+        android:id="@+id/nav_identidad"
+        android:name="com.neto.sample75uo.ui.options.IdentidadActivity"
+        android:label="Identidad"
+        tools:layout="@layout/activity_identidad"/>
+
+    <activity
+        android:id="@+id/nav_patrimonio"
         android:name="com.neto.sample75uo.ui.options.PatrimonioActivity"
-        android:label="Prueba"
+        android:label="Patrimonio"
         tools:layout="@layout/activity_patrimonio" />
+
+    <activity
+        android:id="@+id/nav_rectores"
+        android:name="com.neto.sample75uo.ui.options.RectoresActivity"
+        android:label="Rectores"
+        tools:layout="@layout/activity_rectores"/>
+
+    <activity
+        android:id="@+id/nav_profemerito"
+        android:name="com.neto.sample75uo.ui.options.ProfeMeritoActivity"
+        android:label="Profesores Eméritos"
+        tools:layout="@layout/activity_profe_merito"/>
+
+    <activity
+        android:id="@+id/nav_pdtFeu"
+        android:name="com.neto.sample75uo.ui.options.PteFeuActivity"
+        android:label="Presidentes de la FEU"
+        tools:layout="@layout/activity_pte_feu"/>
+
+    <activity
+        android:id="@+id/nav_honorCausa"
+        android:name="com.neto.sample75uo.ui.options.HonorCausaActivity"
+        android:label="Honoris Causa"
+        tools:layout="@layout/activity_honor_causa"/>
+
+    <activity
+        android:id="@+id/nav_campaña"
+        android:name="com.neto.sample75uo.ui.options.CampannaActivity"
+        android:label="Campañas"
+        tools:layout="@layout/activity_campanna"/>
+
 
     <activity
         android:id="@+id/nav_news"
