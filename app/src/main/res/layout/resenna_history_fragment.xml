@@ -68,6 +68,10 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
