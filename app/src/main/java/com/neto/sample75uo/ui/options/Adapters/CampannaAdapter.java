@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 
@@ -52,7 +53,7 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
-        private ImageView image;
+        private PhotoView image;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,11 +63,12 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
 
         }
 
+
         TextView getText() {
             return text;
         }
 
-        ImageView getImage() {
+        PhotoView getImage() {
             return image;
         }
     }

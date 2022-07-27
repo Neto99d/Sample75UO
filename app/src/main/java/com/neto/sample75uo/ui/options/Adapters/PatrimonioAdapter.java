@@ -1,5 +1,7 @@
 package com.neto.sample75uo.ui.options.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
+import com.neto.sample75uo.ui.options.FullImageScreenActivity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder>{
+
+
+public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder> {
 
     private List<Patrimonio> patrimonio;
 
@@ -22,6 +29,7 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
     public PatrimonioAdapter(List<Patrimonio> patrimonio) {
         this.patrimonio = patrimonio;
     }
+
 
     public List<Patrimonio> getPatrimonio() {
         return patrimonio;
@@ -43,6 +51,7 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
         Patrimonio patrimonio = this.patrimonio.get(position);
         holder.getText().setText(patrimonio.getContenido());
         holder.getImage().setImageBitmap(patrimonio.getImagen());
+
     }
 
     @Override
@@ -52,7 +61,7 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
-        private ImageView image;
+        private PhotoView image;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,11 +71,12 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
 
         }
 
+
         TextView getText() {
             return text;
         }
 
-        ImageView getImage() {
+        PhotoView getImage() {
             return image;
         }
     }

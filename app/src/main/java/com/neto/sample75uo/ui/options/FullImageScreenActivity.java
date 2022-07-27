@@ -25,7 +25,6 @@ public class FullImageScreenActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         int posicion = i.getExtras().getInt("idimagen");
-        imagenesAdapter = new PatrimonioAdapter(imagenesAdapter.getPatrimonio());
         imageViewDetalles.setImageBitmap(imagenesAdapter.getPatrimonio().get(posicion).getImagen());
 
 

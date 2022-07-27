@@ -1,26 +1,36 @@
 package com.neto.sample75uo.ui.options;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.util.Base64;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Base64;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
-import com.neto.sample75uo.ui.modelsOdoo.Campaña;
+import com.neto.sample75uo.ui.modelsOdoo.AvisoEspecial;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
 import com.neto.sample75uo.ui.modelsOdoo.Efemerides;
-import com.neto.sample75uo.ui.options.Adapters.CampannaAdapter;
+import com.neto.sample75uo.ui.options.Adapters.AvisoAdapter;
 import com.neto.sample75uo.ui.options.Adapters.EfemeridesAdapter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,9 +41,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class EfemeridesActivity extends AppCompatActivity {
+public class AvisoEspecialActivity extends AppCompatActivity {
 
-    private EfemeridesAdapter nAdapter;
+    private AvisoAdapter nAdapter;
     private RecyclerView mRecyclerView;
 
 
@@ -41,8 +51,8 @@ public class EfemeridesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_efemerides);
-        mRecyclerView = findViewById(R.id.recycler_efemerides);
+        setContentView(R.layout.activity_aviso_especial);
+        mRecyclerView = findViewById(R.id.recycler_aviso);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
@@ -81,7 +91,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                     //Definimos la URL base del API REST que utilizamos
                     String baseUrl = "http://192.168.99.158:8069/";
 
-                    ArrayList<Efemerides> efemerides = new ArrayList<>();
+                    ArrayList<AvisoEspecial> avisoEspecials = new ArrayList<>();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -97,12 +107,11 @@ public class EfemeridesActivity extends AppCompatActivity {
                     params.put("access_token", acceso.getAccesToken());
 
 
-                    Call<Data> callS = service.getEfemerides(params);
+                    Call<Data> callS = service.getAviso(params);
                     callS.enqueue(new Callback<Data>() {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
-
                             System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
@@ -110,15 +119,13 @@ public class EfemeridesActivity extends AppCompatActivity {
 
                                     System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
-                                        Efemerides efemerides1 = new Efemerides();
-                                        efemerides1.setContenido(data.getData().get(i).get("contenido").getAsString());
-                                        /// Se coge el String a partir del primer caracter ' que llega desde el JSon
-                                        efemerides1.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
-                                        efemerides1.setFecha(data.getData().get(i).get("fecha").getAsString());
-                                        efemerides.add(efemerides1);
+                                        AvisoEspecial avisoEspecial = new AvisoEspecial();
+                                        avisoEspecial.setContenido(data.getData().get(i).get("contenido").getAsString());
+                                        avisoEspecial.setFecha(data.getData().get(i).get("fecha").getAsString());
+                                        avisoEspecials.add(avisoEspecial);
                                     }
 
-                                    nAdapter = new EfemeridesAdapter(efemerides);
+                                    nAdapter = new AvisoAdapter(avisoEspecials);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -150,21 +157,7 @@ public class EfemeridesActivity extends AppCompatActivity {
             }
         });
 
-
-
+    }
 
     }
 
-
-    // Convertir String base64 a Imagen Bitmap
-    public Bitmap StringToBitMap(String encodedString) {
-        try {
-            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }
-}

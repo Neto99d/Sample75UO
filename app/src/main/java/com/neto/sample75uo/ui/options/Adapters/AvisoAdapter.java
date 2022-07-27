@@ -15,7 +15,7 @@ import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 
 import java.util.List;
 
-/*public class AvisoAdapter extends RecyclerView.Adapter<AvisoAdapter.ViewHolder>{
+public class AvisoAdapter extends RecyclerView.Adapter<AvisoAdapter.ViewHolder>{
     private List<AvisoEspecial> aviso;
 
 
@@ -31,7 +31,7 @@ import java.util.List;
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.rowlist_gen, parent, false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.rowlist_avisos_especiales, parent, false);
 
         final ViewHolder viewHolder = new ViewHolder(vista);
 
@@ -56,8 +56,8 @@ import java.util.List;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            text = itemView.findViewById(R.id.textCont);
-            textFecha = itemView.findViewById(R.id.textFecha);
+            text = itemView.findViewById(R.id.textAviso);
+            textFecha = itemView.findViewById(R.id.textAvisoFecha);
 
         }
 
@@ -69,4 +69,4 @@ import java.util.List;
             return textFecha;
         }
     }
-}*/
+}

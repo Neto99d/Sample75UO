@@ -77,6 +77,17 @@
         android:label="Campañas"
         tools:layout="@layout/activity_campanna"/>
 
+    <activity
+        android:id="@+id/nav_aviso"
+        android:name="com.neto.sample75uo.ui.options.AvisoEspecialActivity"
+        android:label="Campañas"
+        tools:layout="@layout/activity_aviso_especial"/>
+
+    <activity
+        android:id="@+id/nav_efemerides"
+        android:name="com.neto.sample75uo.ui.options.EfemeridesActivity"
+        android:label="Campañas"
+        tools:layout="@layout/activity_efemerides"/>
 
     <activity
         android:id="@+id/nav_news"
