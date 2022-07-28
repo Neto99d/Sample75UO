@@ -38,6 +38,22 @@
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/linkedin"
+            android:src="@drawable/ic_action_linkedin"
+            android:onClick="linkedinFab"
+            app:fab_label="Linkedin" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/youtube"
+            android:src="@drawable/ic_action_youtube"
+            android:onClick="youtubeFab"
+            app:fab_label="Youtube" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:fab_colorNormal="@color/twitter"
             android:src="@drawable/ic_action_twitter"
             android:onClick="twitterFab"
@@ -59,21 +75,9 @@
             android:onClick="telegramFab"
             app:fab_label="Telegram" />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/linkedin"
-            android:src="@drawable/ic_action_linkedin"
-            android:onClick="linkedinFab"
-            app:fab_label="Linkedin" />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/youtube"
-            android:src="@drawable/ic_action_youtube"
-            android:onClick="youtubeFab"
-            app:fab_label="Youtube" />
+
+
 
     </com.github.clans.fab.FloatingActionMenu>
 

@@ -13,4 +13,7 @@
     <string name="alert_title">Alerta</string>
     <string name="alert_positive">Cerrar</string>
     <string name="menu_News">Noticias UO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contacto">todo</string>
 </resources>

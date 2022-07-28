@@ -7,98 +7,104 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.neto.sample75uo.ui.home.HomeFragment"
+        android:name="com.uo75.ernestoDuvalonUO.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <activity
         android:id="@+id/nav_gallery"
-        android:name="com.neto.sample75uo.ui.gallery.GalleryActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.gallery.GalleryActivity"
         android:label="@string/menu_gallery"
         tools:layout="@layout/activity_gallery" />
 
     <activity
         android:id="@+id/nav_slideshow"
-        android:name="com.neto.sample75uo.ui.slideshow.MultimediaActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.MultimediaActivity"
         android:label="Multimedia"
         tools:layout="@layout/activity_multimedia" />
 
     <fragment
         android:id="@+id/nav_mision"
-        android:name="com.neto.sample75uo.ui.options.MOVFragment"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.MOVFragment"
         android:label="Institución"
         tools:layout="@layout/mov_fragment" />
 
     <fragment
         android:id="@+id/nav_reseña"
-        android:name="com.neto.sample75uo.ui.options.ResennaHistoryFragment"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.ResennaHistoryFragment"
         android:label="Historia de la UO"
         tools:layout="@layout/resenna_history_fragment" />
 
     <activity
         android:id="@+id/nav_identidad"
-        android:name="com.neto.sample75uo.ui.options.IdentidadActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.IdentidadActivity"
         android:label="Identidad"
         tools:layout="@layout/activity_identidad"/>
 
     <activity
         android:id="@+id/nav_patrimonio"
-        android:name="com.neto.sample75uo.ui.options.PatrimonioActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.PatrimonioActivity"
         android:label="Patrimonio"
         tools:layout="@layout/activity_patrimonio" />
 
     <activity
         android:id="@+id/nav_rectores"
-        android:name="com.neto.sample75uo.ui.options.RectoresActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.RectoresActivity"
         android:label="Rectores"
         tools:layout="@layout/activity_rectores"/>
 
     <activity
         android:id="@+id/nav_profemerito"
-        android:name="com.neto.sample75uo.ui.options.ProfeMeritoActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.ProfeMeritoActivity"
         android:label="Profesores Eméritos"
         tools:layout="@layout/activity_profe_merito"/>
 
     <activity
         android:id="@+id/nav_pdtFeu"
-        android:name="com.neto.sample75uo.ui.options.PteFeuActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.PteFeuActivity"
         android:label="Presidentes de la FEU"
         tools:layout="@layout/activity_pte_feu"/>
 
     <activity
         android:id="@+id/nav_honorCausa"
-        android:name="com.neto.sample75uo.ui.options.HonorCausaActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.HonorCausaActivity"
         android:label="Honoris Causa"
         tools:layout="@layout/activity_honor_causa"/>
 
     <activity
         android:id="@+id/nav_campaña"
-        android:name="com.neto.sample75uo.ui.options.CampannaActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.CampannaActivity"
         android:label="Campañas"
         tools:layout="@layout/activity_campanna"/>
 
     <activity
         android:id="@+id/nav_aviso"
-        android:name="com.neto.sample75uo.ui.options.AvisoEspecialActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.AvisoEspecialActivity"
         android:label="Campañas"
         tools:layout="@layout/activity_aviso_especial"/>
 
     <activity
         android:id="@+id/nav_efemerides"
-        android:name="com.neto.sample75uo.ui.options.EfemeridesActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.EfemeridesActivity"
         android:label="Campañas"
         tools:layout="@layout/activity_efemerides"/>
 
     <activity
         android:id="@+id/nav_estadisticas"
-        android:name="com.neto.sample75uo.ui.options.EstadisticasActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.EstadisticasActivity"
         android:label="Estadísticas"
         tools:layout="@layout/activity_estadisticas"/>
 
     <activity
         android:id="@+id/nav_news"
-        android:name="com.neto.sample75uo.ui.options.NewsActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.options.NewsActivity"
         android:label="@string/menu_News"
         tools:layout="@layout/activity_news" />
+
+    <fragment
+        android:id="@+id/nav_acerca_de"
+        android:name="com.uo75.ernestoDuvalonUO.ui.acerdaDE.AcercaDe_Fragment"
+        android:label="Contacto"
+        tools:layout="@layout/fragment_acerca_de_" />
 
 </navigation>

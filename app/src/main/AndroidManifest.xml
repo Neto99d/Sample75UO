@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.neto.sample75uo">
+    package="com.uo75.ernestoDuvalonUO">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -15,47 +15,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sample75UO"
         android:usesCleartextTraffic="true">
+        <service android:name=".ui.ServicioSearchAvisos" />
         <activity
-            android:name=".ui.slideshow.MultimediaActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.MultimediaActivity"
             android:label="Multimedia" />
         <activity
-            android:name=".ui.gallery.GalleryActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.gallery.GalleryActivity"
             android:label="Postales" />
         <activity
-            android:name=".ui.options.AvisoEspecialActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.AvisoEspecialActivity"
             android:label="Avisos UO" />
         <activity
-            android:name=".ui.options.PteFeuActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.PteFeuActivity"
             android:label="Presidentes de la FEU" />
         <activity
-            android:name=".ui.options.CampannaActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.CampannaActivity"
             android:label="Campañas" />
         <activity
-            android:name=".ui.options.HonorCausaActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.HonorCausaActivity"
             android:label="Honoris Causa" />
         <activity
-            android:name=".ui.options.ProfeMeritoActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.ProfeMeritoActivity"
             android:label="Profesores Eméritos" />
         <activity
-            android:name=".ui.options.EstadisticasActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.EstadisticasActivity"
             android:label="Estadísticas" />
         <activity
-            android:name=".ui.options.IdentidadActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.IdentidadActivity"
             android:label="Identidad" />
         <activity
-            android:name=".ui.options.RectoresActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.RectoresActivity"
             android:label="Rectores" />
         <activity
-            android:name=".ui.options.EfemeridesActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.EfemeridesActivity"
             android:label="Efemérides" />
         <activity
-            android:name=".ui.options.PatrimonioActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.PatrimonioActivity"
             android:label="Patrimonio" />
         <activity
-            android:name=".ui.options.NewsActivity"
+            android:name="com.uo75.ernestoDuvalonUO.ui.options.NewsActivity"
             android:label="La Tablilla" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.uo75.ernestoDuvalonUO.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Sample75UO.NoActionBar">
             <intent-filter>
@@ -64,6 +65,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
