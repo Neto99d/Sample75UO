@@ -17,6 +17,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.options.Adapters.AvisoAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,7 +110,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                                         avisoEspecial.setFecha(data.getData().get(i).get("fecha").getAsString());
                                         avisoEspecials.add(avisoEspecial);
                                     }
-
+                                    Collections.reverse(avisoEspecials);
                                     nAdapter = new AvisoAdapter(avisoEspecials);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
