@@ -3,7 +3,6 @@ package com.neto.sample75uo.ui.options.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.modelsOdoo.AvisoEspecial;
-import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 
 import java.util.List;
 

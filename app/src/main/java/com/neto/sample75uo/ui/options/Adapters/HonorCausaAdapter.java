@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.chrisbanes.photoview.PhotoView;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.modelsOdoo.HonorCausa;
 
@@ -17,10 +18,11 @@ import java.util.List;
 
 public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.ViewHolder>{
     private List<HonorCausa> honor;
+    Context conntext;
 
-
-    public HonorCausaAdapter(List<HonorCausa> honor) {
+    public HonorCausaAdapter(List<HonorCausa> honor, Context conntext) {
         this.honor = honor;
+        this.conntext = conntext;
     }
 
     public List<HonorCausa> getHonorCausa() {
@@ -43,6 +45,25 @@ public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.Vi
         HonorCausa honor = this.honor.get(position);
         holder.getText().setText(honor.getContenido());
         holder.getImage().setImageBitmap(honor.getImagen());
+        final ImagePopup imagePopup = new ImagePopup(conntext);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+
+
+        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
+
+
+        holder.getImage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Initiate Popup view **/
+                imagePopup.viewPopup();
+
+            }
+        });
     }
 
     @Override
@@ -52,7 +73,7 @@ public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
-        private PhotoView image;
+        private ImageView image;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,7 +88,7 @@ public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.Vi
             return text;
         }
 
-        PhotoView getImage() {
+        ImageView getImage() {
             return image;
         }
     }

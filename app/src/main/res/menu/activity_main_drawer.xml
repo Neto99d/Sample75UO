@@ -5,21 +5,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_reseña"
+            android:title="Reseña Histórica" />
 
         <item
             android:id="@+id/nav_mision"
             android:title="Institución" />
 
-        <item
-            android:id="@+id/nav_reseña"
-            android:title="Reseña Histórica" />
 
         <item
             android:id="@+id/nav_identidad"
@@ -50,12 +42,25 @@
             android:title="Campañas" />
 
         <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_slideshow" />
+
+        <item
             android:id="@+id/nav_aviso"
             android:title="Avisos Especiales" />
 
         <item
             android:id="@+id/nav_efemerides"
             android:title="Efemérides" />
+
+        <item
+            android:id="@+id/nav_estadisticas"
+            android:title="Estadísticas" />
 
         <item
             android:id="@+id/nav_news"

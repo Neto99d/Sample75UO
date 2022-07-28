@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -17,9 +18,7 @@ import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
 import com.neto.sample75uo.ui.modelsOdoo.Identidad;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
 import com.neto.sample75uo.ui.options.Adapters.IdentidadAdapter;
-import com.neto.sample75uo.ui.options.Adapters.PatrimonioAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,12 +34,12 @@ public class IdentidadActivity extends AppCompatActivity {
 
     private IdentidadAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_identidad);
         mRecyclerView = findViewById(R.id.recycler_identidad);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,7 +116,7 @@ public class IdentidadActivity extends AppCompatActivity {
                                         identidads.add(identidad);
                                     }
 
-                                    nAdapter = new IdentidadAdapter(identidads);
+                                    nAdapter = new IdentidadAdapter(identidads, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {

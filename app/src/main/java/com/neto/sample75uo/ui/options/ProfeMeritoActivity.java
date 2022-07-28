@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -16,9 +17,7 @@ import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
 import com.neto.sample75uo.ui.modelsOdoo.ProfeEmerito;
-import com.neto.sample75uo.ui.options.Adapters.PatrimonioAdapter;
 import com.neto.sample75uo.ui.options.Adapters.ProfeEmeritoAdapter;
 
 import java.util.ArrayList;
@@ -35,12 +34,12 @@ public class ProfeMeritoActivity extends AppCompatActivity {
 
     private ProfeEmeritoAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_profe_merito);
         mRecyclerView = findViewById(R.id.recycler_profemerito);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,7 +116,7 @@ public class ProfeMeritoActivity extends AppCompatActivity {
                                         profeEmeritos.add(profeEmerito);
                                     }
 
-                                    nAdapter = new ProfeEmeritoAdapter(profeEmeritos);
+                                    nAdapter = new ProfeEmeritoAdapter(profeEmeritos, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -148,8 +147,6 @@ public class ProfeMeritoActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }

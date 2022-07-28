@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -17,9 +18,7 @@ import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
 import com.neto.sample75uo.ui.options.Adapters.CampannaAdapter;
-import com.neto.sample75uo.ui.options.Adapters.PatrimonioAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,12 +34,12 @@ public class CampannaActivity extends AppCompatActivity {
 
     private CampannaAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_campanna);
         mRecyclerView = findViewById(R.id.recycler_campanna);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,7 +116,7 @@ public class CampannaActivity extends AppCompatActivity {
                                         campañas.add(campaña);
                                     }
 
-                                    nAdapter = new CampannaAdapter(campañas);
+                                    nAdapter = new CampannaAdapter(campañas, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -148,8 +147,6 @@ public class CampannaActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }

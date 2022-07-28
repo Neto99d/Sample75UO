@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.chrisbanes.photoview.PhotoView;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.modelsOdoo.Efemerides;
 
@@ -17,10 +18,11 @@ import java.util.List;
 
 public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder>{
     private List<Efemerides> efemerides;
+    Context conntext;
 
-
-    public EfemeridesAdapter(List<Efemerides> efemerides) {
+    public EfemeridesAdapter(List<Efemerides> efemerides, Context conntext) {
         this.efemerides = efemerides;
+        this.conntext = conntext;
     }
 
     public List<Efemerides> getEfemerides() {
@@ -44,6 +46,25 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
         holder.getText().setText(efemerides.getContenido());
         holder.getTextFecha().setText(efemerides.getFecha());
         holder.getImage().setImageBitmap(efemerides.getImagen());
+        final ImagePopup imagePopup = new ImagePopup(conntext);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+
+
+        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
+
+
+        holder.getImage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Initiate Popup view **/
+                imagePopup.viewPopup();
+
+            }
+        });
     }
 
     @Override
@@ -54,7 +75,7 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
         private TextView textFecha;
-        private PhotoView image;
+        private ImageView image;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +93,7 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
             return textFecha;
         }
 
-        PhotoView getImage() {
+        ImageView getImage() {
             return image;
         }
     }

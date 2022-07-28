@@ -9,10 +9,7 @@ import com.google.gson.GsonBuilder;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
-import com.neto.sample75uo.ui.modelsOdoo.Mision;
-import com.neto.sample75uo.ui.modelsOdoo.Objeto;
 import com.neto.sample75uo.ui.modelsOdoo.Reseña;
-import com.neto.sample75uo.ui.modelsOdoo.Vision;
 
 import java.util.HashMap;
 import java.util.Map;

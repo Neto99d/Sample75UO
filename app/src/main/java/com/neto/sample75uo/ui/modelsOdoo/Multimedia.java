@@ -1,40 +1,32 @@
 package com.neto.sample75uo.ui.modelsOdoo;
 
-public class Multimedia {
-    String videos;
-    String audios;
-    String name;
+import android.graphics.Bitmap;
 
-    public Multimedia(String videos, String audios, String acerca_de) {
-        this.videos = videos;
-        this.audios = audios;
-        this.name = acerca_de;
-    }
+public class Multimedia {
+    String contenido;
+    Bitmap imagen;
 
     public Multimedia() {
     }
 
-    public String getVideo() {
-        return videos;
+    public Multimedia(String url, Bitmap image) {
+        this.contenido = url;
+        this.imagen = image;
     }
 
-    public void setVideo(String video) {
-        this.videos = video;
+    public String getUrl() {
+        return contenido;
     }
 
-    public String getAudio() {
-        return audios;
+    public void setUrl(String url) {
+        this.contenido = url;
     }
 
-    public void setAudio(String audio) {
-        this.audios = audio;
+    public Bitmap getImage() {
+        return imagen;
     }
 
-    public String getAcerca_de() {
-        return name;
-    }
-
-    public void setAcerca_de(String acerca_de) {
-        this.name = acerca_de;
+    public void setImage(Bitmap image) {
+        this.imagen = image;
     }
 }

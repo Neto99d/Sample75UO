@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.chrisbanes.photoview.PhotoView;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 
@@ -18,10 +19,11 @@ import java.util.List;
 public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHolder>{
 
     private List<Campaña> campaña;
+    Context conntext;
 
-
-    public CampannaAdapter(List<Campaña> campaña) {
+    public CampannaAdapter(List<Campaña> campaña, Context conntext) {
         this.campaña = campaña;
+        this.conntext = conntext;
     }
 
     public List<Campaña> getcampaña() {
@@ -44,6 +46,25 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
         Campaña campaña = this.campaña.get(position);
         holder.getText().setText(campaña.getContenido());
         holder.getImage().setImageBitmap(campaña.getImagen());
+        final ImagePopup imagePopup = new ImagePopup(conntext);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+
+
+        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
+
+
+        holder.getImage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Initiate Popup view **/
+                imagePopup.viewPopup();
+
+            }
+        });
     }
 
     @Override
@@ -53,7 +74,7 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
-        private PhotoView image;
+        private ImageView image;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +89,7 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
             return text;
         }
 
-        PhotoView getImage() {
+        ImageView getImage() {
             return image;
         }
     }

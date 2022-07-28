@@ -1,22 +1,25 @@
-package com.neto.sample75uo.ui.options;
-
-import android.os.Bundle;
+package com.neto.sample75uo.ui.slideshow;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.util.Base64;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
-import com.neto.sample75uo.ui.modelsOdoo.AvisoEspecial;
+import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
-import com.neto.sample75uo.ui.modelsOdoo.Estadisticas;
-import com.neto.sample75uo.ui.options.Adapters.AvisoAdapter;
-import com.neto.sample75uo.ui.options.Adapters.EstadisticasAdapter;
+import com.neto.sample75uo.ui.modelsOdoo.Multimedia;
+import com.neto.sample75uo.ui.options.Adapters.CampannaAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,18 +31,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class EstadisticasActivity extends AppCompatActivity {
+public class MultimediaActivity extends AppCompatActivity {
 
-    private EstadisticasAdapter nAdapter;
+    private MultimediaAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_estadisticas);
-        mRecyclerView = findViewById(R.id.recycler_estadisticas);
+        mContext = this;
+        setContentView(R.layout.activity_multimedia);
+        mRecyclerView = findViewById(R.id.recycler_multimedia);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
@@ -78,7 +81,7 @@ public class EstadisticasActivity extends AppCompatActivity {
                     //Definimos la URL base del API REST que utilizamos
                     String baseUrl = "http://192.168.99.158:8069/";
 
-                    ArrayList<Estadisticas> estadisticas = new ArrayList<>();
+                    ArrayList<Multimedia> multimedias = new ArrayList<>();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -94,25 +97,27 @@ public class EstadisticasActivity extends AppCompatActivity {
                     params.put("access_token", acceso.getAccesToken());
 
 
-                    Call<Data> callS = service.getEstadisticas(params);
+                    Call<Data> callS = service.getMultimedia(params);
                     callS.enqueue(new Callback<Data>() {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
+
                             System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
 
-                                    System.out.println("Response:\n" + data.getData().get(0).get("name"));
+                                    System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
-                                        Estadisticas avisoEspecial = new Estadisticas();
-                                        avisoEspecial.setName(data.getData().get(i).get("name").getAsString());
-                                        avisoEspecial.setCantidad(data.getData().get(i).get("cantidad").getAsString());
-                                        estadisticas.add(avisoEspecial);
+                                        Multimedia multimedia1 = new Multimedia();
+                                        multimedia1.setUrl(data.getData().get(i).get("contenido").getAsString());
+                                        /// Se coge el String a partir del primer caracter ' que llega desde el JSon
+                                        multimedia1.setImage(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
+                                        multimedias.add(multimedia1);
                                     }
 
-                                    nAdapter = new EstadisticasAdapter(estadisticas);
+                                    nAdapter = new MultimediaAdapter(multimedias, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -143,5 +148,20 @@ public class EstadisticasActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+
+    // Convertir String base64 a Imagen Bitmap
+    public Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

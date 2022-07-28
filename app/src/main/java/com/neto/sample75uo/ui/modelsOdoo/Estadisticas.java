@@ -1,20 +1,30 @@
 package com.neto.sample75uo.ui.modelsOdoo;
 
 public class Estadisticas {
-    int cant_profesores;
+    String  cantidad;
+    String name;
 
-    public Estadisticas(int cant_profesores) {
-        this.cant_profesores = cant_profesores;
-    }
-
-    public int getCant_profesores() {
-        return cant_profesores;
+    public Estadisticas(String cantidad, String name) {
+        this.cantidad = cantidad;
+        this.name = name;
     }
 
     public Estadisticas() {
     }
 
-    public void setCant_profesores(int cant_profesores) {
-        this.cant_profesores = cant_profesores;
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

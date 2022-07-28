@@ -5,12 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="10dp"
-    tools:context=".ui.options.EstadisticasActivity">
+    tools:context=".ui.slideshow.MultimediaActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_estadisticas"
+        android:id="@+id/recycler_multimedia"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/activity_estadisticas" />
-
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

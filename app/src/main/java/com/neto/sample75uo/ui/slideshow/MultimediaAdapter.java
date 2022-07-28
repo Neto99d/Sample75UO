@@ -1,39 +1,41 @@
-package com.neto.sample75uo.ui.options.Adapters;
+package com.neto.sample75uo.ui.slideshow;
 
 import android.content.Context;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.neto.sample75uo.R;
-import com.neto.sample75uo.ui.modelsOdoo.Rectores;
+import com.neto.sample75uo.ui.modelsOdoo.Multimedia;
 
 import java.util.List;
 
-public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder>{
-    private List<Rectores> rectores;
-    Context conntext;
+public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.ViewHolder> {
+    private List<Multimedia> multimedia;
+    Context context;
 
-    public RectorAdapter(List<Rectores> rectores, Context conntext) {
-        this.rectores = rectores;
-        this.conntext = conntext;
+    public MultimediaAdapter(List<Multimedia> multimedia, Context context) {
+        this.multimedia = multimedia;
+        this.context = context;
     }
 
-    public List<Rectores> getRectores() {
-        return rectores;
+    public List<Multimedia> getMultimedia() {
+        return multimedia;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.rowlist_gen, parent, false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.rowlist_multimedia, parent, false);
 
         final ViewHolder viewHolder = new ViewHolder(vista);
 
@@ -42,10 +44,11 @@ public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Rectores rectores = this.rectores.get(position);
-        holder.getText().setText(rectores.getContenido());
-        holder.getImage().setImageBitmap(rectores.getImagen());
-        final ImagePopup imagePopup = new ImagePopup(conntext);
+        Multimedia multimedia = this.multimedia.get(position);
+        holder.getText().setText(multimedia.getUrl());
+        Linkify.addLinks(holder.getText(), Linkify.WEB_URLS);
+        holder.getImage().setImageBitmap(multimedia.getImage());
+        final ImagePopup imagePopup = new ImagePopup(context);
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
         imagePopup.setFullScreen(true); // Optional
@@ -68,7 +71,7 @@ public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return this.rectores.size();
+        return this.multimedia.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -80,9 +83,7 @@ public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder
             text = itemView.findViewById(R.id.textPatr);
             image = itemView.findViewById(R.id.imageProfile);
 
-
         }
-
 
         TextView getText() {
             return text;

@@ -11,17 +11,17 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_gallery"
-        android:name="com.neto.sample75uo.ui.gallery.GalleryFragment"
+        android:name="com.neto.sample75uo.ui.gallery.GalleryActivity"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/activity_gallery" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_slideshow"
-        android:name="com.neto.sample75uo.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.neto.sample75uo.ui.slideshow.MultimediaActivity"
+        android:label="Multimedia"
+        tools:layout="@layout/activity_multimedia" />
 
     <fragment
         android:id="@+id/nav_mision"
@@ -88,6 +88,12 @@
         android:name="com.neto.sample75uo.ui.options.EfemeridesActivity"
         android:label="Campañas"
         tools:layout="@layout/activity_efemerides"/>
+
+    <activity
+        android:id="@+id/nav_estadisticas"
+        android:name="com.neto.sample75uo.ui.options.EstadisticasActivity"
+        android:label="Estadísticas"
+        tools:layout="@layout/activity_estadisticas"/>
 
     <activity
         android:id="@+id/nav_news"

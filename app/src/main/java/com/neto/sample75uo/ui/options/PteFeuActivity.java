@@ -1,14 +1,15 @@
 package com.neto.sample75uo.ui.options;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,9 +17,7 @@ import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
 import com.neto.sample75uo.ui.modelsOdoo.PdteFeu;
-import com.neto.sample75uo.ui.options.Adapters.PatrimonioAdapter;
 import com.neto.sample75uo.ui.options.Adapters.PdteFeuAdapter;
 
 import java.util.ArrayList;
@@ -35,12 +34,12 @@ public class PteFeuActivity extends AppCompatActivity {
 
     private PdteFeuAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_pte_feu);
         mRecyclerView = findViewById(R.id.recycler_ptefeu);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,7 +116,7 @@ public class PteFeuActivity extends AppCompatActivity {
                                         pdteFeus.add(pdteFeu);
                                     }
 
-                                    nAdapter = new PdteFeuAdapter(pdteFeus);
+                                    nAdapter = new PdteFeuAdapter(pdteFeus, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -148,8 +147,6 @@ public class PteFeuActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }

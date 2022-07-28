@@ -1,22 +1,21 @@
-package com.neto.sample75uo.ui.options;
+package com.neto.sample75uo.ui.gallery;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
-import com.neto.sample75uo.ui.modelsOdoo.AvisoEspecial;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
-import com.neto.sample75uo.ui.modelsOdoo.Estadisticas;
-import com.neto.sample75uo.ui.options.Adapters.AvisoAdapter;
-import com.neto.sample75uo.ui.options.Adapters.EstadisticasAdapter;
+import com.neto.sample75uo.ui.modelsOdoo.Postales;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,21 +27,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class EstadisticasActivity extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity {
 
-    private EstadisticasAdapter nAdapter;
-    private RecyclerView mRecyclerView;
-
-
+    GridView gridViewImagenes;
+    private GalleryAdaper nAdapter;
+    Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_estadisticas);
-        mRecyclerView = findViewById(R.id.recycler_estadisticas);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setHasFixedSize(true);
+        setContentView(R.layout.activity_gallery);
+        mContext = this;
+        gridViewImagenes = (GridView) findViewById(R.id.grid_Images);
 
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.99.158:8069/";
@@ -78,7 +73,7 @@ public class EstadisticasActivity extends AppCompatActivity {
                     //Definimos la URL base del API REST que utilizamos
                     String baseUrl = "http://192.168.99.158:8069/";
 
-                    ArrayList<Estadisticas> estadisticas = new ArrayList<>();
+                    ArrayList<Postales> postales = new ArrayList<>();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -94,26 +89,25 @@ public class EstadisticasActivity extends AppCompatActivity {
                     params.put("access_token", acceso.getAccesToken());
 
 
-                    Call<Data> callS = service.getEstadisticas(params);
+                    Call<Data> callS = service.getPostales(params);
                     callS.enqueue(new Callback<Data>() {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
+
                             System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
-
-                                    System.out.println("Response:\n" + data.getData().get(0).get("name"));
                                     for (int i = 0; i < data.getData().size(); i++) {
-                                        Estadisticas avisoEspecial = new Estadisticas();
-                                        avisoEspecial.setName(data.getData().get(i).get("name").getAsString());
-                                        avisoEspecial.setCantidad(data.getData().get(i).get("cantidad").getAsString());
-                                        estadisticas.add(avisoEspecial);
+                                        Postales postales1 = new Postales();
+                                        /// Se coge el String a partir del primer caracter ' que llega desde el JSon
+                                        postales1.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
+                                        postales.add(postales1);
                                     }
 
-                                    nAdapter = new EstadisticasAdapter(estadisticas);
-                                    mRecyclerView.setAdapter(nAdapter);
+                                    nAdapter = new GalleryAdaper(postales, mContext);
+                                    gridViewImagenes.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
@@ -143,5 +137,18 @@ public class EstadisticasActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    // Convertir String base64 a Imagen Bitmap
+    public Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

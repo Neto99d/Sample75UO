@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -16,9 +17,7 @@ import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
 import com.neto.sample75uo.ui.modelsOdoo.Rectores;
-import com.neto.sample75uo.ui.options.Adapters.PatrimonioAdapter;
 import com.neto.sample75uo.ui.options.Adapters.RectorAdapter;
 
 import java.util.ArrayList;
@@ -35,12 +34,12 @@ public class RectoresActivity extends AppCompatActivity {
 
     private RectorAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_rectores);
         mRecyclerView = findViewById(R.id.recycler_rectores);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,7 +116,7 @@ public class RectoresActivity extends AppCompatActivity {
                                         rectores.add(rectores1);
                                     }
 
-                                    nAdapter = new RectorAdapter(rectores);
+                                    nAdapter = new RectorAdapter(rectores, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {

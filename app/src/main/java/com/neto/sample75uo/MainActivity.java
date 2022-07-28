@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
+                Toast toast = Toast.makeText(getApplicationContext(), "Conexión al servicio exitosa.", Toast.LENGTH_LONG);
+                toast.show();
                 System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
@@ -165,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AccesOdoo> call, Throwable t) {
                 System.out.println("Network Error :: " + t.getLocalizedMessage());
-
+                Toast toast = Toast.makeText(getApplicationContext(), "Error de Conexión con el servicio", Toast.LENGTH_LONG);
+                toast.show();
             }
         });
 
@@ -210,12 +214,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onSupportNavigateUp() {

@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Sample75UO"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.slideshow.MultimediaActivity"
+            android:label="Multimedia" />
+        <activity
+            android:name=".ui.gallery.GalleryActivity"
+            android:label="Postales" />
+        <activity
             android:name=".ui.options.AvisoEspecialActivity"
             android:label="Avisos UO" />
         <activity
@@ -42,9 +48,6 @@
         <activity
             android:name=".ui.options.EfemeridesActivity"
             android:label="Efemérides" />
-        <activity
-            android:name=".ui.options.FullImageScreenActivity"
-            android:label="Imagen Ampliada" />
         <activity
             android:name=".ui.options.PatrimonioActivity"
             android:label="Patrimonio" />

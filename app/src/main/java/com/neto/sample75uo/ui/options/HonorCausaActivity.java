@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -17,9 +18,7 @@ import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
 import com.neto.sample75uo.ui.modelsOdoo.HonorCausa;
-import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
 import com.neto.sample75uo.ui.options.Adapters.HonorCausaAdapter;
-import com.neto.sample75uo.ui.options.Adapters.PatrimonioAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,12 +33,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HonorCausaActivity extends AppCompatActivity {
     private HonorCausaAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_honor_causa);
         mRecyclerView = findViewById(R.id.recycler_honorcausa);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -116,7 +115,7 @@ public class HonorCausaActivity extends AppCompatActivity {
                                         honor.add(honorC);
                                     }
 
-                                    nAdapter = new HonorCausaAdapter(honor);
+                                    nAdapter = new HonorCausaAdapter(honor, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -147,8 +146,6 @@ public class HonorCausaActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }

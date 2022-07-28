@@ -1,5 +1,6 @@
 package com.neto.sample75uo.ui.options;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,10 +16,8 @@ import com.google.gson.GsonBuilder;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.RestClient;
 import com.neto.sample75uo.ui.modelsOdoo.AccesOdoo;
-import com.neto.sample75uo.ui.modelsOdoo.Campaña;
 import com.neto.sample75uo.ui.modelsOdoo.Data;
 import com.neto.sample75uo.ui.modelsOdoo.Efemerides;
-import com.neto.sample75uo.ui.options.Adapters.CampannaAdapter;
 import com.neto.sample75uo.ui.options.Adapters.EfemeridesAdapter;
 
 import java.util.ArrayList;
@@ -35,12 +34,12 @@ public class EfemeridesActivity extends AppCompatActivity {
 
     private EfemeridesAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_efemerides);
         mRecyclerView = findViewById(R.id.recycler_efemerides);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -118,7 +117,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                                         efemerides.add(efemerides1);
                                     }
 
-                                    nAdapter = new EfemeridesAdapter(efemerides);
+                                    nAdapter = new EfemeridesAdapter(efemerides, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -149,8 +148,6 @@ public class EfemeridesActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }

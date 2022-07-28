@@ -1,12 +1,12 @@
 package com.neto.sample75uo.ui.options;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,12 +33,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PatrimonioActivity extends AppCompatActivity {
     private PatrimonioAdapter nAdapter;
     private RecyclerView mRecyclerView;
-
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_patrimonio);
         mRecyclerView = findViewById(R.id.recycler_patrimonio);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -115,7 +115,7 @@ public class PatrimonioActivity extends AppCompatActivity {
                                         patrim.add(patrimonio);
                                     }
 
-                                    nAdapter = new PatrimonioAdapter(patrim);
+                                    nAdapter = new PatrimonioAdapter(patrim, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
@@ -146,8 +146,6 @@ public class PatrimonioActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }

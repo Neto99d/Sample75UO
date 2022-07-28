@@ -1,7 +1,6 @@
 package com.neto.sample75uo.ui.options.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.chrisbanes.photoview.PhotoView;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.neto.sample75uo.R;
 import com.neto.sample75uo.ui.modelsOdoo.Patrimonio;
-import com.neto.sample75uo.ui.options.FullImageScreenActivity;
 
-import java.io.Serializable;
 import java.util.List;
 
 
@@ -24,12 +21,12 @@ import java.util.List;
 public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder> {
 
     private List<Patrimonio> patrimonio;
+    Context conntext;
 
-
-    public PatrimonioAdapter(List<Patrimonio> patrimonio) {
+    public PatrimonioAdapter(List<Patrimonio> patrimonio, Context conntext) {
         this.patrimonio = patrimonio;
+        this.conntext = conntext;
     }
-
 
     public List<Patrimonio> getPatrimonio() {
         return patrimonio;
@@ -51,6 +48,25 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
         Patrimonio patrimonio = this.patrimonio.get(position);
         holder.getText().setText(patrimonio.getContenido());
         holder.getImage().setImageBitmap(patrimonio.getImagen());
+        final ImagePopup imagePopup = new ImagePopup(conntext);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+
+
+        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
+
+
+        holder.getImage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Initiate Popup view **/
+                imagePopup.viewPopup();
+
+            }
+        });
 
     }
 
@@ -61,7 +77,7 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
-        private PhotoView image;
+        private ImageView image;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +92,7 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
             return text;
         }
 
-        PhotoView getImage() {
+        ImageView getImage() {
             return image;
         }
     }
