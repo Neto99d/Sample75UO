@@ -8,6 +8,9 @@ import android.util.Base64;
 import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,6 +19,7 @@ import com.uo75.ernestoDuvalonUO.ui.RestClient;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
+import com.uo75.ernestoDuvalonUO.ui.options.Adapters.CampannaAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,15 +33,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GalleryActivity extends AppCompatActivity {
 
-    GridView gridViewImagenes;
     private GalleryAdaper nAdapter;
+    private RecyclerView mRecyclerView;
     Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         mContext = this;
-        gridViewImagenes = (GridView) findViewById(R.id.grid_Images);
+        mRecyclerView = findViewById(R.id.recycler_gallery);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setHasFixedSize(true);
 
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.99.158:8069/";
@@ -107,7 +114,7 @@ public class GalleryActivity extends AppCompatActivity {
                                     }
 
                                     nAdapter = new GalleryAdaper(postales, mContext);
-                                    gridViewImagenes.setAdapter(nAdapter);
+                                    mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
