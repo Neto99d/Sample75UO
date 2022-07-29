@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="119dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/icon_app" />
+                app:srcCompat="@drawable/icon_app" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -33,7 +33,7 @@
                 android:paddingStart="10dp"
                 android:paddingTop="180dp"
                 android:paddingEnd="10dp"
-                android:src="@drawable/pulover_atras" />
+                app:srcCompat="@drawable/pulover_atras" />
 
             <TextView
                 android:id="@+id/textVersion"
