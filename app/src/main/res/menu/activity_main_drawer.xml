@@ -13,7 +13,7 @@
         <item
             android:id="@+id/nav_mision"
             android:title="Institución"
-            android:icon="@drawable/organizacion"
+            android:icon="@drawable/institucion"
             />
 
 
@@ -44,7 +44,7 @@
         <item
             android:id="@+id/nav_pdtFeu"
             android:title="Presidentes de la FEU"
-            android:icon="@drawable/presidente_feu"
+            android:icon="@drawable/pdte_feu"
             />
 
         <item
