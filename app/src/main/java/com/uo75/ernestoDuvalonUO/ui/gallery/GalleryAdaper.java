@@ -4,19 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
-import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Campaña;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
-import com.uo75.ernestoDuvalonUO.ui.options.Adapters.CampannaAdapter;
 
 import java.util.List;
 

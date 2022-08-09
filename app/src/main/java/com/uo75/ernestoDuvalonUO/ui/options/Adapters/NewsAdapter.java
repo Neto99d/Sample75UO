@@ -13,9 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.uo75.ernestoDuvalonUO.R;
 import com.prof.rssparser.Article;
 import com.squareup.picasso.Picasso;
+import com.uo75.ernestoDuvalonUO.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

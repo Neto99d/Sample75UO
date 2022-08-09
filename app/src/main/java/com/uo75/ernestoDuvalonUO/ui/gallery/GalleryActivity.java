@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -19,7 +18,6 @@ import com.uo75.ernestoDuvalonUO.ui.RestClient;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
-import com.uo75.ernestoDuvalonUO.ui.options.Adapters.CampannaAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

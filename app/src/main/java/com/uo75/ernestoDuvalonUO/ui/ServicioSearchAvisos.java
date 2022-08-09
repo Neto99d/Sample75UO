@@ -1,16 +1,18 @@
 package com.uo75.ernestoDuvalonUO.ui;
 
-import android.app.Notification;
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -23,6 +25,8 @@ import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,7 +49,6 @@ public class ServicioSearchAvisos extends Service {
 
     @Override
     public int onStartCommand(Intent intenc, int flags, int idArranque) {
-// public int onStartCommand(Intent intent, int flags, int startId) {
         Intent noty_intent = new Intent(this,
                 MainActivity.class);
         noty_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
@@ -53,7 +56,11 @@ public class ServicioSearchAvisos extends Service {
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, noty_intent,
                 0);
         ///////////// Ejecutar metodo para buscar avisos
-        ejecutar();
+        if (!isNetworkAvailable()) {
+          System.out.print("No hay conexion");
+        } else {
+            ejecutar();
+        }
         /////////////
         return START_STICKY;
     }
@@ -73,8 +80,8 @@ public class ServicioSearchAvisos extends Service {
                 .setSmallIcon(R.drawable.icon_app_uo)
                 .setContentTitle("Aviso de Universidad de Oriente")
                 .setContentText(contenido)
-                .setVibrate(new long[] {100, 250, 100, 500})
-                .setSound(Uri.parse("android.resource://"+ getPackageName() + "/" + R.raw.message_notification))
+                .setVibrate(new long[]{100, 250, 100, 500})
+                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification))
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
@@ -114,6 +121,7 @@ public class ServicioSearchAvisos extends Service {
     }
 
     private void metodoBuscarAviso() {
+        createNotificationChannel();
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.99.158:8069/";
 
@@ -137,7 +145,7 @@ public class ServicioSearchAvisos extends Service {
         Call<AccesOdoo> call = service.getAcceso(params);
         call.enqueue(new Callback<AccesOdoo>() {
             @Override
-            public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
+            public void onResponse(@NotNull Call<AccesOdoo> call, @NotNull Response<AccesOdoo> response) {
                 //Codigo de respuesta
                 System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
@@ -166,10 +174,10 @@ public class ServicioSearchAvisos extends Service {
                     Call<Data> callS = service.getAviso(params);
                     callS.enqueue(new Callback<Data>() {
                         @Override
-                        public void onResponse(Call<Data> callS, Response<Data> response) {
+                        public void onResponse(@NotNull Call<Data> callS, @NotNull Response<Data> response) {
                             //Codigo de respuesta
                             long ahora = System.currentTimeMillis();
-                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                            @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                             String salida = df.format(ahora);
                             System.out.println("[FECHA: " + salida);
                             System.out.println("[Code: " + response.code() + "]");
@@ -202,7 +210,7 @@ public class ServicioSearchAvisos extends Service {
                         }
 
                         @Override
-                        public void onFailure(Call<Data> callS, Throwable t) {
+                        public void onFailure(@NotNull Call<Data> callS, @NotNull Throwable t) {
                             System.out.println("Network Error :: " + t.getLocalizedMessage());
                         }
                     });
@@ -214,10 +222,21 @@ public class ServicioSearchAvisos extends Service {
             }
 
             @Override
-            public void onFailure(Call<AccesOdoo> call, Throwable t) {
+            public void onFailure(@NotNull Call<AccesOdoo> call, @NotNull Throwable t) {
                 System.out.println("Network Error :: " + t.getLocalizedMessage());
             }
         });
-
     }
+
+    ///VER SI HAY O NO CONEXION
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = null;
+        if (connectivityManager != null) {
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 }

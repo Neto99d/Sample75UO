@@ -1,12 +1,11 @@
 package com.uo75.ernestoDuvalonUO.ui.acerdaDE;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.uo75.ernestoDuvalonUO.R;
 

@@ -23,7 +23,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.ui.RestClient;
-import com.uo75.ernestoDuvalonUO.ui.ServicioSearchAvisos;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
@@ -50,10 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ///Iniciando servicio de busqueda de avisos
-        startService(new Intent(MainActivity.this,
-                ServicioSearchAvisos.class));
-        ////Metodo de busqueda de avisos cada X tiempo
-        //ejecutar();
+        /*startService(new Intent(MainActivity.this,
+                ServicioSearchAvisos.class));*/
         ////Llamada a la funcion notificacion que inicia el canal
         createNotificationChannel();
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -142,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                                         avisoEspecial.setFecha(data.getData().get(i).get("fecha").getAsString());
                                         fecha = data.getData().get(i).get("fecha").getAsString();
                                         if (salida.equals(fecha)) {
-                                           ///Mostrar notificacion y le paso el contenido.
+                                            ///Mostrar notificacion y le paso el contenido.
                                             showNotificacion(data.getData().get(i).get("contenido").getAsString());
                                         }
                                     }
@@ -232,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
     //// CREANDO LAS NOTIFICACIONES DE AVISOS
     public void showNotificacion(String contenido) {
         String id = "basic_channel";
@@ -240,8 +238,8 @@ public class MainActivity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.icon_app_uo)
                 .setContentTitle("Aviso de Universidad de Oriente")
                 .setContentText(contenido)
-                .setVibrate(new long[] {100, 250, 100, 500})
-                .setSound(Uri.parse("android.resource://"+ getPackageName() + "/" + R.raw.message_notification))
+                .setVibrate(new long[]{100, 250, 100, 500})
+                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification))
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
