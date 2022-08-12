@@ -10,4 +10,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="facebook">@color/colorPrimaryDark</color>
+    <color name="instagram">#F45C36</color>
+    <color name="twitter">#40ACFF</color>
+    <color name="youtube">#EA1616</color>
+    <color name="linkedin">#1A1451</color>
+    <color name="telegram">#4069FF</color>
+    <color name="fondoContacto">#3C3F49</color>
+
 </resources>

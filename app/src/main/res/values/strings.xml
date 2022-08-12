@@ -1,16 +1,19 @@
 <resources>
-    <string name="app_name">UO Aniversario 75</string>
+    <string name="app_name">#75UO</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Universidad de Oriente</string>
+    <string name="menu_gallery">Postales</string>
+    <string name="menu_slideshow">Multimedia</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="alert_message">No es posible leer los datos. Verifique su conexión.</string>
     <string name="alert_title">Alerta</string>
     <string name="alert_positive">Cerrar</string>
-    <string name="menu_News">News</string>
+    <string name="menu_News">Noticias UO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contacto">todo</string>
 </resources>

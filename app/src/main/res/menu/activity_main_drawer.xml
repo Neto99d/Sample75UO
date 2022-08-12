@@ -5,9 +5,60 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_reseña"
+            android:title="Reseña Histórica"
+            android:icon="@drawable/historia"
+            />
+
+        <item
+            android:id="@+id/nav_mision"
+            android:title="Institución"
+            android:icon="@drawable/institucion"
+            />
+
+
+        <item
+            android:id="@+id/nav_identidad"
+            android:title="Identidad"
+            android:icon="@drawable/identidad"
+            />
+
+        <item
+            android:id="@+id/nav_patrimonio"
+            android:title="Patrimonio"
+            android:icon="@drawable/patrimonio"
+            />
+
+        <item
+            android:id="@+id/nav_rectores"
+            android:title="Rectores"
+            android:icon="@drawable/rectores"
+            />
+
+        <item
+            android:id="@+id/nav_profemerito"
+            android:title="Profesores Eméritos"
+            android:icon="@drawable/profesor_emerito"
+            />
+
+        <item
+            android:id="@+id/nav_pdtFeu"
+            android:title="Presidentes de la FEU"
+            android:icon="@drawable/pdte_feu"
+            />
+
+        <item
+            android:id="@+id/nav_honorCausa"
+            android:title="Honoris Causa"
+            android:icon="@drawable/honoris_causa"
+            />
+
+        <item
+            android:id="@+id/nav_campaña"
+            android:title="Campañas"
+            android:icon="@drawable/campanna"
+            />
+
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -16,8 +67,35 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+
+        <item
+            android:id="@+id/nav_aviso"
+            android:title="Avisos Especiales"
+            android:icon="@drawable/aviso_especial"
+            />
+
+        <item
+            android:id="@+id/nav_efemerides"
+            android:title="Efemérides"
+            android:icon="@drawable/efemeride"
+            />
+
+        <item
+            android:id="@+id/nav_estadisticas"
+            android:title="Estadísticas"
+            android:icon="@drawable/estadistica"
+            />
+
         <item
             android:id="@+id/nav_news"
-            android:title="@string/menu_News" />
+            android:title="@string/menu_News"
+            android:icon="@drawable/noticias"
+            />
+
+        <item
+            android:id="@+id/nav_acerca_de"
+            android:title="Contacto"
+            android:icon="@drawable/contacto_info"
+            />
     </group>
 </menu>

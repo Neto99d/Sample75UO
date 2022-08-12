@@ -21,7 +21,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="50dp">
+    android:paddingTop="20dp">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_layout"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#EEEEEE"
-            tools:context=".ui.NewsActivity" />
+            tools:context=".ui.options.NewsActivity" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
