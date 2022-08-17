@@ -1,6 +1,8 @@
 package com.uo75.ernestoDuvalonUO.ui.gallery;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,9 +62,9 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
             public void onClick(View view) {
                 /** Initiate Popup view **/
                 imagePopup.viewPopup();
-
             }
         });
+
     }
 
     @Override

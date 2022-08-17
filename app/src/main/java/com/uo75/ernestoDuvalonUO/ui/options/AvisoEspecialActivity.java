@@ -44,7 +44,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.99.158:8069/";
+        String baseUrl = "http://192.168.1.2:8069/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -75,7 +75,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.99.158:8069/";
+                    String baseUrl = "http://192.168.1.2:8069/";
 
                     ArrayList<AvisoEspecial> avisoEspecials = new ArrayList<>();
                     //Instancia a GSON

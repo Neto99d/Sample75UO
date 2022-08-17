@@ -1,10 +1,13 @@
 package com.uo75.ernestoDuvalonUO.ui.gallery;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -34,6 +37,7 @@ public class GalleryActivity extends AppCompatActivity {
     private GalleryAdaper nAdapter;
     private RecyclerView mRecyclerView;
     Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +49,7 @@ public class GalleryActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.99.158:8069/";
+        String baseUrl = "http://192.168.1.2:8069/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -76,7 +80,7 @@ public class GalleryActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.99.158:8069/";
+                    String baseUrl = "http://192.168.1.2:8069/";
 
                     ArrayList<Postales> postales = new ArrayList<>();
                     //Instancia a GSON
@@ -116,6 +120,8 @@ public class GalleryActivity extends AppCompatActivity {
                                     //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
+                                    Toast toast = Toast.makeText(mContext, "Puede que algunas imágenes no salgan en su dispositivo por la alta resolución de estas.", Toast.LENGTH_LONG);
+                                    toast.show();
                                 }
 
                             } else {//La peticion se realizo, pero ocurrio un error
@@ -148,12 +154,17 @@ public class GalleryActivity extends AppCompatActivity {
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {
         try {
+            Bitmap bitmap;
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            Bitmap foto = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            int alto = 1024;
+            int ancho = 768;
+            bitmap = Bitmap.createScaledBitmap(foto, alto, ancho, true);
             return bitmap;
         } catch (Exception e) {
             e.getMessage();
             return null;
         }
     }
+
 }
