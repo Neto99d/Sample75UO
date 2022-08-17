@@ -21,6 +21,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Efemerides;
 import com.uo75.ernestoDuvalonUO.ui.options.Adapters.EfemeridesAdapter;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -158,9 +159,13 @@ public class EfemeridesActivity extends AppCompatActivity {
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {
         try {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
+            Bitmap foto = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            foto.compress(Bitmap.CompressFormat.WEBP,100,out);
+            byte[] byteArray = out.toByteArray();
+            foto = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
+            return foto;
         } catch (Exception e) {
             e.getMessage();
             return null;

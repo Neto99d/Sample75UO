@@ -24,6 +24,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -158,14 +159,18 @@ public class GalleryActivity extends AppCompatActivity {
 
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {
+
         try {
-            Bitmap bitmap;
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap foto = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             int alto = 1024;
             int ancho = 768;
-            bitmap = Bitmap.createScaledBitmap(foto, alto, ancho, true);
-            return bitmap;
+            foto = Bitmap.createScaledBitmap(foto, alto, ancho, true);
+            foto.compress(Bitmap.CompressFormat.WEBP,100,out);
+            byte[] byteArray = out.toByteArray();
+            foto = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
+            return foto;
         } catch (Exception e) {
             e.getMessage();
             return null;
