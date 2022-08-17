@@ -49,6 +49,7 @@ public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.Vi
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
         imagePopup.setFullScreen(true); // Optional
+        imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
 

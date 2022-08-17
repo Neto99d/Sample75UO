@@ -1,6 +1,7 @@
 package com.uo75.ernestoDuvalonUO.ui.options;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class PatrimonioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_patrimonio);
@@ -46,7 +48,7 @@ public class PatrimonioActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.99.158:8069/";
+        String baseUrl = "http://192.168.1.2:8069/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -77,7 +79,7 @@ public class PatrimonioActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.99.158:8069/";
+                    String baseUrl = "http://192.168.1.2:8069/";
 
                     ArrayList<Patrimonio> patrim = new ArrayList<>();
                     //Instancia a GSON

@@ -49,6 +49,7 @@ public class ProfeEmeritoAdapter extends RecyclerView.Adapter<ProfeEmeritoAdapte
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
         imagePopup.setFullScreen(true); // Optional
+        imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
 

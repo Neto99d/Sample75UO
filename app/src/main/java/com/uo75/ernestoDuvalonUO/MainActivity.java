@@ -3,6 +3,7 @@ package com.uo75.ernestoDuvalonUO;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ///Iniciando servicio de busqueda de avisos
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.99.158:8069/";
+        String baseUrl = "http://192.168.1.2:8069/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.99.158:8069/";
+                    String baseUrl = "http://192.168.1.2:8069/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()

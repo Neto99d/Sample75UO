@@ -27,7 +27,7 @@ public class ResennaHistoryViewModel extends ViewModel {
 
     public ResennaHistoryViewModel () {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.99.158:8069/";
+        String baseUrl = "http://192.168.1.2:8069/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -80,7 +80,7 @@ public class ResennaHistoryViewModel extends ViewModel {
 
     public Reseña getReseña(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.99.158:8069/";
+        String baseUrl = "http://192.168.1.2:8069/";
         Reseña reseña = new Reseña();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
