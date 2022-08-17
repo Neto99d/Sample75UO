@@ -1,6 +1,7 @@
 package com.uo75.ernestoDuvalonUO.ui.options;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class IdentidadActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_identidad);

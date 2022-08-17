@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,7 @@ public class GalleryActivity extends AppCompatActivity {
     private GalleryAdaper nAdapter;
     private RecyclerView mRecyclerView;
     Context mContext;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class GalleryActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
+        progressBar = findViewById(R.id.progressBarGallery);
 
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
@@ -114,14 +118,15 @@ public class GalleryActivity extends AppCompatActivity {
                                         postales1.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
                                         postales.add(postales1);
                                     }
-
+                                    progressBar.setVisibility(View.GONE);
                                     nAdapter = new GalleryAdaper(postales, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());
-                                } catch (Exception e) {
+                                } catch (OutOfMemoryError e) {
                                     System.out.println("ERROR: " + e.getMessage());
                                     Toast toast = Toast.makeText(mContext, "Puede que algunas imágenes no salgan en su dispositivo por la alta resolución de estas.", Toast.LENGTH_LONG);
                                     toast.show();
+                                    progressBar.setVisibility(View.GONE);
                                 }
 
                             } else {//La peticion se realizo, pero ocurrio un error
