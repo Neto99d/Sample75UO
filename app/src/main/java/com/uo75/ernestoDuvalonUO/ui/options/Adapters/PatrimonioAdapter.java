@@ -50,8 +50,9 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
         holder.getImage().setImageBitmap(patrimonio.getImagen());
         final ImagePopup imagePopup = new ImagePopup(conntext);
         imagePopup.setWindowHeight(800); // Optional
-        imagePopup.setWindowWidth(800); // Optional
-        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setWindowWidth(1024); // Optional
+        imagePopup.setFullScreen(false); // Optional
+        imagePopup.setScaleType(ImageView.ScaleType.FIT_XY);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
 
