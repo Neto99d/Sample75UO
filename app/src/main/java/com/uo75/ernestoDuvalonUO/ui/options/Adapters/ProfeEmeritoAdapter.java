@@ -18,7 +18,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.ProfeEmerito;
 
 import java.util.List;
 
-public class ProfeEmeritoAdapter extends RecyclerView.Adapter<ProfeEmeritoAdapter.ViewHolder>{
+public class ProfeEmeritoAdapter extends RecyclerView.Adapter<ProfeEmeritoAdapter.ViewHolder> {
     private List<ProfeEmerito> proemerito;
     Context conntext;
 
@@ -58,8 +58,6 @@ public class ProfeEmeritoAdapter extends RecyclerView.Adapter<ProfeEmeritoAdapte
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {

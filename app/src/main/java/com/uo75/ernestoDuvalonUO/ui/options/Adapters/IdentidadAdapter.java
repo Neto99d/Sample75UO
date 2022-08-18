@@ -18,7 +18,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Identidad;
 
 import java.util.List;
 
-public class IdentidadAdapter extends RecyclerView.Adapter<IdentidadAdapter.ViewHolder>{
+public class IdentidadAdapter extends RecyclerView.Adapter<IdentidadAdapter.ViewHolder> {
     private List<Identidad> identidad;
     Context conntext;
 
@@ -58,8 +58,6 @@ public class IdentidadAdapter extends RecyclerView.Adapter<IdentidadAdapter.View
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {

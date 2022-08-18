@@ -18,7 +18,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Rectores;
 
 import java.util.List;
 
-public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder>{
+public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder> {
     private List<Rectores> rectores;
     Context conntext;
 
@@ -58,8 +58,6 @@ public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {

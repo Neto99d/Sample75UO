@@ -121,8 +121,7 @@ public class MOVViewModel extends ViewModel {
                             mision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         mText.setValue(mision.getContenido());
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         mText.setValue("No hay datos que mostrar");
                     }
 
@@ -175,8 +174,7 @@ public class MOVViewModel extends ViewModel {
                             objeto.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         oText.setValue(objeto.getContenido());
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         oText.setValue("No hay datos que mostrar.");
                     }
 
@@ -229,8 +227,7 @@ public class MOVViewModel extends ViewModel {
                             vision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         vText.setValue(vision.getContenido());
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         vText.setValue("No hay datos que mostrar.");
                     }
 
@@ -252,12 +249,15 @@ public class MOVViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
     public LiveData<String> getTextO() {
         return oText;
     }
+
     public LiveData<String> getTextV() {
         return vText;
     }
+
     public LiveData<Boolean> getStatus() {
         return status;
     }

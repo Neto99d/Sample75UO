@@ -18,7 +18,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.HonorCausa;
 
 import java.util.List;
 
-public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.ViewHolder>{
+public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.ViewHolder> {
     private List<HonorCausa> honor;
     Context conntext;
 
@@ -57,8 +57,6 @@ public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.Vi
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {

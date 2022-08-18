@@ -57,7 +57,7 @@ public class ServicioSearchAvisos extends Service {
                 0);
         ///////////// Ejecutar metodo para buscar avisos
         if (!isNetworkAvailable()) {
-          System.out.print("No hay conexion");
+            System.out.print("No hay conexion");
         } else {
             ejecutar();
         }

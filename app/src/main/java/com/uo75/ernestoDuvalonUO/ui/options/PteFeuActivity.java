@@ -3,9 +3,10 @@ package com.uo75.ernestoDuvalonUO.ui.options;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -23,7 +24,6 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.PdteFeu;
 import com.uo75.ernestoDuvalonUO.ui.options.Adapters.PdteFeuAdapter;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +39,7 @@ public class PteFeuActivity extends AppCompatActivity {
     private PdteFeuAdapter nAdapter;
     private RecyclerView mRecyclerView;
     Context mContext;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class PteFeuActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
-
+        progressBar = findViewById(R.id.progressBarPdteFeu);
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
 
@@ -120,7 +121,7 @@ public class PteFeuActivity extends AppCompatActivity {
                                         pdteFeu.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
                                         pdteFeus.add(pdteFeu);
                                     }
-
+                                    progressBar.setVisibility(View.GONE);
                                     nAdapter = new PdteFeuAdapter(pdteFeus, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();

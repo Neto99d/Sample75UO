@@ -4,7 +4,7 @@ public class AvisoEspecial {
     String contenido;
     String fecha;
 
-    public AvisoEspecial(String contenido,  String fecha) {
+    public AvisoEspecial(String contenido, String fecha) {
         this.contenido = contenido;
         this.fecha = fecha;
     }

@@ -5,7 +5,7 @@ public class RedesSociales {
     String link_Instagram;
     String link_Linkedin;
     String link_Telegram;
-    String link_Twitter ;
+    String link_Twitter;
     String link_Youtube;
 
     public RedesSociales(String link_Facebook, String link_Instagram, String link_Linkedin, String link_Telegram, String link_Twitter, String link_Youtube) {

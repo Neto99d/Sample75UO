@@ -3,9 +3,10 @@ package com.uo75.ernestoDuvalonUO.ui.options;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -23,7 +24,6 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Efemerides;
 import com.uo75.ernestoDuvalonUO.ui.options.Adapters.EfemeridesAdapter;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +39,7 @@ public class EfemeridesActivity extends AppCompatActivity {
     private EfemeridesAdapter nAdapter;
     private RecyclerView mRecyclerView;
     Context mContext;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class EfemeridesActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
-
+        progressBar = findViewById(R.id.progressBarEfemeride);
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
 
@@ -121,7 +122,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                                         efemerides1.setFecha(data.getData().get(i).get("fecha").getAsString());
                                         efemerides.add(efemerides1);
                                     }
-
+                                    progressBar.setVisibility(View.GONE);
                                     nAdapter = new EfemeridesAdapter(efemerides, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();

@@ -18,7 +18,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.PdteFeu;
 
 import java.util.List;
 
-public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHolder>{
+public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHolder> {
     private List<PdteFeu> pdtefeu;
     Context conntext;
 
@@ -58,8 +58,6 @@ public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHold
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {

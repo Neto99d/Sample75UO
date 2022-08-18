@@ -18,7 +18,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Efemerides;
 
 import java.util.List;
 
-public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder>{
+public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder> {
     private List<Efemerides> efemerides;
     Context conntext;
 
@@ -59,8 +59,6 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {

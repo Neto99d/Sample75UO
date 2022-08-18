@@ -19,7 +19,6 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Patrimonio;
 import java.util.List;
 
 
-
 public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder> {
 
     private List<Patrimonio> patrimonio;
@@ -61,8 +60,6 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {

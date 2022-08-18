@@ -18,7 +18,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Campaña;
 
 import java.util.List;
 
-public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHolder>{
+public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHolder> {
 
     private List<Campaña> campaña;
     Context conntext;
@@ -59,8 +59,6 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
         imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional
-
-
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {
