@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Rectores;
@@ -44,7 +46,11 @@ public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Rectores rectores = this.rectores.get(position);
         holder.getText().setText(rectores.getContenido());
-        holder.getImage().setImageBitmap(rectores.getImagen());
+        Glide.with(conntext)
+                .load(rectores.getImagen())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(holder.getImage());
+
         final ImagePopup imagePopup = new ImagePopup(conntext);
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
@@ -54,13 +60,14 @@ public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder
         imagePopup.setImageOnClickClose(true);  // Optional
 
 
-        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /** Initiate Popup view **/
+                holder.getImage().setImageBitmap(rectores.getImagen());
+                imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
                 imagePopup.viewPopup();
 
             }

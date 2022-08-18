@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Campaña;
@@ -45,7 +47,11 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
     public void onBindViewHolder(@NonNull CampannaAdapter.ViewHolder holder, int position) {
         Campaña campaña = this.campaña.get(position);
         holder.getText().setText(campaña.getContenido());
-        holder.getImage().setImageBitmap(campaña.getImagen());
+        Glide.with(conntext)
+                .load(campaña.getImagen())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(holder.getImage());
+
         final ImagePopup imagePopup = new ImagePopup(conntext);
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
@@ -55,13 +61,14 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
         imagePopup.setImageOnClickClose(true);  // Optional
 
 
-        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
 
 
         holder.getImage().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /** Initiate Popup view **/
+                holder.getImage().setImageBitmap(campaña.getImagen());
+                imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
                 imagePopup.viewPopup();
 
             }

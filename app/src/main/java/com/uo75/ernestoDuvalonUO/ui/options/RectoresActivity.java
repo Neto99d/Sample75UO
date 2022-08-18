@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.glidebitmappool.GlideBitmapFactory;
+import com.glidebitmappool.GlideBitmapPool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.R;
@@ -121,7 +123,7 @@ public class RectoresActivity extends AppCompatActivity {
 
                                     nAdapter = new RectorAdapter(rectores, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
-                                    //tText.setValue(patrimonio.getContenido());
+                                    GlideBitmapPool.clearMemory();
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
                                 }
@@ -158,12 +160,12 @@ public class RectoresActivity extends AppCompatActivity {
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {
         try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            //ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap foto = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            foto.compress(Bitmap.CompressFormat.WEBP,100,out);
-            byte[] byteArray = out.toByteArray();
-            foto = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
+            Bitmap foto = GlideBitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            //foto.compress(Bitmap.CompressFormat.WEBP, 100, out);
+            //byte[] byteArray = out.toByteArray();
+            //foto = GlideBitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             return foto;
         } catch (Exception e) {
             e.getMessage();
