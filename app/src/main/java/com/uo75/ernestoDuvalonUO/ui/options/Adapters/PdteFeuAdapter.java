@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.PdteFeu;
 
@@ -25,6 +24,7 @@ public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHold
     Context conntext;
     ImageView image;
     CardView imageFull;
+
     public PdteFeuAdapter(List<PdteFeu> pdtefeu, Context conntext, ImageView image, CardView imageFull) {
         this.pdtefeu = pdtefeu;
         this.conntext = conntext;

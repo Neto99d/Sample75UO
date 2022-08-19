@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Identidad;
 
@@ -25,6 +24,7 @@ public class IdentidadAdapter extends RecyclerView.Adapter<IdentidadAdapter.View
     Context conntext;
     ImageView image;
     CardView imageFull;
+
     public IdentidadAdapter(List<Identidad> identidad, Context conntext, ImageView image, CardView imageFull) {
         this.identidad = identidad;
         this.conntext = conntext;
