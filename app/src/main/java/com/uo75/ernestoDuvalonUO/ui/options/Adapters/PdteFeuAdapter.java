@@ -10,13 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.PdteFeu;
 
 import java.util.List;
 
-public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHolder>{
+public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHolder> {
     private List<PdteFeu> pdtefeu;
     Context conntext;
 
@@ -44,7 +46,11 @@ public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PdteFeu pdtefeu = this.pdtefeu.get(position);
         holder.getText().setText(pdtefeu.getContenido());
-        holder.getImage().setImageBitmap(pdtefeu.getImagen());
+        Glide.with(conntext)
+                .load(pdtefeu.getImagen())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(holder.getImage());
+
         final ImagePopup imagePopup = new ImagePopup(conntext);
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
@@ -54,13 +60,12 @@ public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHold
         imagePopup.setImageOnClickClose(true);  // Optional
 
 
-        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
-
-
         holder.getImage().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /** Initiate Popup view **/
+                holder.getImage().setImageBitmap(pdtefeu.getImagen());
+                imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
                 imagePopup.viewPopup();
 
             }

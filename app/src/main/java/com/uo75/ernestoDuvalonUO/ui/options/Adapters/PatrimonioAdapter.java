@@ -10,12 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Patrimonio;
 
 import java.util.List;
-
 
 
 public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder> {
@@ -47,7 +48,11 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Patrimonio patrimonio = this.patrimonio.get(position);
         holder.getText().setText(patrimonio.getContenido());
-        holder.getImage().setImageBitmap(patrimonio.getImagen());
+        Glide.with(conntext)
+                .load(patrimonio.getImagen())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(holder.getImage());
+
         final ImagePopup imagePopup = new ImagePopup(conntext);
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
@@ -57,13 +62,12 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
         imagePopup.setImageOnClickClose(true);  // Optional
 
 
-        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
-
-
         holder.getImage().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /** Initiate Popup view **/
+                holder.getImage().setImageBitmap(patrimonio.getImagen());
+                imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
                 imagePopup.viewPopup();
 
             }

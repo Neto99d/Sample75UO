@@ -1,7 +1,6 @@
 package com.uo75.ernestoDuvalonUO.ui.modelsOdoo;
 
 
-
 public class Mision {
     String contenido;
 

@@ -13,7 +13,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 
 import java.util.List;
 
-public class AvisoAdapter extends RecyclerView.Adapter<AvisoAdapter.ViewHolder>{
+public class AvisoAdapter extends RecyclerView.Adapter<AvisoAdapter.ViewHolder> {
     private List<AvisoEspecial> aviso;
 
 

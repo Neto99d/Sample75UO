@@ -1,9 +1,7 @@
 package com.uo75.ernestoDuvalonUO.ui.gallery;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +10,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alexvasilkov.gestures.Settings;
-import com.alexvasilkov.gestures.views.GestureImageView;
-import com.ceylonlabs.imageviewpopup.ImagePopup;
+import com.bumptech.glide.Glide;
+import com.glidebitmappool.GlideBitmapPool;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
 
@@ -24,9 +21,12 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
 
     private List<Postales> postales;
     Context conntext;
-    public GalleryAdaper(List<Postales> postales, Context conntext) {
+    ImageView image;
+
+    public GalleryAdaper(List<Postales> postales, Context conntext, ImageView image) {
         this.postales = postales;
         this.conntext = conntext;
+        this.image = image;
     }
 
     public List<Postales> getPostales() {
@@ -47,40 +47,36 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Postales postales = this.postales.get(position);
-        holder.getImage().setImageBitmap(postales.getImagen());
-        holder.getImage().getController().getSettings()
-                .setMaxZoom(2f)
-                .setDoubleTapZoom(-1f) // Falls back to max zoom level
-                .setPanEnabled(true)
-                .setZoomEnabled(true)
-                .setDoubleTapEnabled(true)
-                .setRotationEnabled(false)
-                .setRestrictRotation(false)
-                .setOverscrollDistance(0f, 0f)
-                .setOverzoomFactor(2f)
-                .setFillViewport(false)
-                .setFitMethod(Settings.Fit.INSIDE)
-                .setGravity(Gravity.CENTER);
-        final ImagePopup imagePopup = new ImagePopup(conntext);
-        imagePopup.setWindowHeight(850); // Optional
-        imagePopup.setWindowWidth(1024); // Optional
-        imagePopup.setFullScreen(false); // Optional
-        imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imagePopup.setHideCloseIcon(true);  // Optional
-        imagePopup.setImageOnClickClose(true);  // Optional
 
-
-        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
-
-
+        Glide.with(conntext)
+                .load(postales.getImagen())
+                .into(holder.getImage());
+        GlideBitmapPool.clearMemory();
         holder.getImage().setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
             @Override
             public void onClick(View view) {
-                /** Initiate Popup view **/
-                imagePopup.viewPopup();
+                if (image.getVisibility() == 8) { // 8 GONE
+                    image.setImageBitmap(postales.getImagen());
+                    image.setVisibility(View.VISIBLE);
+                } else if (image.getVisibility() == 0) { // 0 VISIBLE
+                    image.setVisibility(View.GONE);
+                    image.setImageBitmap(null);
+                }
             }
         });
 
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @SuppressLint("WrongConstant")
+            public void onClick(View view) {
+                if (image.getVisibility() == 0) { // 0 VISIBLE
+                    image.setVisibility(View.GONE);
+                    image.setImageBitmap(null);
+                }
+            }
+        });
     }
 
     @Override
@@ -90,7 +86,8 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private GestureImageView image;
+        private ImageView image;
+
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,8 +96,11 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
 
         }
 
-        GestureImageView getImage() {
+        ImageView getImage() {
             return image;
         }
+
     }
+
+
 }

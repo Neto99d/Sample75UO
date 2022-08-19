@@ -25,7 +25,7 @@ public class ResennaHistoryViewModel extends ViewModel {
     private MutableLiveData<Boolean> status; // Estado de conexion al servicio
 //In your network successfull response
 
-    public ResennaHistoryViewModel () {
+    public ResennaHistoryViewModel() {
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
 
@@ -58,7 +58,6 @@ public class ResennaHistoryViewModel extends ViewModel {
                     System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     getReseña(acceso.getAccesToken());
-
 
 
                 } else {//La peticion se realizo, pero ocurrio un error
@@ -112,8 +111,7 @@ public class ResennaHistoryViewModel extends ViewModel {
                             reseña.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         mText.setValue(reseña.getContenido());
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         mText.setValue("No hay datos que mostrar");
                     }
 
@@ -131,7 +129,6 @@ public class ResennaHistoryViewModel extends ViewModel {
         });
         return reseña;
     }
-
 
 
     public LiveData<String> getText() {

@@ -10,13 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Efemerides;
 
 import java.util.List;
 
-public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder>{
+public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder> {
     private List<Efemerides> efemerides;
     Context conntext;
 
@@ -45,7 +47,11 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
         Efemerides efemerides = this.efemerides.get(position);
         holder.getText().setText(efemerides.getContenido());
         holder.getTextFecha().setText(efemerides.getFecha());
-        holder.getImage().setImageBitmap(efemerides.getImagen());
+        Glide.with(conntext)
+                .load(efemerides.getImagen())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .into(holder.getImage());
+
         final ImagePopup imagePopup = new ImagePopup(conntext);
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
@@ -55,13 +61,12 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
         imagePopup.setImageOnClickClose(true);  // Optional
 
 
-        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
-
-
         holder.getImage().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /** Initiate Popup view **/
+                holder.getImage().setImageBitmap(efemerides.getImagen());
+                imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
                 imagePopup.viewPopup();
 
             }

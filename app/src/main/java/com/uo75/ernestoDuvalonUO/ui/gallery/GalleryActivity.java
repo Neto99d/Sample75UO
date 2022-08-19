@@ -2,20 +2,21 @@ package com.uo75.ernestoDuvalonUO.ui.gallery;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.glidebitmappool.GlideBitmapFactory;
+import com.glidebitmappool.GlideBitmapPool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.R;
@@ -40,17 +41,21 @@ public class GalleryActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     Context mContext;
     private ProgressBar progressBar;
+    public ImageView imageFull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         mContext = this;
+        imageFull = findViewById(R.id.imageViewFull);
         mRecyclerView = findViewById(R.id.recycler_gallery);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progressBarGallery);
+        GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
 
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
@@ -119,9 +124,9 @@ public class GalleryActivity extends AppCompatActivity {
                                         postales.add(postales1);
                                     }
                                     progressBar.setVisibility(View.GONE);
-                                    nAdapter = new GalleryAdaper(postales, mContext);
+                                    nAdapter = new GalleryAdaper(postales, mContext, imageFull);
                                     mRecyclerView.setAdapter(nAdapter);
-                                    //tText.setValue(patrimonio.getContenido());
+                                    GlideBitmapPool.clearMemory();
                                 } catch (OutOfMemoryError e) {
                                     System.out.println("ERROR: " + e.getMessage());
                                     Toast toast = Toast.makeText(mContext, "Puede que algunas imágenes no salgan en su dispositivo por la alta resolución de estas.", Toast.LENGTH_LONG);
@@ -158,18 +163,23 @@ public class GalleryActivity extends AppCompatActivity {
 
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {
+
         try {
-            Bitmap bitmap;
+            //ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap foto = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            int alto = 1024;
-            int ancho = 768;
-            bitmap = Bitmap.createScaledBitmap(foto, alto, ancho, true);
-            return bitmap;
+            Bitmap foto = GlideBitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            //foto.compress(Bitmap.CompressFormat.WEBP, 100, out);
+            //byte[] byteArray = out.toByteArray();
+            //foto = GlideBitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            GlideBitmapPool.clearMemory();
+            return foto;
         } catch (Exception e) {
             e.getMessage();
             return null;
         }
     }
 
+    public ImageView getImageFull() {
+        return imageFull;
+    }
 }

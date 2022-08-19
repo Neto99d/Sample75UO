@@ -39,7 +39,7 @@
         android:id="@+id/nav_identidad"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.IdentidadActivity"
         android:label="Identidad"
-        tools:layout="@layout/activity_identidad"/>
+        tools:layout="@layout/activity_identidad" />
 
     <activity
         android:id="@+id/nav_patrimonio"
@@ -51,49 +51,49 @@
         android:id="@+id/nav_rectores"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.RectoresActivity"
         android:label="Rectores"
-        tools:layout="@layout/activity_rectores"/>
+        tools:layout="@layout/activity_rectores" />
 
     <activity
         android:id="@+id/nav_profemerito"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.ProfeMeritoActivity"
         android:label="Profesores Eméritos"
-        tools:layout="@layout/activity_profe_merito"/>
+        tools:layout="@layout/activity_profe_merito" />
 
     <activity
         android:id="@+id/nav_pdtFeu"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.PteFeuActivity"
         android:label="Presidentes de la FEU"
-        tools:layout="@layout/activity_pte_feu"/>
+        tools:layout="@layout/activity_pte_feu" />
 
     <activity
         android:id="@+id/nav_honorCausa"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.HonorCausaActivity"
         android:label="Honoris Causa"
-        tools:layout="@layout/activity_honor_causa"/>
+        tools:layout="@layout/activity_honor_causa" />
 
     <activity
         android:id="@+id/nav_campaña"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.CampannaActivity"
         android:label="Campañas"
-        tools:layout="@layout/activity_campanna"/>
+        tools:layout="@layout/activity_campanna" />
 
     <activity
         android:id="@+id/nav_aviso"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.AvisoEspecialActivity"
         android:label="Campañas"
-        tools:layout="@layout/activity_aviso_especial"/>
+        tools:layout="@layout/activity_aviso_especial" />
 
     <activity
         android:id="@+id/nav_efemerides"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.EfemeridesActivity"
         android:label="Campañas"
-        tools:layout="@layout/activity_efemerides"/>
+        tools:layout="@layout/activity_efemerides" />
 
     <activity
         android:id="@+id/nav_estadisticas"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.EstadisticasActivity"
         android:label="Estadísticas"
-        tools:layout="@layout/activity_estadisticas"/>
+        tools:layout="@layout/activity_estadisticas" />
 
     <activity
         android:id="@+id/nav_news"

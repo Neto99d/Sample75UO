@@ -3,15 +3,18 @@ package com.uo75.ernestoDuvalonUO.ui.options;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.glidebitmappool.GlideBitmapFactory;
+import com.glidebitmappool.GlideBitmapPool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.R;
@@ -36,6 +39,7 @@ public class ProfeMeritoActivity extends AppCompatActivity {
     private ProfeEmeritoAdapter nAdapter;
     private RecyclerView mRecyclerView;
     Context mContext;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,8 @@ public class ProfeMeritoActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
-
+        progressBar = findViewById(R.id.progressBarProEmerito);
+        GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
 
@@ -117,10 +122,10 @@ public class ProfeMeritoActivity extends AppCompatActivity {
                                         profeEmerito.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
                                         profeEmeritos.add(profeEmerito);
                                     }
-
+                                    progressBar.setVisibility(View.GONE);
                                     nAdapter = new ProfeEmeritoAdapter(profeEmeritos, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
-                                    //tText.setValue(patrimonio.getContenido());
+                                    GlideBitmapPool.clearMemory();
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
                                 }
@@ -157,9 +162,13 @@ public class ProfeMeritoActivity extends AppCompatActivity {
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {
         try {
+            //ByteArrayOutputStream out = new ByteArrayOutputStream();
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
+            Bitmap foto = GlideBitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            //foto.compress(Bitmap.CompressFormat.WEBP, 100, out);
+            //byte[] byteArray = out.toByteArray();
+            //foto = GlideBitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            return foto;
         } catch (Exception e) {
             e.getMessage();
             return null;

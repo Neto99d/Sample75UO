@@ -1,7 +1,7 @@
 package com.uo75.ernestoDuvalonUO.ui.modelsOdoo;
 
 public class Estadisticas {
-    String  cantidad;
+    String cantidad;
     String name;
 
     public Estadisticas(String cantidad, String name) {
