@@ -1,5 +1,6 @@
 package com.uo75.ernestoDuvalonUO.ui.options.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,10 +23,13 @@ import java.util.List;
 public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder> {
     private List<Efemerides> efemerides;
     Context conntext;
-
-    public EfemeridesAdapter(List<Efemerides> efemerides, Context conntext) {
+    ImageView image;
+    CardView imageFull;
+    public EfemeridesAdapter(List<Efemerides> efemerides, Context conntext, ImageView image, CardView imageFull) {
         this.efemerides = efemerides;
         this.conntext = conntext;
+        this.image = image;
+        this.imageFull = imageFull;
     }
 
     public List<Efemerides> getEfemerides() {
@@ -52,23 +57,32 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(holder.getImage());
 
-        final ImagePopup imagePopup = new ImagePopup(conntext);
-        imagePopup.setWindowHeight(800); // Optional
-        imagePopup.setWindowWidth(800); // Optional
-        imagePopup.setFullScreen(true); // Optional
-        imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imagePopup.setHideCloseIcon(true);  // Optional
-        imagePopup.setImageOnClickClose(true);  // Optional
-
-
         holder.getImage().setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
             @Override
             public void onClick(View view) {
-                /** Initiate Popup view **/
-                holder.getImage().setImageBitmap(efemerides.getImagen());
-                imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
-                imagePopup.viewPopup();
+                if (image.getVisibility() == 8) { // 8 GONE
+                    image.setImageBitmap(efemerides.getImagen());
+                    imageFull.setVisibility(View.VISIBLE);
+                    image.setVisibility(View.VISIBLE);
+                } else if (image.getVisibility() == 0) { // 0 VISIBLE
+                    imageFull.setVisibility(View.GONE);
+                    image.setVisibility(View.GONE);
+                    image.setImageBitmap(null);
+                }
+            }
+        });
 
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @SuppressLint("WrongConstant")
+            public void onClick(View view) {
+                if (image.getVisibility() == 0) { // 0 VISIBLE
+                    imageFull.setVisibility(View.GONE);
+                    image.setVisibility(View.GONE);
+                    image.setImageBitmap(null);
+                }
             }
         });
     }

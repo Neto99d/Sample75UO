@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,13 +42,16 @@ public class EfemeridesActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     Context mContext;
     private ProgressBar progressBar;
-
+    public ImageView imageFull;
+    public CardView fondoImageFull;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_efemerides);
+        imageFull = findViewById(R.id.imageViewFullEfemeride);
+        fondoImageFull = findViewById(R.id.cardViewFullImageEfemeride);
         mRecyclerView = findViewById(R.id.recycler_efemerides);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -124,7 +129,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                                         efemerides.add(efemerides1);
                                     }
                                     progressBar.setVisibility(View.GONE);
-                                    nAdapter = new EfemeridesAdapter(efemerides, mContext);
+                                    nAdapter = new EfemeridesAdapter(efemerides, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();
                                 } catch (Exception e) {

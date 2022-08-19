@@ -47,26 +47,7 @@ public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.Vi
         holder.getText().setText(multimedia.getUrl());
         Linkify.addLinks(holder.getText(), Linkify.WEB_URLS);
         holder.getImage().setImageBitmap(multimedia.getImage());
-        final ImagePopup imagePopup = new ImagePopup(context);
-        imagePopup.setWindowHeight(800); // Optional
-        imagePopup.setWindowWidth(800); // Optional
-        imagePopup.setFullScreen(true); // Optional
-        imagePopup.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imagePopup.setHideCloseIcon(true);  // Optional
-        imagePopup.setImageOnClickClose(true);  // Optional
 
-
-        imagePopup.initiatePopup(holder.getImage().getDrawable()); // Load Image from Drawable
-
-
-        holder.getImage().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /** Initiate Popup view **/
-                imagePopup.viewPopup();
-
-            }
-        });
     }
 
     @Override

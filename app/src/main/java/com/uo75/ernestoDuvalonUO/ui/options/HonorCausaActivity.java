@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,13 +41,16 @@ public class HonorCausaActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     Context mContext;
     private ProgressBar progressBar;
-
+    public ImageView imageFull;
+    public CardView fondoImageFull;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_honor_causa);
+        imageFull = findViewById(R.id.imageViewFullHonorCa);
+        fondoImageFull = findViewById(R.id.cardViewFullImageHonorCa);
         mRecyclerView = findViewById(R.id.recycler_honorcausa);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -122,7 +127,7 @@ public class HonorCausaActivity extends AppCompatActivity {
                                         honor.add(honorC);
                                     }
                                     progressBar.setVisibility(View.GONE);
-                                    nAdapter = new HonorCausaAdapter(honor, mContext);
+                                    nAdapter = new HonorCausaAdapter(honor, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();
                                 } catch (Exception e) {

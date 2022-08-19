@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,13 +42,16 @@ public class PteFeuActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     Context mContext;
     private ProgressBar progressBar;
-
+    public ImageView imageFull;
+    public CardView fondoImageFull;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_pte_feu);
+        imageFull = findViewById(R.id.imageViewFullPdtFeu);
+        fondoImageFull = findViewById(R.id.cardViewFullImagePdtFeu);
         mRecyclerView = findViewById(R.id.recycler_ptefeu);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -123,7 +128,7 @@ public class PteFeuActivity extends AppCompatActivity {
                                         pdteFeus.add(pdteFeu);
                                     }
                                     progressBar.setVisibility(View.GONE);
-                                    nAdapter = new PdteFeuAdapter(pdteFeus, mContext);
+                                    nAdapter = new PdteFeuAdapter(pdteFeus, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();
                                 } catch (Exception e) {

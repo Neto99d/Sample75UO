@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.glidebitmappool.GlideBitmapPool;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
@@ -22,11 +24,13 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
     private List<Postales> postales;
     Context conntext;
     ImageView image;
+    CardView imageFull;
 
-    public GalleryAdaper(List<Postales> postales, Context conntext, ImageView image) {
+    public GalleryAdaper(List<Postales> postales, Context conntext, ImageView image, CardView imageFull) {
         this.postales = postales;
         this.conntext = conntext;
         this.image = image;
+        this.imageFull = imageFull;
     }
 
     public List<Postales> getPostales() {
@@ -58,8 +62,10 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
             public void onClick(View view) {
                 if (image.getVisibility() == 8) { // 8 GONE
                     image.setImageBitmap(postales.getImagen());
+                    imageFull.setVisibility(View.VISIBLE);
                     image.setVisibility(View.VISIBLE);
                 } else if (image.getVisibility() == 0) { // 0 VISIBLE
+                    imageFull.setVisibility(View.GONE);
                     image.setVisibility(View.GONE);
                     image.setImageBitmap(null);
                 }
@@ -72,6 +78,7 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
             @SuppressLint("WrongConstant")
             public void onClick(View view) {
                 if (image.getVisibility() == 0) { // 0 VISIBLE
+                    imageFull.setVisibility(View.GONE);
                     image.setVisibility(View.GONE);
                     image.setImageBitmap(null);
                 }
