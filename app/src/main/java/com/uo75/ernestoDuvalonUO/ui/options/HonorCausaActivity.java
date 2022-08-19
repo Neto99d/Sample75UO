@@ -51,6 +51,7 @@ public class HonorCausaActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progressBarHonor);
+        GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
 

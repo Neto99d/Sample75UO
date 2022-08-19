@@ -1,6 +1,7 @@
 package com.uo75.ernestoDuvalonUO.ui.gallery;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
@@ -44,6 +45,7 @@ public class GalleryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         mContext = this;
@@ -53,7 +55,7 @@ public class GalleryActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progressBarGallery);
-        GlideBitmapPool.initialize(10 * 800 * 600); // 10mb max memory size
+        GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
 
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "http://192.168.1.2:8069/";
@@ -169,6 +171,7 @@ public class GalleryActivity extends AppCompatActivity {
             //foto.compress(Bitmap.CompressFormat.WEBP, 100, out);
             //byte[] byteArray = out.toByteArray();
             //foto = GlideBitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            GlideBitmapPool.clearMemory();
             return foto;
         } catch (Exception e) {
             e.getMessage();

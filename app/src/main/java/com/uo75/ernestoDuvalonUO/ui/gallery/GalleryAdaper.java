@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.glidebitmappool.GlideBitmapPool;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
 
@@ -50,7 +51,7 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
         Glide.with(conntext)
                 .load(postales.getImagen())
                 .into(holder.getImage());
-
+        GlideBitmapPool.clearMemory();
         holder.getImage().setOnClickListener(new View.OnClickListener() {
             @SuppressLint("WrongConstant")
             @Override
