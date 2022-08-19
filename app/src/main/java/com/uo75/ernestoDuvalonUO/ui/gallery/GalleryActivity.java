@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,7 @@ public class GalleryActivity extends AppCompatActivity {
     Context mContext;
     private ProgressBar progressBar;
     public ImageView imageFull;
+    public CardView fondoImageFull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
         mContext = this;
         imageFull = findViewById(R.id.imageViewFull);
+        fondoImageFull = findViewById(R.id.cardViewFullImage);
         mRecyclerView = findViewById(R.id.recycler_gallery);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -124,7 +127,7 @@ public class GalleryActivity extends AppCompatActivity {
                                         postales.add(postales1);
                                     }
                                     progressBar.setVisibility(View.GONE);
-                                    nAdapter = new GalleryAdaper(postales, mContext, imageFull);
+                                    nAdapter = new GalleryAdaper(postales, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();
                                 } catch (OutOfMemoryError e) {
