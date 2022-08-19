@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Multimedia;
 

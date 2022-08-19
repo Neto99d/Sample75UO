@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Rectores;
 
@@ -25,6 +24,7 @@ public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder
     Context conntext;
     ImageView image;
     CardView imageFull;
+
     public RectorAdapter(List<Rectores> rectores, Context conntext, ImageView image, CardView imageFull) {
         this.rectores = rectores;
         this.conntext = conntext;

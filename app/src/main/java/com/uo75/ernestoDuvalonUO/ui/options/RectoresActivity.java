@@ -44,6 +44,7 @@ public class RectoresActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     public ImageView imageFull;
     public CardView fondoImageFull;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

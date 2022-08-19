@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Patrimonio;
 
@@ -27,6 +26,7 @@ public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.Vi
     Context conntext;
     ImageView image;
     CardView imageFull;
+
     public PatrimonioAdapter(List<Patrimonio> patrimonio, Context conntext, ImageView image, CardView imageFull) {
         this.patrimonio = patrimonio;
         this.conntext = conntext;

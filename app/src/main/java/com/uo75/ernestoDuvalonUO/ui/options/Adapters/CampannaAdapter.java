@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Campaña;
 
@@ -26,6 +25,7 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
     Context conntext;
     ImageView image;
     CardView imageFull;
+
     public CampannaAdapter(List<Campaña> campaña, Context conntext, ImageView image, CardView imageFull) {
         this.campaña = campaña;
         this.conntext = conntext;

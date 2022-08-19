@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Efemerides;
 
@@ -25,6 +24,7 @@ public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.Vi
     Context conntext;
     ImageView image;
     CardView imageFull;
+
     public EfemeridesAdapter(List<Efemerides> efemerides, Context conntext, ImageView image, CardView imageFull) {
         this.efemerides = efemerides;
         this.conntext = conntext;
