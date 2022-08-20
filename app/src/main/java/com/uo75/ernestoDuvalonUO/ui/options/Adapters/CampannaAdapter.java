@@ -41,7 +41,7 @@ public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.rowlist_gen, parent, false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.rowlist_general, parent, false);
 
         final ViewHolder viewHolder = new ViewHolder(vista);
 
