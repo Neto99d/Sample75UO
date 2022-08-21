@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.glidebitmappool.GlideBitmapPool;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Postales;
@@ -50,8 +51,11 @@ public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Postales postales = this.postales.get(position);
-
+        RequestOptions reqOptions = new RequestOptions()
+                .fitCenter()
+                .override(800, 600);
         Glide.with(conntext)
+                .applyDefaultRequestOptions(reqOptions)
                 .load(postales.getImagen())
                 .into(holder.getImage());
         GlideBitmapPool.clearMemory();
