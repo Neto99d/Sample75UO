@@ -16,6 +16,8 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Multimedia;
 
 import java.util.List;
 
+import cn.jzvd.JzvdStd;
+
 public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.ViewHolder> {
     private List<Multimedia> multimedia;
     Context context;
@@ -43,9 +45,8 @@ public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Multimedia multimedia = this.multimedia.get(position);
-        holder.getText().setText(multimedia.getUrl());
-        Linkify.addLinks(holder.getText(), Linkify.WEB_URLS);
-        holder.getImage().setImageBitmap(multimedia.getImage());
+        holder.getvideo().setUp(multimedia.getUrl(),multimedia.getTitulo());
+        holder.getvideo().posterImageView.setImageBitmap(multimedia.getImage());
 
     }
 
@@ -55,22 +56,18 @@ public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView text;
-        private ImageView image;
+        private JzvdStd video;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            text = itemView.findViewById(R.id.textPatr);
-            image = itemView.findViewById(R.id.imageProfile);
+            video = itemView.findViewById(R.id.jz_video);
 
         }
 
-        TextView getText() {
-            return text;
-        }
 
-        ImageView getImage() {
-            return image;
+        JzvdStd getvideo() {
+            return video;
         }
     }
+
 }

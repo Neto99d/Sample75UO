@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.jzvd.Jzvd;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -112,6 +113,7 @@ public class MultimediaActivity extends AppCompatActivity {
                                     System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         Multimedia multimedia1 = new Multimedia();
+                                        multimedia1.setTitulo(data.getData().get(i).get("name").getAsString());
                                         multimedia1.setUrl(data.getData().get(i).get("contenido").getAsString());
                                         /// Se coge el String a partir del primer caracter ' que llega desde el JSon
                                         multimedia1.setImage(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
@@ -153,6 +155,18 @@ public class MultimediaActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (Jzvd.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
+    }
 
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {

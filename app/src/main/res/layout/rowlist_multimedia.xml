@@ -15,41 +15,14 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp">
 
-        <ImageView
-            android:id="@+id/imageProfile"
+        <cn.jzvd.JzvdStd
+            android:id="@+id/jz_video"
             android:layout_width="match_parent"
-            android:layout_height="231dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:srcCompat="@drawable/placeholder" />
+            android:layout_height="match_parent" />
 
 
     </androidx.cardview.widget.CardView>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10px">
-
-        <TextView
-            android:id="@+id/textPatr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColorLink="@color/colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </ScrollView>
 </LinearLayout>
 
 
