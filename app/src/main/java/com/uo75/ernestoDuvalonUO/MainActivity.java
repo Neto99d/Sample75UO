@@ -68,8 +68,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -83,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("db", "odooDB");
-        params.put("login", "admin@example.com");
-        params.put("password", "admin");
+        params.put("db", "odoo_db");
+        params.put("login", "uo75App@uo.cu");
+        params.put("password", "app#75");
         // ... as much as you need.
 
         Call<AccesOdoo> call = service.getAcceso(params);
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                Toast toast = Toast.makeText(getApplicationContext(), "Conexión al servicio exitosa.", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Conexión al servicio exitosa", Toast.LENGTH_LONG);
                 toast.show();
                 System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
@@ -116,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
                     RestClient service = retrofit.create(RestClient.class);
                     //Se realiza la llamada
                     Map<String, String> params = new HashMap<>();
-                    params.put("access_token", acceso.getAccesToken());
-
+                    params.put("access-token", acceso.getAccesToken());
 
                     Call<Data> callS = service.getAviso(params);
+
                     callS.enqueue(new Callback<Data>() {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
@@ -145,14 +146,17 @@ public class MainActivity extends AppCompatActivity {
                                             showNotificacion(data.getData().get(i).get("contenido").getAsString());
                                         }
                                     }
-
-                                    //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
+                                    Toast toastData = Toast.makeText(getApplicationContext(), "Error 1 " + e.getMessage(), Toast.LENGTH_LONG);
+                                    toastData.show();
                                 }
 
                             } else {//La peticion se realizo, pero ocurrio un error
                                 System.out.println("ERROR: " + response.message());
+                                Toast toastData = Toast.makeText(getApplicationContext(), "Error 2 " + response.message(), Toast.LENGTH_LONG);
+                                toastData.show();
+
 
                             }
                         }
@@ -160,12 +164,17 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<Data> callS, Throwable t) {
                             System.out.println("Network Error :: " + t.getLocalizedMessage());
+                            Toast toastData = Toast.makeText(getApplicationContext(), "Error Network 1 " + response.message(), Toast.LENGTH_LONG);
+                            toastData.show();
+
                         }
                     });
 
 
                 } else {//La peticion se realizo, pero ocurrio un error
                     System.out.println("ERROR: " + response.message());
+                    Toast toastData = Toast.makeText(getApplicationContext(), "Error al recibir datos, no hay respuesta", Toast.LENGTH_LONG);
+                    toastData.show();
                 }
             }
 
@@ -176,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }
         });
-
 
     }
 

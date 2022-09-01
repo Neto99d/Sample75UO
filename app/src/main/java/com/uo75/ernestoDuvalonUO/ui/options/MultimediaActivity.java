@@ -50,7 +50,7 @@ public class MultimediaActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -64,9 +64,9 @@ public class MultimediaActivity extends AppCompatActivity {
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("db", "odooDB");
-        params.put("login", "admin@example.com");
-        params.put("password", "admin");
+        params.put("db", "odoo_db");
+        params.put("login", "uo75App@uo.cu");
+        params.put("password", "app#75");
         // ... as much as you need.
 
         Call<AccesOdoo> call = service.getAcceso(params);
@@ -81,7 +81,7 @@ public class MultimediaActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     ArrayList<Multimedia> multimedias = new ArrayList<>();
                     //Instancia a GSON
@@ -96,7 +96,7 @@ public class MultimediaActivity extends AppCompatActivity {
                     RestClient service = retrofit.create(RestClient.class);
                     //Se realiza la llamada
                     Map<String, String> params = new HashMap<>();
-                    params.put("access_token", acceso.getAccesToken());
+                    params.put("access-token", acceso.getAccesToken());
 
 
                     Call<Data> callS = service.getMultimedia(params);

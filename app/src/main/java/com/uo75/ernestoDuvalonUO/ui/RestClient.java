@@ -15,7 +15,7 @@ public interface RestClient {
 
     // Acces a Odoo obteniendo Token
     @GET("api/auth/token/")
-    Call<AccesOdoo> getAcceso(@QueryMap Map<String, String> params);
+    Call<AccesOdoo> getAcceso(@HeaderMap Map<String, String> params);
 
     // Mision
     @GET("api/mision.mision")

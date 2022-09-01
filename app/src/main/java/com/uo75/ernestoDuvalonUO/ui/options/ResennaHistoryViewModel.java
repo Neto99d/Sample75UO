@@ -27,7 +27,7 @@ public class ResennaHistoryViewModel extends ViewModel {
 
     public ResennaHistoryViewModel() {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -41,9 +41,9 @@ public class ResennaHistoryViewModel extends ViewModel {
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("db", "odooDB");
-        params.put("login", "admin@example.com");
-        params.put("password", "admin");
+        params.put("db", "odoo_db");
+        params.put("login", "uo75App@uo.cu");
+        params.put("password", "app#75");
         // ... as much as you need.
 
         Call<AccesOdoo> call = service.getAcceso(params);
@@ -79,7 +79,7 @@ public class ResennaHistoryViewModel extends ViewModel {
 
     public Reseña getReseña(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
         Reseña reseña = new Reseña();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -93,7 +93,7 @@ public class ResennaHistoryViewModel extends ViewModel {
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("access_token", token);
+        params.put("access-token", token);
 
 
         Call<Data> call = service.getReseña(params);
