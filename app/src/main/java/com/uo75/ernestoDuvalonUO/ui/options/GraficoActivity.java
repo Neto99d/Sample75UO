@@ -162,6 +162,5 @@ public class GraficoActivity extends AppCompatActivity {
 
            }
        });
-       /////////////////////////////////////////////////////////////
    }
 }
