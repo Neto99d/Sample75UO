@@ -30,133 +30,138 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GraficoActivity extends AppCompatActivity {
-
-    PieDataSet pastelData = new PieDataSet(null, null);
+    PieChart pieChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafico);
 
-        Toast toast = Toast.makeText(this, "Toque la pantalla para mostrar el gráfico con los datos.", Toast.LENGTH_LONG);
-        toast.show();
-        PieChart pieChart = findViewById(R.id.pastelChart);
-
-        /////////////////////////////////////////////
-        pastelData.setColors(ColorTemplate.COLORFUL_COLORS);
-        pastelData.setValueTextColor(Color.BLACK);
-        pastelData.setValueTextSize(19f);
+        pieChart = findViewById(R.id.pastelChart);
 
         pieChart.getDescription().setEnabled(false);
-        pieChart.setCenterText("Estadísticas UO");
         pieChart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         pieChart.animate();
-        pastelData.setFormLineWidth(4);
-
-        //////////////////////////////////////////////////////
-
-
-        /////////////////////////////////////////////////////////////////
-
-        //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://10.30.3.105/";
-
-        //Instancia a GSON
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss")
-                .create();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        //Se crea el servicio
-        RestClient service = retrofit.create(RestClient.class);
-        //Se realiza la llamada
-        Map<String, String> params = new HashMap<>();
-        params.put("db", "odoo_db");
-        params.put("login", "uo75App@uo.cu");
-        params.put("password", "app#75");
-        // ... as much as you need.
-
-        Call<AccesOdoo> call = service.getAcceso(params);
-        call.enqueue(new Callback<AccesOdoo>() {
-            @Override
-            public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
-                //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
-                if (response.isSuccessful()) {//si la peticion se completo con exito
-                    AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
-                    //// LLAMANDO A LAS API
-                    ////////////////////////////////////////////////////////////////
-                    //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://10.30.3.105/";
-
-                    //Instancia a GSON
-                    Gson gson = new GsonBuilder()
-                            .setDateFormat("yyyy-MM-dd HH:mm:ss")
-                            .create();
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(baseUrl)
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .build();
-                    //Se crea el servicio
-                    RestClient service = retrofit.create(RestClient.class);
-                    //Se realiza la llamada
-                    Map<String, String> params = new HashMap<>();
-                    params.put("access-token", acceso.getAccesToken());
-
-                    ArrayList<PieEntry> dataGraficoGuardar = new ArrayList<>();
-
-                    Call<Data> callS = service.getEstadisticas(params);
-                    callS.enqueue(new Callback<Data>() {
-                        @Override
-                        public void onResponse(Call<Data> callS, Response<Data> response) {
-                            //Codigo de respuesta
-                            System.out.println("[Code: " + response.code() + "]");
-                            if (response.isSuccessful()) {//si la peticion se completo con exito
-                                Data data = response.body();
-                                try {
-
-                                    System.out.println("Response:\n" + data.getData().get(0).get("name"));
-                                    for (int i = 0; i < data.getData().size(); i++) {
-                                        dataGraficoGuardar.add(new PieEntry(Integer.parseInt(data.getData().get(i).get("cantidad").getAsString()), data.getData().get(i).get("name").getAsString()));
-                                    }
-                                    pastelData.setValues(dataGraficoGuardar);
-                                    PieData pieData = new PieData(pastelData);
-                                    pieChart.setData(pieData);
-                                } catch (Exception e) {
-                                    System.out.println("ERROR: " + e.getMessage());
-                                }
-
-                            } else {//La peticion se realizo, pero ocurrio un error
-                                System.out.println("ERROR: " + response.message());
-
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Data> callS, Throwable t) {
-                            System.out.println("Network Error :: " + t.getLocalizedMessage());
-                        }
-                    });
-
-
-                } else {//La peticion se realizo, pero ocurrio un error
-                    System.out.println("ERROR: " + response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AccesOdoo> call, Throwable t) {
-                System.out.println("Network Error :: " + t.getLocalizedMessage());
-
-            }
-        });
-        /////////////////////////////////////////////////////////////
+        setValues();
 
     }
 
+   private void setValues(){
+       /////////////////////////////////////////////////////////////////
 
+       //Definimos la URL base del API REST que utilizamos
+       String baseUrl = "http://10.30.3.105/";
+
+       //Instancia a GSON
+       Gson gson = new GsonBuilder()
+               .setDateFormat("yyyy-MM-dd HH:mm:ss")
+               .create();
+       Retrofit retrofit = new Retrofit.Builder()
+               .baseUrl(baseUrl)
+               .addConverterFactory(GsonConverterFactory.create(gson))
+               .build();
+       //Se crea el servicio
+       RestClient service = retrofit.create(RestClient.class);
+       //Se realiza la llamada
+       Map<String, String> params = new HashMap<>();
+       params.put("db", "odoo_db");
+       params.put("login", "uo75App@uo.cu");
+       params.put("password", "app#75");
+       // ... as much as you need.
+
+       Call<AccesOdoo> call = service.getAcceso(params);
+       call.enqueue(new Callback<AccesOdoo>() {
+           @Override
+           public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
+               //Codigo de respuesta
+               System.out.println("[Code: " + response.code() + "]");
+               if (response.isSuccessful()) {//si la peticion se completo con exito
+                   AccesOdoo acceso = response.body();
+                   System.out.println("Response:\n" + acceso);
+                   //// LLAMANDO A LAS API
+                   ////////////////////////////////////////////////////////////////
+                   //Definimos la URL base del API REST que utilizamos
+                   String baseUrl = "http://10.30.3.105/";
+
+                   //Instancia a GSON
+                   Gson gson = new GsonBuilder()
+                           .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                           .create();
+                   Retrofit retrofit = new Retrofit.Builder()
+                           .baseUrl(baseUrl)
+                           .addConverterFactory(GsonConverterFactory.create(gson))
+                           .build();
+                   //Se crea el servicio
+                   RestClient service = retrofit.create(RestClient.class);
+                   //Se realiza la llamada
+                   Map<String, String> params = new HashMap<>();
+                   params.put("access-token", acceso.getAccesToken());
+
+                   Call<Data> callS = service.getEstadisticas(params);
+                   //////////////////////////////
+                   PieDataSet pastelData = new PieDataSet(null, null);
+                   ArrayList<PieEntry> dataGraficoGuardar = new ArrayList<>();
+                   ///////////////////////////////
+
+                   callS.enqueue(new Callback<Data>() {
+                       @Override
+                       public void onResponse(Call<Data> callS, Response<Data> response) {
+                           //Codigo de respuesta
+                           System.out.println("[Code: " + response.code() + "]");
+                           if (response.isSuccessful()) {//si la peticion se completo con exito
+                               Data data = response.body();
+                               try {
+                                   int result = 0;
+                                   System.out.println("Response:\n" + data.getData().get(0).get("name"));
+                                   for (int i = 0; i < data.getData().size(); i++) {
+                                       dataGraficoGuardar.add(new PieEntry(Integer.parseInt(data.getData().get(i).get("cantidad").getAsString()), data.getData().get(i).get("name").getAsString()));
+                                       result = result + Integer.parseInt(data.getData().get(i).get("cantidad").getAsString());
+                                   }
+                                   //////////////////
+                                   PieData pieData = new PieData(pastelData);
+
+                                   pastelData.setColors(ColorTemplate.COLORFUL_COLORS);
+                                   pastelData.setValueTextColor(Color.BLACK);
+                                   pastelData.setValueTextSize(19f);
+                                   pastelData.setValues(dataGraficoGuardar);
+                                   pastelData.setFormLineWidth(4);
+
+                                   pieChart.setData(pieData);
+                                   pieChart.setCenterText("Total" + "\n" + result);
+                                   // undo all highlights
+                                   pieChart.highlightValues(null);
+
+                                   pieChart.invalidate();
+                                   ///////////////////
+                               } catch (Exception e) {
+                                   System.out.println("ERROR: " + e.getMessage());
+                               }
+
+                           } else {//La peticion se realizo, pero ocurrio un error
+                               System.out.println("ERROR: " + response.message());
+
+                           }
+                       }
+
+                       @Override
+                       public void onFailure(Call<Data> callS, Throwable t) {
+                           System.out.println("Network Error :: " + t.getLocalizedMessage());
+                       }
+                   });
+
+
+               } else {//La peticion se realizo, pero ocurrio un error
+                   System.out.println("ERROR: " + response.message());
+               }
+           }
+
+           @Override
+           public void onFailure(Call<AccesOdoo> call, Throwable t) {
+               System.out.println("Network Error :: " + t.getLocalizedMessage());
+
+           }
+       });
+       /////////////////////////////////////////////////////////////
+   }
 }
