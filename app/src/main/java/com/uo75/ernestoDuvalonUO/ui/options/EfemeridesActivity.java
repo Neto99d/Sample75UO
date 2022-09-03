@@ -26,7 +26,12 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Efemerides;
 import com.uo75.ernestoDuvalonUO.ui.options.Adapters.EfemeridesAdapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +65,7 @@ public class EfemeridesActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarEfemeride);
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://10.30.3.105/";
+        String baseUrl = "http://192.168.1.101:8069/"; // 192.168.1.101 Local // 192.168.1.101:8069 Remoto
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -91,7 +96,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://10.30.3.105/";
+                    String baseUrl = "http://192.168.1.101:8069/";
 
                     ArrayList<Efemerides> efemerides = new ArrayList<>();
                     //Instancia a GSON
@@ -126,9 +131,12 @@ public class EfemeridesActivity extends AppCompatActivity {
                                         efemerides1.setContenido(data.getData().get(i).get("contenido").getAsString());
                                         /// Se coge el String a partir del primer caracter ' que llega desde el JSon
                                         efemerides1.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
-                                        efemerides1.setFecha(data.getData().get(i).get("fecha").getAsString());
+                                        efemerides1.setFecha(ParseFecha(data.getData().get(i).get("fecha").getAsString()));
                                         efemerides.add(efemerides1);
                                     }
+
+                                    Collections.sort(efemerides, (efemerides12, efemerides_2) -> ParseFechaOrder(efemerides12.getFecha()).compareTo(ParseFechaOrder(efemerides_2.getFecha())));
+
                                     progressBar.setVisibility(View.GONE);
                                     nAdapter = new EfemeridesAdapter(efemerides, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
@@ -181,4 +189,32 @@ public class EfemeridesActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    // Convertir A formato Fecha d-m-a
+    public static String ParseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            formato.setLenient(false);
+            fechaDate = formato.parse(fecha);
+            formato = new SimpleDateFormat("dd-MM-yyyy");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return formato.format(fechaDate);
+    }
+
+    // Convertir A formato Date para ordenar
+    public static Date ParseFechaOrder(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Date fechaDate = null;
+        try {
+            formato.setLenient(false);
+            fechaDate = formato.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
+
 }

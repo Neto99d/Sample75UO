@@ -19,7 +19,7 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Efemerides;
 
 import java.util.List;
 
-public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder> {
+public class EfemeridesAdapter extends RecyclerView.Adapter<EfemeridesAdapter.ViewHolder>  {
     private List<Efemerides> efemerides;
     Context conntext;
     ImageView image;

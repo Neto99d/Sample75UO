@@ -42,6 +42,9 @@ public class GraficoActivity extends AppCompatActivity {
         pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.setEntryLabelTextSize(15f);
         pieChart.animate();
         setValues();
 
@@ -51,7 +54,7 @@ public class GraficoActivity extends AppCompatActivity {
        /////////////////////////////////////////////////////////////////
 
        //Definimos la URL base del API REST que utilizamos
-       String baseUrl = "http://10.30.3.105/";
+       String baseUrl = "http://192.168.1.101:8069/";
 
        //Instancia a GSON
        Gson gson = new GsonBuilder()
@@ -82,7 +85,7 @@ public class GraficoActivity extends AppCompatActivity {
                    //// LLAMANDO A LAS API
                    ////////////////////////////////////////////////////////////////
                    //Definimos la URL base del API REST que utilizamos
-                   String baseUrl = "http://10.30.3.105/";
+                   String baseUrl = "http://192.168.1.101:8069/";
 
                    //Instancia a GSON
                    Gson gson = new GsonBuilder()
@@ -120,15 +123,36 @@ public class GraficoActivity extends AppCompatActivity {
                                    }
                                    //////////////////
                                    PieData pieData = new PieData(pastelData);
+                                   ArrayList<Integer> colors = new ArrayList<>();
 
-                                   pastelData.setColors(ColorTemplate.COLORFUL_COLORS);
+                                   for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                                       colors.add(c);
+
+                                   for (int c : ColorTemplate.JOYFUL_COLORS)
+                                       colors.add(c);
+
+                                   for (int c : ColorTemplate.COLORFUL_COLORS)
+                                       colors.add(c);
+
+                                   for (int c : ColorTemplate.LIBERTY_COLORS)
+                                       colors.add(c);
+
+                                   for (int c : ColorTemplate.PASTEL_COLORS)
+                                       colors.add(c);
+
+                                   colors.add(ColorTemplate.getHoloBlue());
+
+
+                                   pastelData.setColors(colors);
                                    pastelData.setValueTextColor(Color.BLACK);
                                    pastelData.setValueTextSize(19f);
                                    pastelData.setValues(dataGraficoGuardar);
                                    pastelData.setFormLineWidth(4);
 
                                    pieChart.setData(pieData);
+                                   pieChart.setCenterTextSize(20f);
                                    pieChart.setCenterText("Total" + "\n" + result);
+
                                    // undo all highlights
                                    pieChart.highlightValues(null);
 

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondoContacto"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:textAlignment="center">
 
@@ -18,39 +18,113 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="119dp"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/icon_app" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="511dp"
-                android:paddingStart="10dp"
-                android:paddingTop="180dp"
-                android:paddingEnd="10dp"
-                app:srcCompat="@drawable/pulover_atras" />
-
-            <TextView
-                android:id="@+id/textVersion"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="600dp"
-                android:text="Versión 2.0"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textAño"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="640dp"
-                android:text="2022"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="405dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    app:srcCompat="@drawable/pulover_atras" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/DireccionTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dirección"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/Direccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:layout_marginStart="5dp"
+                        android:text="Avenida Patricio Lumumba No. 507 entre Avenida de las Américas y Calle 1ra, Reparto Jiménez, Consejo Popular José Martí Norte. CP 90500"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/TelefonoTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Teléfonos"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/Telefono"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="phone"
+                        android:text="Dirección de Comunicación Institucional: +5322631832"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/Telefono2"
+                        android:layout_width="398dp"
+                        android:layout_height="wrap_content"
+                        android:autoLink="phone"
+                        android:text="Oficina de Atención a la Población: +5322633031"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/CorreoTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Correos"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/Correo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="email"
+                        android:text="comunicacion@uo.edu.cu"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/Correo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="email"
+                        android:text="poblacion@consejo.uo.edu.cu"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/textVersion"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="80dp"
+                        android:text="Versión 2.0"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/textAño"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="2022"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
         </FrameLayout>
     </ScrollView>
 </LinearLayout>

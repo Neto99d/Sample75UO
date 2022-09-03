@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class NewsViewModel extends ViewModel {
 
     private MutableLiveData<Channel> articleListLive = null;
-    private String urlString = "https://www.uo.edu.cu/feed";
+    private String urlString = "https://latablilla.uo.edu.cu/feed/";
 
     private MutableLiveData<String> snackbar = new MutableLiveData<>();
 

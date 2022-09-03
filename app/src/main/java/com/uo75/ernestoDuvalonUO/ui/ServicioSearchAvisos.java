@@ -77,7 +77,7 @@ public class ServicioSearchAvisos extends Service {
         String id = "basic_channel";
         int notificationId = 0;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
-                .setSmallIcon(R.drawable.icon_app_uo)
+                .setSmallIcon(R.drawable.escudo_color)
                 .setContentTitle("Aviso de Universidad de Oriente")
                 .setContentText(contenido)
                 .setVibrate(new long[]{100, 250, 100, 500})
@@ -115,7 +115,7 @@ public class ServicioSearchAvisos extends Service {
             @Override
             public void run() {
                 metodoBuscarAviso();//llamamos nuestro metodo
-                handler.postDelayed(this, 600000);//se ejecutara cada 10 minutos
+                handler.postDelayed(this, 900000);//se ejecutara cada 15 minutos
             }
         }, 600000);//empezara a ejecutarse después de 10 minutos
     }
@@ -123,7 +123,7 @@ public class ServicioSearchAvisos extends Service {
     private void metodoBuscarAviso() {
         createNotificationChannel();
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://10.30.3.105/";
+        String baseUrl = "http://192.168.1.101:8069/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -154,7 +154,7 @@ public class ServicioSearchAvisos extends Service {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://10.30.3.105/";
+                    String baseUrl = "http://192.168.1.101:8069/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()

@@ -24,6 +24,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.ui.RestClient;
+import com.uo75.ernestoDuvalonUO.ui.ServicioSearchAvisos;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
@@ -51,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ///Iniciando servicio de busqueda de avisos
-        /*startService(new Intent(MainActivity.this,
-                ServicioSearchAvisos.class));*/
+        startService(new Intent(MainActivity.this,
+                ServicioSearchAvisos.class));
         ////Llamada a la funcion notificacion que inicia el canal
         createNotificationChannel();
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://10.30.3.105/";
+        String baseUrl = "http://192.168.1.101:8069/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://10.30.3.105/";
+                    String baseUrl = "http://192.168.1.101:8069/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
@@ -245,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
         String id = "basic_channel";
         int notificationId = 0;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
-                .setSmallIcon(R.drawable.icon_app_uo)
+                .setSmallIcon(R.drawable.escudo_color)
                 .setContentTitle("Aviso de Universidad de Oriente")
                 .setContentText(contenido)
                 .setVibrate(new long[]{100, 250, 100, 500})
