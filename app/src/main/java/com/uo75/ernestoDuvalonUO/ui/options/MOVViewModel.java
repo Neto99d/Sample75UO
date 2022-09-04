@@ -33,7 +33,7 @@ public class MOVViewModel extends ViewModel {
 
     public MOVViewModel() {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -89,7 +89,7 @@ public class MOVViewModel extends ViewModel {
 
     public Mision getMision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
         Mision mision = new Mision();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -142,7 +142,7 @@ public class MOVViewModel extends ViewModel {
 
     public Objeto getObjeto(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
         Objeto objeto = new Objeto();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -195,7 +195,7 @@ public class MOVViewModel extends ViewModel {
 
     public Vision getVision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
         Vision vision = new Vision();
         //Instancia a GSON
         Gson gson = new GsonBuilder()

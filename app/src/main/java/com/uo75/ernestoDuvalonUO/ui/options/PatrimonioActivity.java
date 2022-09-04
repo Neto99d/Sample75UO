@@ -59,7 +59,7 @@ public class PatrimonioActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarPatrimonio);
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -90,7 +90,7 @@ public class PatrimonioActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.101:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     ArrayList<Patrimonio> patrim = new ArrayList<>();
                     //Instancia a GSON

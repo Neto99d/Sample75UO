@@ -19,7 +19,7 @@
         <service android:name=".ui.ServicioSearchAvisos" />
 
         <activity
-            android:name=".ui.options.GraficoActivity"
+            android:name=".ui.graficosEstadisticas.GraficoActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Gráfico">

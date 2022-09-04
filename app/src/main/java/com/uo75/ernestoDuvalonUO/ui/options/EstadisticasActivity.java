@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.RestClient;
+import com.uo75.ernestoDuvalonUO.ui.graficosEstadisticas.GraficoActivity;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Estadisticas;
@@ -54,7 +55,7 @@ public class EstadisticasActivity extends AppCompatActivity {
         });
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -85,7 +86,7 @@ public class EstadisticasActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.101:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     ArrayList<Estadisticas> estadisticas = new ArrayList<>();
                     //Instancia a GSON

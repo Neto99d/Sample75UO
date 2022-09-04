@@ -1,4 +1,4 @@
-package com.uo75.ernestoDuvalonUO.ui.options;
+package com.uo75.ernestoDuvalonUO.ui.graficosEstadisticas;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -40,9 +40,10 @@ public class GraficoActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.pastelChart);
 
         pieChart.getDescription().setEnabled(false);
+        pieChart.getLegend().setWordWrapEnabled(true);
+        pieChart.getLegend().setTextSize(14f);
         pieChart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        pieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
+        pieChart.getLegend().setOrientation(Legend.LegendOrientation.HORIZONTAL);
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setEntryLabelTextSize(15f);
         pieChart.animate();
@@ -54,7 +55,7 @@ public class GraficoActivity extends AppCompatActivity {
        /////////////////////////////////////////////////////////////////
 
        //Definimos la URL base del API REST que utilizamos
-       String baseUrl = "http://192.168.1.101:8069/";
+       String baseUrl = "http://10.30.3.105/";
 
        //Instancia a GSON
        Gson gson = new GsonBuilder()
@@ -85,7 +86,7 @@ public class GraficoActivity extends AppCompatActivity {
                    //// LLAMANDO A LAS API
                    ////////////////////////////////////////////////////////////////
                    //Definimos la URL base del API REST que utilizamos
-                   String baseUrl = "http://192.168.1.101:8069/";
+                   String baseUrl = "http://10.30.3.105/";
 
                    //Instancia a GSON
                    Gson gson = new GsonBuilder()

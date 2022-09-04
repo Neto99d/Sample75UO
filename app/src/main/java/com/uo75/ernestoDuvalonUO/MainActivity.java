@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.101:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()

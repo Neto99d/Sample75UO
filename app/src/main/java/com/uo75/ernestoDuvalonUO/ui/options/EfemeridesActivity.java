@@ -65,7 +65,7 @@ public class EfemeridesActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarEfemeride);
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/"; // 192.168.1.101 Local // 192.168.1.101:8069 Remoto
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -96,7 +96,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.101:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     ArrayList<Efemerides> efemerides = new ArrayList<>();
                     //Instancia a GSON
@@ -135,6 +135,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                                         efemerides.add(efemerides1);
                                     }
 
+                                    // Ordenando por fecha
                                     Collections.sort(efemerides, (efemerides12, efemerides_2) -> ParseFechaOrder(efemerides12.getFecha()).compareTo(ParseFechaOrder(efemerides_2.getFecha())));
 
                                     progressBar.setVisibility(View.GONE);

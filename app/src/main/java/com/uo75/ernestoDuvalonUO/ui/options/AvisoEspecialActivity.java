@@ -16,8 +16,11 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.options.Adapters.AvisoAdapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +47,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.101:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -75,7 +78,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.101:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     ArrayList<AvisoEspecial> avisoEspecials = new ArrayList<>();
                     //Instancia a GSON
@@ -107,13 +110,12 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         AvisoEspecial avisoEspecial = new AvisoEspecial();
                                         avisoEspecial.setContenido(data.getData().get(i).get("contenido").getAsString());
-                                        avisoEspecial.setFecha(data.getData().get(i).get("fecha").getAsString());
+                                        avisoEspecial.setFecha(ParseFecha(data.getData().get(i).get("fecha").getAsString()));
                                         avisoEspecials.add(avisoEspecial);
                                     }
                                     Collections.reverse(avisoEspecials);
                                     nAdapter = new AvisoAdapter(avisoEspecials);
                                     mRecyclerView.setAdapter(nAdapter);
-                                    //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
                                 }
@@ -145,5 +147,18 @@ public class AvisoEspecialActivity extends AppCompatActivity {
 
     }
 
+    // Convertir A formato Fecha d-m-a
+    public static String ParseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            formato.setLenient(false);
+            fechaDate = formato.parse(fecha);
+            formato = new SimpleDateFormat("dd-MM-yyyy");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return formato.format(fechaDate);
+    }
 }
 
