@@ -22,7 +22,7 @@
             android:name=".ui.graficosEstadisticas.GraficoActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Gráfico">
+            android:label="Estadísticas">
 
         </activity>
         <activity
@@ -60,11 +60,6 @@
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Profesores Eméritos" />
-        <activity
-            android:name=".ui.options.EstadisticasActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Estadísticas" />
         <activity
             android:name=".ui.options.IdentidadActivity"
             android:configChanges="orientation|screenSize"

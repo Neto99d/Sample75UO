@@ -91,9 +91,9 @@
 
     <activity
         android:id="@+id/nav_estadisticas"
-        android:name="com.uo75.ernestoDuvalonUO.ui.options.EstadisticasActivity"
+        android:name="com.uo75.ernestoDuvalonUO.ui.graficosEstadisticas.GraficoActivity"
         android:label="Estadísticas"
-        tools:layout="@layout/activity_estadisticas" />
+        tools:layout="@layout/activity_grafico" />
 
     <activity
         android:id="@+id/nav_news"
