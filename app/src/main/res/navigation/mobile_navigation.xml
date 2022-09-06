@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/nav_reseña"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.ResennaHistoryFragment"
-        android:label="Historia de la UO"
+        android:label="Reseña Histórica"
         tools:layout="@layout/resenna_history_fragment" />
 
     <activity
@@ -50,7 +50,7 @@
     <activity
         android:id="@+id/nav_rectores"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.RectoresActivity"
-        android:label="Rectores"
+        android:label="Nuestros Rectores"
         tools:layout="@layout/activity_rectores" />
 
     <activity
@@ -68,25 +68,25 @@
     <activity
         android:id="@+id/nav_honorCausa"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.HonorCausaActivity"
-        android:label="Honoris Causa"
+        android:label="Doctores Honoris Causa"
         tools:layout="@layout/activity_honor_causa" />
 
     <activity
         android:id="@+id/nav_campaña"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.CampannaActivity"
-        android:label="Campañas"
+        android:label="Campañas Comunicativas"
         tools:layout="@layout/activity_campanna" />
 
     <activity
         android:id="@+id/nav_aviso"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.AvisoEspecialActivity"
-        android:label="Campañas"
+        android:label="Avisos Especiales"
         tools:layout="@layout/activity_aviso_especial" />
 
     <activity
         android:id="@+id/nav_efemerides"
         android:name="com.uo75.ernestoDuvalonUO.ui.options.EfemeridesActivity"
-        android:label="Campañas"
+        android:label="Efemérides"
         tools:layout="@layout/activity_efemerides" />
 
     <activity

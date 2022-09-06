@@ -18,15 +18,26 @@
             android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/textView2"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Misión"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="MISIÓN"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:drawableLeftCompat="@drawable/mision"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
                 style="@style/CardView.Light"
@@ -46,7 +57,8 @@
                     <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10px">
+                        android:padding="10px"
+                        app:layout_constraintBottom_toBottomOf="parent">
 
                         <TextView
                             android:id="@+id/textMovM"
@@ -57,6 +69,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="9dp"
                             android:layout_marginBottom="10dp"
+                            android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"
                             android:textColor="#DE000000"
                             android:textSize="16sp"
@@ -70,15 +83,26 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/textView4"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Visión"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="106dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="10dp"
+                    android:text="VISIÓN"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:drawableLeftCompat="@drawable/vision"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
                 style="@style/CardView.Light"
@@ -99,7 +123,8 @@
                     <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10px">
+                        android:padding="10px"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:id="@+id/textMovV"
@@ -110,6 +135,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
+                            android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"
                             android:textColor="#DE000000"
                             android:textSize="16sp"
@@ -121,15 +147,26 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/textView3"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Objeto Social"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="165dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="10dp"
+                    android:text="OBJETO SOCIAL"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:drawableLeftCompat="@drawable/objeto_social"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
                 style="@style/CardView.Light"
@@ -158,8 +195,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="9dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
                             android:layout_marginEnd="9dp"
+                            android:layout_marginBottom="10dp"
+                            android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"
                             android:textColor="#DE000000"
                             android:textSize="16sp"

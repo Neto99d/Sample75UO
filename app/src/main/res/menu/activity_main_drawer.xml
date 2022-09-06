@@ -27,7 +27,7 @@
 
         <item
             android:id="@+id/nav_rectores"
-            android:title="Rectores"
+            android:title="Nuestros Rectores"
             android:icon="@drawable/rectores" />
 
         <item
@@ -42,12 +42,12 @@
 
         <item
             android:id="@+id/nav_honorCausa"
-            android:title="Honoris Causa"
+            android:title="Doctores Honoris Causa"
             android:icon="@drawable/honoris_causa" />
 
         <item
             android:id="@+id/nav_campaña"
-            android:title="Campañas"
+            android:title="Campañas Comunicativas"
             android:icon="@drawable/campanna" />
 
         <item

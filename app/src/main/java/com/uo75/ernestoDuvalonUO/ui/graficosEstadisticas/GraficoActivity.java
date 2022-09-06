@@ -55,7 +55,7 @@ public class GraficoActivity extends AppCompatActivity {
        /////////////////////////////////////////////////////////////////
 
        //Definimos la URL base del API REST que utilizamos
-       String baseUrl = "http://10.30.3.105/";
+       String baseUrl = "http://192.168.1.2:8069/";
 
        //Instancia a GSON
        Gson gson = new GsonBuilder()
@@ -86,7 +86,7 @@ public class GraficoActivity extends AppCompatActivity {
                    //// LLAMANDO A LAS API
                    ////////////////////////////////////////////////////////////////
                    //Definimos la URL base del API REST que utilizamos
-                   String baseUrl = "http://10.30.3.105/";
+                   String baseUrl = "http://192.168.1.2:8069/";
 
                    //Instancia a GSON
                    Gson gson = new GsonBuilder()

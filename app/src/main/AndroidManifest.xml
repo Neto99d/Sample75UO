@@ -39,7 +39,7 @@
             android:name=".ui.options.AvisoEspecialActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Avisos UO" />
+            android:label="Avisos Especiales" />
         <activity
             android:name=".ui.options.PteFeuActivity"
             android:configChanges="orientation|screenSize"
@@ -49,12 +49,12 @@
             android:name=".ui.options.CampannaActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Campañas" />
+            android:label="Campañas Comunicativas" />
         <activity
             android:name=".ui.options.HonorCausaActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Honoris Causa" />
+            android:label="Doctores Honoris Causa" />
         <activity
             android:name=".ui.options.ProfeMeritoActivity"
             android:configChanges="orientation|screenSize"
@@ -74,7 +74,7 @@
             android:name=".ui.options.RectoresActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Rectores" />
+            android:label="Nuestros Rectores" />
         <activity
             android:name=".ui.options.EfemeridesActivity"
             android:configChanges="orientation|screenSize"
