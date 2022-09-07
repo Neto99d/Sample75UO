@@ -87,7 +87,7 @@ public class GraficoActivity extends AppCompatActivity {
         pastelTrabajadores.setEntryLabelTextSize(15f);
         pastelTrabajadores.animate();
 
-        /// Llenadno graficos Pastel
+        /// Llenando graficos Pastel
         setValuesPastel();
 
 
@@ -105,7 +105,7 @@ public class GraficoActivity extends AppCompatActivity {
         barraInteres.getLegend().setOrientation(Legend.LegendOrientation.HORIZONTAL);
         barraInteres.animate();
 
-        /// Llenadno graficos Barra
+        /// Llenando graficos Barra
         setValuesBarras();
     }
 
@@ -113,7 +113,7 @@ public class GraficoActivity extends AppCompatActivity {
         /////////////////////////////////////////////////////////////////
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -144,7 +144,7 @@ public class GraficoActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
@@ -201,10 +201,12 @@ public class GraficoActivity extends AppCompatActivity {
                                 try {
                                     int result = 0;
                                     System.out.println("Response:\n" + data.getData().get(0).get("name"));
-                                    for (int i = 0; i < 2; i++) {
-                                        dataPlantilla.add(new PieEntry(Integer.parseInt(data.getData().get(i).get("cantidad").getAsString()), data.getData().get(i).get("name").getAsString()));
-                                        // result = result + Integer.parseInt(data.getData().get(i).get("cantidad").getAsString());
-                                    }
+
+                                        dataPlantilla.add(new PieEntry(Integer.parseInt(data.getData().get(1).get("cantidad").getAsString()), data.getData().get(1).get("name").getAsString()));
+                                        // Se resta palntilla total - plantilla cubierta y ese valor es el que se muestra (Plantilla no cubierta)
+                                        dataPlantilla.add(new PieEntry(Integer.parseInt(data.getData().get(0).get("cantidad").getAsString()) - Integer.parseInt(data.getData().get(1).get("cantidad").getAsString()),"No Cubierta"));
+
+
                                     PieData pieDataPlantilla = new PieData(pastelDataPlantilla);
                                     pastelDataPlantilla.setColors(ColorTemplate.JOYFUL_COLORS);
                                     pastelDataPlantilla.setValueTextColor(Color.BLACK);
@@ -212,12 +214,13 @@ public class GraficoActivity extends AppCompatActivity {
                                     pastelDataPlantilla.setValues(dataPlantilla);
                                     pastelDataPlantilla.setFormLineWidth(4);
                                     pastelPlantilla.setData(pieDataPlantilla);
+                                    pastelPlantilla.setCenterTextSize(20f);
+                                    pastelPlantilla.setCenterText("Total" + "\n" + data.getData().get(0).get("cantidad").getAsString()); // Plantilla Total
                                     pastelPlantilla.highlightValues(null);
                                     pastelPlantilla.invalidate();
 
                                     for (int i = 2; i < 4; i++) {
                                         dataTrabajadores.add(new PieEntry(Integer.parseInt(data.getData().get(i).get("cantidad").getAsString()), data.getData().get(i).get("name").getAsString()));
-                                        // result = result + Integer.parseInt(data.getData().get(i).get("cantidad").getAsString());
                                     }
                                     PieData pieDataTrabajadores = new PieData(pastelDataTrabajadores);
                                     pastelDataTrabajadores.setColors(ColorTemplate.LIBERTY_COLORS);
@@ -231,7 +234,6 @@ public class GraficoActivity extends AppCompatActivity {
 
                                     for (int i = 4; i < 10; i++) {
                                         dataCategoriaCientifica.add(new PieEntry(Integer.parseInt(data.getData().get(i).get("cantidad").getAsString()), data.getData().get(i).get("name").getAsString()));
-                                        // result = result + Integer.parseInt(data.getData().get(i).get("cantidad").getAsString());
                                     }
                                     PieData pieDataCategoriaCientifica = new PieData(pastelDataCategoriaCientifica);
                                     pastelDataCategoriaCientifica.setColors(colors);
@@ -298,7 +300,7 @@ public class GraficoActivity extends AppCompatActivity {
         /////////////////////////////////////////////////////////////////
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -329,7 +331,7 @@ public class GraficoActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()

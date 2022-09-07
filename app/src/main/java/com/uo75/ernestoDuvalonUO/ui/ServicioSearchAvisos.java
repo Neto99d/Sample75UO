@@ -123,7 +123,7 @@ public class ServicioSearchAvisos extends Service {
     private void metodoBuscarAviso() {
         createNotificationChannel();
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -154,7 +154,7 @@ public class ServicioSearchAvisos extends Service {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "http://10.30.3.105/";
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -101,10 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
                     System.out.println("Response:\n" + acceso);
-                    //// LLAMANDO A LAS API
-                    ////////////////////////////////////////////////////////////////
+
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "http://10.30.3.105/";
 
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
@@ -126,9 +125,12 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
+
+                            // obtener fecha actual
                             long ahora = System.currentTimeMillis();
                             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                             String salida = df.format(ahora);
+
                             System.out.println("[FECHA: " + salida);
                             System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
