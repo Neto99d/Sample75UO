@@ -49,8 +49,7 @@ public class NewsActivity extends AppCompatActivity {
             if (channel != null) {
                 if (channel.getTitle() != "") {
                     setTitle(channel.getTitle());
-                }
-                else{
+                } else {
                     setTitle("La Tablilla. Informaciones de la UO");
                 }
                 nAdapter = new NewsAdapter(channel.getArticles(), this);

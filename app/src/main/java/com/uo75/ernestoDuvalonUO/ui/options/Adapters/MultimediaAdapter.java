@@ -1,12 +1,9 @@
 package com.uo75.ernestoDuvalonUO.ui.options.Adapters;
 
 import android.content.Context;
-import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,8 +16,8 @@ import java.util.List;
 import cn.jzvd.JzvdStd;
 
 public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.ViewHolder> {
-    private List<Multimedia> multimedia;
     Context context;
+    private List<Multimedia> multimedia;
 
     public MultimediaAdapter(List<Multimedia> multimedia, Context context) {
         this.multimedia = multimedia;
@@ -45,7 +42,7 @@ public class MultimediaAdapter extends RecyclerView.Adapter<MultimediaAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Multimedia multimedia = this.multimedia.get(position);
-        holder.getvideo().setUp(multimedia.getUrl(),multimedia.getTitulo());
+        holder.getvideo().setUp(multimedia.getUrl(), multimedia.getTitulo());
         holder.getvideo().posterImageView.setImageBitmap(multimedia.getImage());
 
     }

@@ -21,10 +21,10 @@ import java.util.List;
 
 public class CampannaAdapter extends RecyclerView.Adapter<CampannaAdapter.ViewHolder> {
 
-    private List<Campaña> campaña;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<Campaña> campaña;
 
     public CampannaAdapter(List<Campaña> campaña, Context conntext, ImageView image, CardView imageFull) {
         this.campaña = campaña;

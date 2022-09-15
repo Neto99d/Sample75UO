@@ -30,7 +30,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,12 +42,39 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EfemeridesActivity extends AppCompatActivity {
 
-    private EfemeridesAdapter nAdapter;
-    private RecyclerView mRecyclerView;
-    Context mContext;
-    private ProgressBar progressBar;
     public ImageView imageFull;
     public CardView fondoImageFull;
+    Context mContext;
+    private EfemeridesAdapter nAdapter;
+    private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
+
+    // Convertir A formato Fecha d-m-a
+    public static String ParseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            formato.setLenient(false);
+            fechaDate = formato.parse(fecha);
+            formato = new SimpleDateFormat("dd-MM-yyyy");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return formato.format(fechaDate);
+    }
+
+    // Convertir A formato Date para ordenar
+    public static Date ParseFechaOrder(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Date fechaDate = null;
+        try {
+            formato.setLenient(false);
+            fechaDate = formato.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +115,10 @@ public class EfemeridesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
@@ -120,12 +146,12 @@ public class EfemeridesActivity extends AppCompatActivity {
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
 
-                            System.out.println("[Code: " + response.code() + "]");
+                            // // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
 
-                                    System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                                    //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         Efemerides efemerides1 = new Efemerides();
                                         efemerides1.setContenido(data.getData().get(i).get("contenido").getAsString());
@@ -174,7 +200,6 @@ public class EfemeridesActivity extends AppCompatActivity {
 
     }
 
-
     // Convertir String base64 a Imagen Bitmap
     public Bitmap StringToBitMap(String encodedString) {
         try {
@@ -189,33 +214,6 @@ public class EfemeridesActivity extends AppCompatActivity {
             e.getMessage();
             return null;
         }
-    }
-
-    // Convertir A formato Fecha d-m-a
-    public static String ParseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaDate = null;
-        try {
-            formato.setLenient(false);
-            fechaDate = formato.parse(fecha);
-            formato = new SimpleDateFormat("dd-MM-yyyy");
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-        return formato.format(fechaDate);
-    }
-
-    // Convertir A formato Date para ordenar
-    public static Date ParseFechaOrder(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-        Date fechaDate = null;
-        try {
-            formato.setLenient(false);
-            fechaDate = formato.parse(fecha);
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-        return fechaDate;
     }
 
 }

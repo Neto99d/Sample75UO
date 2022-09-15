@@ -58,10 +58,10 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                // // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    //  // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     getMision(acceso.getAccesToken());
                     getObjeto(acceso.getAccesToken());
@@ -112,11 +112,11 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                //    // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     Data data = response.body();
                     try {
-                        System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                        //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                         for (int i = 0; i < data.getData().size(); i++) {
                             mision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
@@ -165,11 +165,11 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                //  // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     Data data = response.body();
                     try {
-                        System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                        // // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                         for (int i = 0; i < data.getData().size(); i++) {
                             objeto.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
@@ -218,11 +218,11 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                //  // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     Data data = response.body();
                     try {
-                        System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                        //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                         for (int i = 0; i < data.getData().size(); i++) {
                             vision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }

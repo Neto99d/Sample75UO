@@ -60,9 +60,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
+                    android:alpha="0.95"
                     android:scaleType="fitXY"
-                    android:visibility="gone"
-                    android:alpha="0.95">
+                    android:visibility="gone">
 
                 </androidx.cardview.widget.CardView>
             </LinearLayout>

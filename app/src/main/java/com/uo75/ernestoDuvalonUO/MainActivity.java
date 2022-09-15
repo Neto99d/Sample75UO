@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("db", "odoo_db");
-        params.put("login", "uo75App@uo.cu");
-        params.put("password", "app#75");
+        params.put("db", "odoo_db");  // Nombre de base de Datos en el Sistema: odoo_db
+        params.put("login", "uo75App@uo.cu"); // Usuario de la App en el Sitema: uo75App@uo.cu
+        params.put("password", "app#75");     // Contraseña de la App en el Sistema: app#75
         // ... as much as you need.
 
         Call<AccesOdoo> call = service.getAcceso(params);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 //Codigo de respuesta
                 Toast toast = Toast.makeText(getApplicationContext(), "Conexión al servicio exitosa", Toast.LENGTH_LONG);
                 toast.show();
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
                     System.out.println("Response:\n" + acceso);
@@ -131,13 +131,13 @@ public class MainActivity extends AppCompatActivity {
                             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                             String salida = df.format(ahora);
 
-                            System.out.println("[FECHA: " + salida);
-                            System.out.println("[Code: " + response.code() + "]");
+                            //  System.out.println("[FECHA: " + salida);
+                            //  System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
 
-                                    System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
+                                    //  System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         AvisoEspecial avisoEspecial = new AvisoEspecial();
                                         String fecha;

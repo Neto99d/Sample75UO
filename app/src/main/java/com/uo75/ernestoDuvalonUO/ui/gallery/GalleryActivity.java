@@ -38,12 +38,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GalleryActivity extends AppCompatActivity {
 
-    private GalleryAdaper nAdapter;
-    private RecyclerView mRecyclerView;
-    Context mContext;
-    private ProgressBar progressBar;
     public ImageView imageFull;
     public CardView fondoImageFull;
+    Context mContext;
+    private GalleryAdaper nAdapter;
+    private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +85,10 @@ public class GalleryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
@@ -116,7 +116,7 @@ public class GalleryActivity extends AppCompatActivity {
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
 
-                            System.out.println("[Code: " + response.code() + "]");
+                            // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {

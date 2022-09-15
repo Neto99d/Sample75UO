@@ -22,10 +22,10 @@ import java.util.List;
 
 public class PatrimonioAdapter extends RecyclerView.Adapter<PatrimonioAdapter.ViewHolder> {
 
-    private List<Patrimonio> patrimonio;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<Patrimonio> patrimonio;
 
     public PatrimonioAdapter(List<Patrimonio> patrimonio, Context conntext, ImageView image, CardView imageFull) {
         this.patrimonio = patrimonio;

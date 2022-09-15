@@ -20,10 +20,10 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.ProfeEmerito;
 import java.util.List;
 
 public class ProfeEmeritoAdapter extends RecyclerView.Adapter<ProfeEmeritoAdapter.ViewHolder> {
-    private List<ProfeEmerito> proemerito;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<ProfeEmerito> proemerito;
 
     public ProfeEmeritoAdapter(List<ProfeEmerito> proemerito, Context conntext, ImageView image, CardView imageFull) {
         this.proemerito = proemerito;

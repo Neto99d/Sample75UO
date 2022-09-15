@@ -21,10 +21,10 @@ import java.util.List;
 
 public class GalleryAdaper extends RecyclerView.Adapter<GalleryAdaper.ViewHolder> {
 
-    private List<Postales> postales;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<Postales> postales;
 
     public GalleryAdaper(List<Postales> postales, Context conntext, ImageView image, CardView imageFull) {
         this.postales = postales;

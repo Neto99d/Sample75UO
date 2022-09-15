@@ -147,10 +147,10 @@ public class ServicioSearchAvisos extends Service {
             @Override
             public void onResponse(@NotNull Call<AccesOdoo> call, @NotNull Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
@@ -179,13 +179,13 @@ public class ServicioSearchAvisos extends Service {
                             long ahora = System.currentTimeMillis();
                             @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                             String salida = df.format(ahora);
-                            System.out.println("[FECHA: " + salida);
-                            System.out.println("[Code: " + response.code() + "]");
+                            //    System.out.println("[FECHA: " + salida);
+                            //  // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
 
-                                    System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
+                                    //  System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         AvisoEspecial avisoEspecial = new AvisoEspecial();
                                         String fecha;

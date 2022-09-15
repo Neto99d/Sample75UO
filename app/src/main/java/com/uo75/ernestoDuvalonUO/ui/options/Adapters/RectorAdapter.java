@@ -20,10 +20,10 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Rectores;
 import java.util.List;
 
 public class RectorAdapter extends RecyclerView.Adapter<RectorAdapter.ViewHolder> {
-    private List<Rectores> rectores;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<Rectores> rectores;
 
     public RectorAdapter(List<Rectores> rectores, Context conntext, ImageView image, CardView imageFull) {
         this.rectores = rectores;

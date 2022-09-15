@@ -137,10 +137,10 @@ public class GraficoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
@@ -166,6 +166,7 @@ public class GraficoActivity extends AppCompatActivity {
                     PieDataSet pastelDataMatricula = new PieDataSet(null, null);
                     PieDataSet pastelDataCategoriaCientifica = new PieDataSet(null, null);
                     PieDataSet pastelDataTrabajadores = new PieDataSet(null, null);
+
                     ArrayList<PieEntry> dataPlantilla = new ArrayList<>();
                     ArrayList<PieEntry> dataMatricula = new ArrayList<>();
                     ArrayList<PieEntry> dataCategoriaCientifica = new ArrayList<>();
@@ -195,16 +196,16 @@ public class GraficoActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
-                            System.out.println("[Code: " + response.code() + "]");
+                            // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
                                     int result = 0;
-                                    System.out.println("Response:\n" + data.getData().get(0).get("name"));
+                                    // System.out.println("Response:\n" + data.getData().get(0).get("name"));
 
-                                        dataPlantilla.add(new PieEntry(Integer.parseInt(data.getData().get(1).get("cantidad").getAsString()), data.getData().get(1).get("name").getAsString()));
-                                        // Se resta palntilla total - plantilla cubierta y ese valor es el que se muestra (Plantilla no cubierta)
-                                        dataPlantilla.add(new PieEntry(Integer.parseInt(data.getData().get(0).get("cantidad").getAsString()) - Integer.parseInt(data.getData().get(1).get("cantidad").getAsString()),"No Cubierta"));
+                                    dataPlantilla.add(new PieEntry(Integer.parseInt(data.getData().get(1).get("cantidad").getAsString()), data.getData().get(1).get("name").getAsString()));
+                                    // Se resta palntilla total - plantilla cubierta y ese valor es el que se muestra (Plantilla no cubierta)
+                                    dataPlantilla.add(new PieEntry(Integer.parseInt(data.getData().get(0).get("cantidad").getAsString()) - Integer.parseInt(data.getData().get(1).get("cantidad").getAsString()), "No Cubierta"));
 
 
                                     PieData pieDataPlantilla = new PieData(pastelDataPlantilla);
@@ -324,10 +325,10 @@ public class GraficoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
@@ -382,7 +383,7 @@ public class GraficoActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
-                            System.out.println("[Code: " + response.code() + "]");
+                            // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {

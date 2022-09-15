@@ -35,6 +35,19 @@ public class AvisoEspecialActivity extends AppCompatActivity {
     private AvisoAdapter nAdapter;
     private RecyclerView mRecyclerView;
 
+    // Convertir a formato Fecha d-m-a
+    public static String ParseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            formato.setLenient(false);
+            fechaDate = formato.parse(fecha);
+            formato = new SimpleDateFormat("dd-MM-yyyy");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return formato.format(fechaDate);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +84,10 @@ public class AvisoEspecialActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
@@ -101,12 +114,12 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
-                            System.out.println("[Code: " + response.code() + "]");
+                            // // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
 
-                                    System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                                    //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         AvisoEspecial avisoEspecial = new AvisoEspecial();
                                         avisoEspecial.setContenido(data.getData().get(i).get("contenido").getAsString());
@@ -145,20 +158,6 @@ public class AvisoEspecialActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    // Convertir A formato Fecha d-m-a
-    public static String ParseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaDate = null;
-        try {
-            formato.setLenient(false);
-            fechaDate = formato.parse(fecha);
-            formato = new SimpleDateFormat("dd-MM-yyyy");
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-        return formato.format(fechaDate);
     }
 }
 

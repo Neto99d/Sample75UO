@@ -37,12 +37,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PatrimonioActivity extends AppCompatActivity {
-    private PatrimonioAdapter nAdapter;
-    private RecyclerView mRecyclerView;
-    Context mContext;
-    private ProgressBar progressBar;
     public ImageView imageFull;
     public CardView fondoImageFull;
+    Context mContext;
+    private PatrimonioAdapter nAdapter;
+    private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +83,10 @@ public class PatrimonioActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
@@ -114,12 +114,12 @@ public class PatrimonioActivity extends AppCompatActivity {
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
 
-                            System.out.println("[Code: " + response.code() + "]");
+                            // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
 
-                                    System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                                    // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         Patrimonio patrimonio = new Patrimonio();
                                         patrimonio.setContenido(data.getData().get(i).get("contenido").getAsString());

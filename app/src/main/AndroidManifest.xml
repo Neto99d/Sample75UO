@@ -19,72 +19,84 @@
         <service android:name=".ui.ServicioSearchAvisos" />
 
         <activity
-            android:name=".ui.graficosEstadisticas.GraficoActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Estadísticas">
-
-        </activity>
-        <activity
-            android:name=".ui.options.MultimediaActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Multimedia" />
-        <activity
-            android:name=".ui.gallery.GalleryActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Postales" />
-        <activity
-            android:name=".ui.options.AvisoEspecialActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Avisos Especiales" />
-        <activity
-            android:name=".ui.options.PteFeuActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Presidentes de la FEU" />
-        <activity
-            android:name=".ui.options.CampannaActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Campañas Comunicativas" />
-        <activity
-            android:name=".ui.options.HonorCausaActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Doctores Honoris Causa" />
-        <activity
-            android:name=".ui.options.ProfeMeritoActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Profesores Eméritos" />
-        <activity
             android:name=".ui.options.IdentidadActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Identidad" />
-        <activity
-            android:name=".ui.options.RectoresActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Nuestros Rectores" />
-        <activity
-            android:name=".ui.options.EfemeridesActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Efemérides" />
+
         <activity
             android:name=".ui.options.PatrimonioActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Patrimonio" />
+
+        <activity
+            android:name=".ui.options.RectoresActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Nuestros Rectores" />
+
+        <activity
+            android:name=".ui.options.ProfeMeritoActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Profesores Eméritos" />
+
+        <activity
+            android:name=".ui.options.PteFeuActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Presidentes de la FEU" />
+
+        <activity
+            android:name=".ui.options.HonorCausaActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Doctores Honoris Causa" />
+
+        <activity
+            android:name=".ui.options.CampannaActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Campañas Comunicativas" />
+
+        <activity
+            android:name=".ui.gallery.GalleryActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Postales" />
+
+        <activity
+            android:name=".ui.options.MultimediaActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Multimedia" />
+
+        <activity
+            android:name=".ui.options.AvisoEspecialActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Avisos Especiales" />
+
+
+        <activity
+            android:name=".ui.options.EfemeridesActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Efemérides" />
+
+        <activity
+            android:name=".ui.graficosEstadisticas.GraficoActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Estadísticas"></activity>
+
         <activity
             android:name=".ui.options.NewsActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="La Tablilla" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
