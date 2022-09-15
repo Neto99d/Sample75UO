@@ -29,7 +29,8 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/placeholder" />
+            app:srcCompat="@drawable/placeholder"
+             />
 
 
     </androidx.cardview.widget.CardView>

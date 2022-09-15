@@ -15,5 +15,6 @@
         android:layout_height="67dp"
         android:adjustViewBounds="true"
         android:background="@drawable/ident_uo"
-        android:cropToPadding="false" />
+        android:cropToPadding="false"
+         />
 </LinearLayout>

@@ -12,7 +12,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10px">
+        android:padding="10dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -30,7 +30,8 @@
                     android:paddingStart="10dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="10dp"
-                    app:srcCompat="@drawable/pulover_atras" />
+                    app:srcCompat="@drawable/pulover_atras"
+                    android:contentDescription="@string/todo" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -48,7 +49,7 @@
                             android:id="@+id/DireccionTitulo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Dirección"
+                            android:text="@string/direcci_n"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
 
@@ -57,14 +58,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="53dp"
                             android:layout_marginStart="5dp"
-                            android:text="Avenida Patricio Lumumba No. 507 entre Avenida de las Américas y Calle 1ra, Reparto Jiménez, Consejo Popular José Martí Norte. CP 90500"
+                            android:text="@string/avenida_patricio_lumumba_no_507_entre_avenida_de_las_am_ricas_y_calle_1ra_reparto_jim_nez_consejo_popular_jos_mart_norte_cp_90500"
                             android:textColor="@color/white" />
 
                         <TextView
                             android:id="@+id/TelefonoTitulo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Teléfonos"
+                            android:text="@string/tel_fonos"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
 
@@ -74,7 +75,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:autoLink="phone"
-                            android:text="Dir. de Comunicación Institucional: +5322631832"
+                            android:text="@string/dir_de_comunicaci_n_institucional_5322631832"
                             android:textColor="@color/white" />
 
                         <TextView
@@ -83,7 +84,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:autoLink="phone"
-                            android:text="Oficina de Atención a la Población: +5322633031"
+                            android:text="@string/oficina_de_atenci_n_a_la_poblaci_n_5322633031"
                             android:textAlignment="gravity"
                             android:textColor="@color/white" />
 
@@ -92,7 +93,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="Correos"
+                            android:text="@string/correos"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
 
@@ -101,7 +102,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:autoLink="email"
-                            android:text="comunicacion@uo.edu.cu"
+                            android:text="@string/comunicacion_uo_edu_cu"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
 
@@ -110,7 +111,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:autoLink="email"
-                            android:text="poblacion@consejo.uo.edu.cu"
+                            android:text="@string/poblacion_consejo_uo_edu_cu"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
 
@@ -119,7 +120,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="80dp"
-                            android:text="Versión 2.0"
+                            android:text="@string/versi_n_2_0"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
 
@@ -127,7 +128,7 @@
                             android:id="@+id/textAño"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="2022"
+                            android:text="@string/año_2022"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
                     </LinearLayout>

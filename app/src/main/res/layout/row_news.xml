@@ -60,20 +60,21 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.228"
-                        tools:background="@drawable/placeholder" />
+                        tools:background="@drawable/placeholder"
+                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="10px">
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/title"
                         style="@style/Widget.MaterialComponents.TextView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -105,13 +106,13 @@
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="10px">
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/description"
                         style="@style/Widget.MaterialComponents.TextView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:textAlignment="center"
                         android:textColor="#B2000000"
