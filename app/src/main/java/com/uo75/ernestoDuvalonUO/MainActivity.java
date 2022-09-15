@@ -51,11 +51,13 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ///Iniciando servicio de busqueda de avisos
+
+        /// Iniciando servicio de busqueda de avisos
         startService(new Intent(MainActivity.this,
                 ServicioSearchAvisos.class));
-        ////Llamada a la funcion notificacion que inicia el canal
+        /// Llamada a la funcion notificacion que inicia el canal
         createNotificationChannel();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -191,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     /// Fab Redes Sociales
     public void facebookFab(View view) {
         String url = "https://www.facebook.com/UOCuba";
@@ -228,13 +229,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);
     }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }*/
 
     @Override
     public boolean onSupportNavigateUp() {
