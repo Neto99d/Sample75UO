@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -20,11 +21,11 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.uo75.ernestoDuvalonUO.MainActivity;
 import com.uo75.ernestoDuvalonUO.R;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
+import com.uo75.ernestoDuvalonUO.ui.options.AvisoEspecialActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,6 +45,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServicioSearchAvisos extends Service {
+    private PendingIntent pendingIntent;
+
+    public ServicioSearchAvisos() {
+    }
 
     @Nullable
     @Override
@@ -53,12 +58,14 @@ public class ServicioSearchAvisos extends Service {
 
     @Override
     public int onStartCommand(Intent intenc, int flags, int idArranque) {
-        Intent noty_intent = new Intent(this,
-                MainActivity.class);
-        noty_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, noty_intent,
-                0);
+        super.onStartCommand(intenc, flags, idArranque);
+        /*Intent noty_intent = new Intent(this,
+                MainActivity.class);*/
+
+        /*noty_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
+        /*PendingIntent pIntent = PendingIntent.getActivity(this, 0, noty_intent,
+                0);*/
         ///////////// Ejecutar metodo para buscar avisos
         if (!isNetworkAvailable()) {
             System.out.print("No hay conexion");
@@ -66,25 +73,26 @@ public class ServicioSearchAvisos extends Service {
             ejecutar();
         }
         /////////////
-        return START_STICKY;
+        return Service.START_STICKY; // crear hilo
+        // return Service.START_NOT_STICKY; // No crear hilo, al ser un solo servicio
     }
 
     @Override
     public void onDestroy() {
-
     }
 
 
     //// CREANDO LAS NOTIFICACIONES DE AVISOS
     public void showNotificacion(String contenido) {
-
+        setPendingIntent(AvisoEspecialActivity.class);
         String id = "basic_channel";
         int notificationId = 0;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
-                .setSmallIcon(R.drawable.escudo_color)
+                .setSmallIcon(R.drawable.escudo_color) // ICONO
                 .setContentTitle("Aviso de Universidad de Oriente")
                 .setContentText(contenido)
                 .setVibrate(new long[]{100, 250, 100, 500})
+                .setContentIntent(pendingIntent)
                 .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification))
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
@@ -110,6 +118,16 @@ public class ServicioSearchAvisos extends Service {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    // Abir Activity desde la notificacion
+    private void setPendingIntent(Class<?> clasActivity) {
+        Intent intent = new Intent(this, clasActivity);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(clasActivity);
+        stackBuilder.addNextIntent(intent);
+        pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+
     }
 
     //////////Ejecutar funcion cada cierto tiempo (Buscar Avisos nuevos)

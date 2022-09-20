@@ -1,9 +1,12 @@
 package com.uo75.ernestoDuvalonUO;
 
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -12,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
@@ -31,6 +35,8 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.options.AvisoEspecialActivity;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -53,16 +59,24 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private PendingIntent pendingIntent;
 
-
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Solo Orientacion Vertical
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         /// Iniciando servicio de busqueda de avisos
-        startService(new Intent(MainActivity.this,
-                ServicioSearchAvisos.class));
+        if (!isMyServiceRunning(ServicioSearchAvisos.class)) {
+            System.out.println("SERVICIO INICIADO");
+            startService(new Intent(this,
+                    ServicioSearchAvisos.class));
+            // Buscar aviso al abrir app
+            metodoBuscarAviso();
+        } else {
+            System.out.println("SERVICIO YA ESTA EN EJECUCION");
+        }
+
         /// Llamada a la funcion notificacion que inicia el canal
         createNotificationChannel();
 
@@ -120,87 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
                     System.out.println("Response:\n" + acceso);
-
-                    //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
-
-
-                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session) {
-                            return true;
-                        }
-                    }).build();
-                    //Instancia a GSON
-                    Gson gson = new GsonBuilder()
-                            .setDateFormat("yyyy-MM-dd HH:mm:ss")
-                            .create();
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(baseUrl)
-                            .client(okHttpClient)
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .build();
-
-
-                    //Se crea el servicio
-                    RestClient service = retrofit.create(RestClient.class);
-                    //Se realiza la llamada
-                    Map<String, String> params = new HashMap<>();
-                    params.put("access-token", acceso.getAccesToken());
-
-                    Call<Data> callS = service.getAviso(params);
-
-                    callS.enqueue(new Callback<Data>() {
-                        @Override
-                        public void onResponse(Call<Data> callS, Response<Data> response) {
-                            //Codigo de respuesta
-
-                            // obtener fecha actual
-                            long ahora = System.currentTimeMillis();
-                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                            String salida = df.format(ahora);
-
-                            //  System.out.println("[FECHA: " + salida);
-                            //  System.out.println("[Code: " + response.code() + "]");
-                            if (response.isSuccessful()) {//si la peticion se completo con exito
-                                Data data = response.body();
-                                try {
-
-                                    System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
-                                    for (int i = 0; i < data.getData().size(); i++) {
-                                        AvisoEspecial avisoEspecial = new AvisoEspecial();
-                                        String fecha;
-                                        avisoEspecial.setContenido(data.getData().get(i).get("contenido").getAsString());
-                                        avisoEspecial.setFecha(data.getData().get(i).get("fecha").getAsString());
-                                        fecha = data.getData().get(i).get("fecha").getAsString();
-                                        if (salida.equals(fecha)) {
-                                            ///Mostrar notificacion y le paso el contenido.
-                                            showNotificacion(data.getData().get(i).get("contenido").getAsString());
-                                        }
-                                    }
-                                } catch (Exception e) {
-                                    System.out.println("ERROR: " + e.getMessage());
-                                    Toast toastData = Toast.makeText(getApplicationContext(), "Error 1 " + e.getMessage(), Toast.LENGTH_LONG);
-                                    toastData.show();
-                                }
-
-                            } else {//La peticion se realizo, pero ocurrio un error
-                                System.out.println("ERROR: " + response.message());
-                                Toast toastData = Toast.makeText(getApplicationContext(), "Error 2 " + response.message(), Toast.LENGTH_LONG);
-                                toastData.show();
-
-
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Data> callS, Throwable t) {
-                            System.out.println("Network Error :: " + t.getLocalizedMessage());
-                            Toast toastData = Toast.makeText(getApplicationContext(), "Error Network 1 " + response.message(), Toast.LENGTH_LONG);
-                            toastData.show();
-
-                        }
-                    });
 
 
                 } else {//La peticion se realizo, pero ocurrio un error
@@ -304,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // Abir Activity desde la notificacion
+    // Abir Activity Avisos desde la notificacion
     private void setPendingIntent(Class<?> clasActivity) {
         Intent intent = new Intent(this, clasActivity);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -314,6 +247,139 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Pregunta  Si el servicio esta corriendo
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    /// METODO PARA BUSCAR AVISO AL ABRIR LA APP
+    private void metodoBuscarAviso() {
+        createNotificationChannel();
+        //Definimos la URL base del API REST que utilizamos
+        String baseUrl = "https://dcomi.uo.edu.cu/";
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
+        //Instancia a GSON
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                .create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        //Se crea el servicio
+        RestClient service = retrofit.create(RestClient.class);
+        //Se realiza la llamada
+        Map<String, String> params = new HashMap<>();
+        params.put("db", "odoo_db");
+        params.put("login", "uo75App@uo.cu");
+        params.put("password", "app#75");
+        // ... as much as you need.
+
+        Call<AccesOdoo> call = service.getAcceso(params);
+        call.enqueue(new Callback<AccesOdoo>() {
+            @Override
+            public void onResponse(@NotNull Call<AccesOdoo> call, @NotNull Response<AccesOdoo> response) {
+                //Codigo de respuesta
+                // System.out.println("[Code: " + response.code() + "]");
+                if (response.isSuccessful()) {//si la peticion se completo con exito
+                    AccesOdoo acceso = response.body();
+                    // System.out.println("Response:\n" + acceso);
+                    //// LLAMANDO A LAS API
+                    ////////////////////////////////////////////////////////////////
+                    //Definimos la URL base del API REST que utilizamos
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
+
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+                        @Override
+                        public boolean verify(String hostname, SSLSession session) {
+                            return true;
+                        }
+                    }).build();
+                    //Instancia a GSON
+                    Gson gson = new GsonBuilder()
+                            .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                            .create();
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(baseUrl)
+                            .client(okHttpClient)
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .build();
+                    //Se crea el servicio
+                    RestClient service = retrofit.create(RestClient.class);
+                    //Se realiza la llamada
+                    Map<String, String> params = new HashMap<>();
+                    params.put("access-token", acceso.getAccesToken());
+
+
+                    Call<Data> callS = service.getAviso(params);
+                    callS.enqueue(new Callback<Data>() {
+                        @Override
+                        public void onResponse(@NotNull Call<Data> callS, @NotNull Response<Data> response) {
+                            //Codigo de respuesta
+                            long ahora = System.currentTimeMillis();
+                            @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                            String salida = df.format(ahora);
+                            //    System.out.println("[FECHA: " + salida);
+                            //  // System.out.println("[Code: " + response.code() + "]");
+                            if (response.isSuccessful()) {//si la peticion se completo con exito
+                                Data data = response.body();
+                                try {
+
+                                    //  System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
+                                    for (int i = 0; i < data.getData().size(); i++) {
+                                        AvisoEspecial avisoEspecial = new AvisoEspecial();
+                                        String fecha;
+                                        avisoEspecial.setContenido(data.getData().get(i).get("contenido").getAsString());
+                                        avisoEspecial.setFecha(data.getData().get(i).get("fecha").getAsString());
+                                        fecha = data.getData().get(i).get("fecha").getAsString();
+                                        if (salida.equals(fecha)) {
+                                            ///Mostrar notificacion y le paso el contenido.
+                                            showNotificacion(data.getData().get(i).get("contenido").getAsString());
+                                        }
+                                    }
+
+                                    //tText.setValue(patrimonio.getContenido());
+                                } catch (Exception e) {
+                                    System.out.println("ERROR: " + e.getMessage());
+                                }
+
+                            } else {//La peticion se realizo, pero ocurrio un error
+                                System.out.println("ERROR: " + response.message());
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(@NotNull Call<Data> callS, @NotNull Throwable t) {
+                            System.out.println("Network Error :: " + t.getLocalizedMessage());
+                        }
+                    });
+
+
+                } else {//La peticion se realizo, pero ocurrio un error
+                    System.out.println("ERROR: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<AccesOdoo> call, @NotNull Throwable t) {
+                System.out.println("Network Error :: " + t.getLocalizedMessage());
+            }
+        });
+    }
 }
 
