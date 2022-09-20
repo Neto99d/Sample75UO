@@ -30,6 +30,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,14 +64,21 @@ public class ProfeMeritoActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarProEmerito);
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -91,15 +102,22 @@ public class ProfeMeritoActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
                     ArrayList<ProfeEmerito> profeEmeritos = new ArrayList<>();
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+                        @Override
+                        public boolean verify(String hostname, SSLSession session) {
+                            return true;
+                        }
+                    }).build();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
+                            .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
                     //Se crea el servicio

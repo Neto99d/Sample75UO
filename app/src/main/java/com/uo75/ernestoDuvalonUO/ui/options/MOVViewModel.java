@@ -16,6 +16,10 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Vision;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,14 +37,21 @@ public class MOVViewModel extends ViewModel {
 
     public MOVViewModel() {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -89,14 +100,21 @@ public class MOVViewModel extends ViewModel {
 
     public Mision getMision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
         Mision mision = new Mision();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -142,14 +160,21 @@ public class MOVViewModel extends ViewModel {
 
     public Objeto getObjeto(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
         Objeto objeto = new Objeto();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -195,14 +220,21 @@ public class MOVViewModel extends ViewModel {
 
     public Vision getVision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
         Vision vision = new Vision();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio

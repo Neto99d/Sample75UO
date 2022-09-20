@@ -1,6 +1,8 @@
 package com.uo75.ernestoDuvalonUO.ui.options;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -24,6 +26,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +40,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
 
     private AvisoAdapter nAdapter;
     private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
 
     // Convertir a formato Fecha d-m-a
     public static String ParseFecha(String fecha) {
@@ -58,16 +65,23 @@ public class AvisoEspecialActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
-
+        progressBar = findViewById(R.id.progressBarAvisosEsp);
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -91,15 +105,22 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
                     ArrayList<AvisoEspecial> avisoEspecials = new ArrayList<>();
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+                        @Override
+                        public boolean verify(String hostname, SSLSession session) {
+                            return true;
+                        }
+                    }).build();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
+                            .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
                     //Se crea el servicio
@@ -127,6 +148,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                                         avisoEspecials.add(avisoEspecial);
                                     }
                                     Collections.reverse(avisoEspecials);
+                                    progressBar.setVisibility(View.GONE);
                                     nAdapter = new AvisoAdapter(avisoEspecials);
                                     mRecyclerView.setAdapter(nAdapter);
                                 } catch (Exception e) {

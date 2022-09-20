@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -25,7 +27,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import cn.jzvd.Jzvd;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +43,7 @@ public class MultimediaActivity extends AppCompatActivity {
     Context mContext;
     private MultimediaAdapter nAdapter;
     private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +55,23 @@ public class MultimediaActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
-
+        progressBar = findViewById(R.id.progressBarMultimedia);
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -81,15 +95,22 @@ public class MultimediaActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
                     ArrayList<Multimedia> multimedias = new ArrayList<>();
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+                        @Override
+                        public boolean verify(String hostname, SSLSession session) {
+                            return true;
+                        }
+                    }).build();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
+                            .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
                     //Se crea el servicio
@@ -119,7 +140,7 @@ public class MultimediaActivity extends AppCompatActivity {
                                         multimedia1.setImage(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
                                         multimedias.add(multimedia1);
                                     }
-
+                                    progressBar.setVisibility(View.GONE);
                                     nAdapter = new MultimediaAdapter(multimedias, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());

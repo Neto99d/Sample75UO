@@ -2,6 +2,8 @@ package com.uo75.ernestoDuvalonUO;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -28,12 +30,17 @@ import com.uo75.ernestoDuvalonUO.ui.ServicioSearchAvisos;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
+import com.uo75.ernestoDuvalonUO.ui.options.AvisoEspecialActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private AppBarConfiguration mAppBarConfiguration;
+    private PendingIntent pendingIntent;
 
 
     @Override
@@ -73,7 +81,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
+
+        // Saltar verificacion de nombre de host, por problema de certificado
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        }).build();
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -81,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -99,22 +116,32 @@ public class MainActivity extends AppCompatActivity {
                 //Codigo de respuesta
                 Toast toast = Toast.makeText(getApplicationContext(), "Conexión al servicio exitosa", Toast.LENGTH_LONG);
                 toast.show();
-                // System.out.println("[Code: " + response.code() + "]");
+                System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
                     System.out.println("Response:\n" + acceso);
 
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
+
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
+                        @Override
+                        public boolean verify(String hostname, SSLSession session) {
+                            return true;
+                        }
+                    }).build();
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
+                            .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
+
+
                     //Se crea el servicio
                     RestClient service = retrofit.create(RestClient.class);
                     //Se realiza la llamada
@@ -139,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                                 Data data = response.body();
                                 try {
 
-                                    //  System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
+                                    System.out.println("Response:\n" + data.getData().get(0).get("fecha"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         AvisoEspecial avisoEspecial = new AvisoEspecial();
                                         String fecha;
@@ -237,25 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    //// CREANDO LAS NOTIFICACIONES DE AVISOS
-    public void showNotificacion(String contenido) {
-        String id = "basic_channel";
-        int notificationId = 0;
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
-                .setSmallIcon(R.drawable.escudo_color)
-                .setContentTitle("Aviso de Universidad de Oriente")
-                .setContentText(contenido)
-                .setVibrate(new long[]{100, 250, 100, 500})
-                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification))
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(notificationId, builder.build());
-
-    }
-
+    //// CREANDO CANAL PARA NOTIFICACIONES
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -272,6 +281,39 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+    //// CREANDO LAS NOTIFICACIONES DE AVISOS
+    public void showNotificacion(String contenido) {
+        setPendingIntent(AvisoEspecialActivity.class);
+        String id = "basic_channel";
+        int notificationId = 0;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
+                .setSmallIcon(R.drawable.escudo_color) // ICONO
+                .setContentTitle("Aviso de Universidad de Oriente")
+                .setContentText(contenido)
+                .setVibrate(new long[]{100, 250, 100, 500})
+                .setContentIntent(pendingIntent)
+                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification))
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(notificationId, builder.build());
+
+    }
+
+
+    // Abir Activity desde la notificacion
+    private void setPendingIntent(Class<?> clasActivity) {
+        Intent intent = new Intent(this, clasActivity);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(clasActivity);
+        stackBuilder.addNextIntent(intent);
+        pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+
+    }
+
 
 }
 
