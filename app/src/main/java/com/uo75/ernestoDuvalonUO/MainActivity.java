@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentText(contenido)
                 .setVibrate(new long[]{100, 250, 100, 500})
                 .setContentIntent(pendingIntent)
-                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification))
+                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification)) // Sonido agregado un audio mp3
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);

@@ -59,13 +59,6 @@ public class ServicioSearchAvisos extends Service {
     @Override
     public int onStartCommand(Intent intenc, int flags, int idArranque) {
         super.onStartCommand(intenc, flags, idArranque);
-        /*Intent noty_intent = new Intent(this,
-                MainActivity.class);*/
-
-        /*noty_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
-        /*PendingIntent pIntent = PendingIntent.getActivity(this, 0, noty_intent,
-                0);*/
         ///////////// Ejecutar metodo para buscar avisos
         if (!isNetworkAvailable()) {
             System.out.print("No hay conexion");
@@ -93,7 +86,7 @@ public class ServicioSearchAvisos extends Service {
                 .setContentText(contenido)
                 .setVibrate(new long[]{100, 250, 100, 500})
                 .setContentIntent(pendingIntent)
-                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification))
+                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification)) // Sonido agregado un audio mp3
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
