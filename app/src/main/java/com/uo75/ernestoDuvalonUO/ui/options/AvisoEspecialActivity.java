@@ -3,6 +3,7 @@ package com.uo75.ernestoDuvalonUO.ui.options;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -67,7 +68,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progressBarAvisosEsp);
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -105,7 +106,7 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
                     ArrayList<AvisoEspecial> avisoEspecials = new ArrayList<>();
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
@@ -148,7 +149,14 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                                         avisoEspecials.add(avisoEspecial);
                                     }
                                     Collections.reverse(avisoEspecials);
-                                    progressBar.setVisibility(View.GONE);
+                                    if (avisoEspecials.isEmpty()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast toastData = Toast.makeText(getApplicationContext(), "No hay avisos en este momento", Toast.LENGTH_LONG);
+                                        toastData.show();
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+
                                     nAdapter = new AvisoAdapter(avisoEspecials);
                                     mRecyclerView.setAdapter(nAdapter);
                                 } catch (Exception e) {

@@ -37,7 +37,7 @@ public class MOVViewModel extends ViewModel {
 
     public MOVViewModel() {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -100,7 +100,7 @@ public class MOVViewModel extends ViewModel {
 
     public Mision getMision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Mision mision = new Mision();
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -135,7 +135,7 @@ public class MOVViewModel extends ViewModel {
                     Data data = response.body();
                     try {
                         //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
-                        for (int i = 0; i < data.getData().size(); i++) {
+                        for (int i = 0; i < 1; i++) {
                             mision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         mText.setValue(mision.getContenido());
@@ -160,7 +160,7 @@ public class MOVViewModel extends ViewModel {
 
     public Objeto getObjeto(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Objeto objeto = new Objeto();
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -195,7 +195,7 @@ public class MOVViewModel extends ViewModel {
                     Data data = response.body();
                     try {
                         // // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
-                        for (int i = 0; i < data.getData().size(); i++) {
+                        for (int i = 0; i < 1; i++) {
                             objeto.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         oText.setValue(objeto.getContenido());
@@ -220,7 +220,7 @@ public class MOVViewModel extends ViewModel {
 
     public Vision getVision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Vision vision = new Vision();
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -255,7 +255,7 @@ public class MOVViewModel extends ViewModel {
                     Data data = response.body();
                     try {
                         //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
-                        for (int i = 0; i < data.getData().size(); i++) {
+                        for (int i = 0; i < 1; i++) {
                             vision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         vText.setValue(vision.getContenido());

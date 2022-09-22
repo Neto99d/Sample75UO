@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -63,7 +64,7 @@ public class PatrimonioActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarPatrimonio);
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -101,7 +102,7 @@ public class PatrimonioActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
                     ArrayList<Patrimonio> patrim = new ArrayList<>();
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
@@ -145,7 +146,13 @@ public class PatrimonioActivity extends AppCompatActivity {
                                         patrimonio.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
                                         patrim.add(patrimonio);
                                     }
-                                    progressBar.setVisibility(View.GONE);
+                                    if (patrim.isEmpty()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast toastData = Toast.makeText(getApplicationContext(), R.string.No_info_ahora, Toast.LENGTH_LONG);
+                                        toastData.show();
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
                                     nAdapter = new PatrimonioAdapter(patrim, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();

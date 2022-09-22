@@ -117,7 +117,7 @@ public class GraficoActivity extends AppCompatActivity {
         /////////////////////////////////////////////////////////////////
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -155,7 +155,7 @@ public class GraficoActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
                         @Override
@@ -319,7 +319,7 @@ public class GraficoActivity extends AppCompatActivity {
         /////////////////////////////////////////////////////////////////
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -357,7 +357,7 @@ public class GraficoActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
                         @Override

@@ -47,8 +47,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServicioSearchAvisos extends Service {
     private PendingIntent pendingIntent;
 
-    public ServicioSearchAvisos() {
-    }
 
     @Nullable
     @Override
@@ -72,6 +70,7 @@ public class ServicioSearchAvisos extends Service {
 
     @Override
     public void onDestroy() {
+
     }
 
 
@@ -84,6 +83,7 @@ public class ServicioSearchAvisos extends Service {
                 .setSmallIcon(R.drawable.escudo_color) // ICONO
                 .setContentTitle("Aviso de Universidad de Oriente")
                 .setContentText(contenido)
+                .setAutoCancel(true)
                 .setVibrate(new long[]{100, 250, 100, 500})
                 .setContentIntent(pendingIntent)
                 .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification)) // Sonido agregado un audio mp3
@@ -132,13 +132,13 @@ public class ServicioSearchAvisos extends Service {
                 metodoBuscarAviso();//llamamos nuestro metodo
                 handler.postDelayed(this, 900000);//se ejecutara cada 15 minutos
             }
-        }, 600000);//empezara a ejecutarse después de 10 minutos
+        }, 900000);//empezara a ejecutarse después de 15 minutos
     }
 
     private void metodoBuscarAviso() {
         createNotificationChannel();
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -176,7 +176,7 @@ public class ServicioSearchAvisos extends Service {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
                         @Override
@@ -267,5 +267,6 @@ public class ServicioSearchAvisos extends Service {
         }
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
 
 }

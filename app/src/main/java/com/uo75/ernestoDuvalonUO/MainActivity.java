@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /// Iniciando servicio de busqueda de avisos
-        if (!isMyServiceRunning(ServicioSearchAvisos.class)) {
+        if (!isMyServiceRunning(ServicioSearchAvisos.class)) { // Si el servicio no esta en ejcucion
             System.out.println("SERVICIO INICIADO");
             startService(new Intent(this,
                     ServicioSearchAvisos.class));
             // Buscar aviso al abrir app
             metodoBuscarAviso();
-        } else {
+        } else {      // Si el servicio esta en ejecucion
             System.out.println("SERVICIO YA ESTA EN EJECUCION");
         }
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
         // Saltar verificacion de nombre de host, por problema de certificado
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
@@ -224,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.escudo_color) // ICONO
                 .setContentTitle("Aviso de Universidad de Oriente")
                 .setContentText(contenido)
+                .setAutoCancel(true)
                 .setVibrate(new long[]{100, 250, 100, 500})
                 .setContentIntent(pendingIntent)
                 .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification)) // Sonido agregado un audio mp3
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
     private void metodoBuscarAviso() {
         createNotificationChannel();
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -301,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu:443/";
 
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
                         @Override

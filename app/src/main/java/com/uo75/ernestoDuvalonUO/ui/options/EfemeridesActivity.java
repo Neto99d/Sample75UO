@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -95,7 +96,7 @@ public class EfemeridesActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarEfemeride);
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -133,7 +134,7 @@ public class EfemeridesActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
                     ArrayList<Efemerides> efemerides = new ArrayList<>();
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
@@ -182,7 +183,13 @@ public class EfemeridesActivity extends AppCompatActivity {
                                     // Ordenando por fecha
                                     Collections.sort(efemerides, (efemerides12, efemerides_2) -> ParseFechaOrder(efemerides12.getFecha()).compareTo(ParseFechaOrder(efemerides_2.getFecha())));
 
-                                    progressBar.setVisibility(View.GONE);
+                                    if (efemerides.isEmpty()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast toastData = Toast.makeText(getApplicationContext(), R.string.No_info_ahora, Toast.LENGTH_LONG);
+                                        toastData.show();
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
                                     nAdapter = new EfemeridesAdapter(efemerides, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();

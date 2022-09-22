@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -57,7 +58,7 @@ public class MultimediaActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progressBarMultimedia);
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -95,7 +96,7 @@ public class MultimediaActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
                     ArrayList<Multimedia> multimedias = new ArrayList<>();
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
@@ -140,7 +141,13 @@ public class MultimediaActivity extends AppCompatActivity {
                                         multimedia1.setImage(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
                                         multimedias.add(multimedia1);
                                     }
-                                    progressBar.setVisibility(View.GONE);
+                                    if (multimedias.isEmpty()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast toastData = Toast.makeText(getApplicationContext(), "No hay multimedia en este momento", Toast.LENGTH_LONG);
+                                        toastData.show();
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
                                     nAdapter = new MultimediaAdapter(multimedias, mContext);
                                     mRecyclerView.setAdapter(nAdapter);
                                     //tText.setValue(patrimonio.getContenido());

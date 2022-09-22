@@ -22,7 +22,7 @@
             android:name=".ui.ServicioSearchAvisos"
             android:enabled="true"
             android:exported="true"
-            android:permission="TODO" />
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
         <receiver
             android:name=".ui.MonitorAvisoService"
             android:enabled="true"
@@ -103,7 +103,7 @@
             android:name=".ui.graficosEstadisticas.GraficoActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Estadísticas"></activity>
+            android:label="Estadísticas" />
 
         <activity
             android:name=".ui.options.NewsActivity"

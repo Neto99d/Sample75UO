@@ -31,7 +31,7 @@ public class ResennaHistoryViewModel extends ViewModel {
 
     public ResennaHistoryViewModel() {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -90,7 +90,7 @@ public class ResennaHistoryViewModel extends ViewModel {
 
     public Reseña getReseña(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Reseña reseña = new Reseña();
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -125,7 +125,7 @@ public class ResennaHistoryViewModel extends ViewModel {
                     Data data = response.body();
                     try {
                         // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
-                        for (int i = 0; i < data.getData().size(); i++) {
+                        for (int i = 0; i < 1; i++) {
                             reseña.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         mText.setValue(reseña.getContenido());

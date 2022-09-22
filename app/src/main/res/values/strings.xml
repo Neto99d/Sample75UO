@@ -38,4 +38,5 @@
     <string name="misi_n">MISIÓN</string>
     <string name="visi_n">VISIÓN</string>
     <string name="objeto_social">OBJETO SOCIAL</string>
+    <string name="No_info_ahora">No hay información en este momento</string>
 </resources>
