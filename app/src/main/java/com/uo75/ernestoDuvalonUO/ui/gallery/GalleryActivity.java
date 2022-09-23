@@ -65,7 +65,7 @@ public class GalleryActivity extends AppCompatActivity {
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu:443/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -103,7 +103,7 @@ public class GalleryActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu:443/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
                     ArrayList<Postales> postales = new ArrayList<>();
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {

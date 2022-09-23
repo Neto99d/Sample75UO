@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu:443/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
         // Saltar verificacion de nombre de host, por problema de certificado
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
     private void metodoBuscarAviso() {
         createNotificationChannel();
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu:443/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu:443/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
                         @Override

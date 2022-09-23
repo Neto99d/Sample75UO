@@ -138,7 +138,7 @@ public class ServicioSearchAvisos extends Service {
     private void metodoBuscarAviso() {
         createNotificationChannel();
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "https://dcomi.uo.edu.cu:443/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
             @Override
@@ -176,7 +176,7 @@ public class ServicioSearchAvisos extends Service {
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "https://dcomi.uo.edu.cu:443/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
                     OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
                         @Override
