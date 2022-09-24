@@ -56,7 +56,7 @@
                         <TextView
                             android:id="@+id/Direccion"
                             android:layout_width="match_parent"
-                            android:layout_height="53dp"
+                            android:layout_height="67dp"
                             android:layout_marginStart="5dp"
                             android:text="@string/avenida_patricio_lumumba_no_507_entre_avenida_de_las_am_ricas_y_calle_1ra_reparto_jim_nez_consejo_popular_jos_mart_norte_cp_90500"
                             android:textColor="@color/white" />
@@ -119,7 +119,7 @@
                             android:id="@+id/textVersion"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="80dp"
+                            android:layout_marginTop="60dp"
                             android:text="@string/versi_n_2_0"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
@@ -127,7 +127,7 @@
                         <TextView
                             android:id="@+id/textAño"
                             android:layout_width="match_parent"
-                            android:layout_height="29dp"
+                            android:layout_height="wrap_content"
                             android:text="@string/año_2022"
                             android:textAlignment="center"
                             android:textColor="@color/white" />
