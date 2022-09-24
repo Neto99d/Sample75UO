@@ -47,8 +47,10 @@ public class NewsActivity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.root_layout);
         viewModel.getChannel().observe(this, channel -> {
             if (channel != null) {
-                if (channel.getTitle() != null) {
+                if (channel.getTitle() != "") {
                     setTitle(channel.getTitle());
+                } else {
+                    setTitle("La Tablilla. Informaciones de la UO");
                 }
                 nAdapter = new NewsAdapter(channel.getArticles(), this);
                 mRecyclerView.setAdapter(nAdapter);

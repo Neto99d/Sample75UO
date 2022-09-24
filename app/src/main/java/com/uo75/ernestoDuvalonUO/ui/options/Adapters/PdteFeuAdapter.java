@@ -20,10 +20,10 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.PdteFeu;
 import java.util.List;
 
 public class PdteFeuAdapter extends RecyclerView.Adapter<PdteFeuAdapter.ViewHolder> {
-    private List<PdteFeu> pdtefeu;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<PdteFeu> pdtefeu;
 
     public PdteFeuAdapter(List<PdteFeu> pdtefeu, Context conntext, ImageView image, CardView imageFull) {
         this.pdtefeu = pdtefeu;

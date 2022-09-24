@@ -20,10 +20,10 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Identidad;
 import java.util.List;
 
 public class IdentidadAdapter extends RecyclerView.Adapter<IdentidadAdapter.ViewHolder> {
-    private List<Identidad> identidad;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<Identidad> identidad;
 
     public IdentidadAdapter(List<Identidad> identidad, Context conntext, ImageView image, CardView imageFull) {
         this.identidad = identidad;

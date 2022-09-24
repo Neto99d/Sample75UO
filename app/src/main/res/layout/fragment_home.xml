@@ -19,7 +19,7 @@
             android:id="@+id/imagenHome"
             android:layout_width="match_parent"
             android:layout_height="303dp"
-            android:contentDescription="Imagen Home"
+            android:contentDescription="@string/imagen_home"
             android:scaleType="fitXY"
             android:src="@drawable/uo_home"
             app:layout_constraintBottom_toBottomOf="parent"

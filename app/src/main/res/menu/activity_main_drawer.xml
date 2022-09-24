@@ -6,49 +6,49 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_reseña"
-            android:title="Reseña Histórica"
-            android:icon="@drawable/historia" />
+            android:icon="@drawable/historia"
+            android:title="Reseña Histórica" />
 
         <item
             android:id="@+id/nav_MOV"
-            android:title="Institución"
-            android:icon="@drawable/institucion" />
+            android:icon="@drawable/institucion"
+            android:title="Institución" />
 
 
         <item
             android:id="@+id/nav_identidad"
-            android:title="Identidad"
-            android:icon="@drawable/identidad" />
+            android:icon="@drawable/identidad"
+            android:title="Identidad" />
 
         <item
             android:id="@+id/nav_patrimonio"
-            android:title="Patrimonio"
-            android:icon="@drawable/patrimonio" />
+            android:icon="@drawable/patrimonio"
+            android:title="Patrimonio" />
 
         <item
             android:id="@+id/nav_rectores"
-            android:title="Rectores"
-            android:icon="@drawable/rectores" />
+            android:icon="@drawable/rectores"
+            android:title="Nuestros Rectores" />
 
         <item
             android:id="@+id/nav_profemerito"
-            android:title="Profesores Eméritos"
-            android:icon="@drawable/profesor_emerito" />
+            android:icon="@drawable/profesor_emerito"
+            android:title="Profesores Eméritos" />
 
         <item
             android:id="@+id/nav_pdtFeu"
-            android:title="Presidentes de la FEU"
-            android:icon="@drawable/pdte_feu" />
+            android:icon="@drawable/pdte_feu"
+            android:title="Presidentes de la FEU" />
 
         <item
             android:id="@+id/nav_honorCausa"
-            android:title="Honoris Causa"
-            android:icon="@drawable/honoris_causa" />
+            android:icon="@drawable/honoris_causa"
+            android:title="Doctores Honoris Causa" />
 
         <item
             android:id="@+id/nav_campaña"
-            android:title="Campañas"
-            android:icon="@drawable/campanna" />
+            android:icon="@drawable/campanna"
+            android:title="Campañas Comunicativas" />
 
         <item
             android:id="@+id/nav_gallery"
@@ -61,27 +61,27 @@
 
         <item
             android:id="@+id/nav_aviso"
-            android:title="Avisos Especiales"
-            android:icon="@drawable/aviso_especial" />
+            android:icon="@drawable/aviso_especial"
+            android:title="Avisos Especiales" />
 
         <item
             android:id="@+id/nav_efemerides"
-            android:title="Efemérides"
-            android:icon="@drawable/efemeride" />
+            android:icon="@drawable/efemeride"
+            android:title="Efemérides" />
 
         <item
             android:id="@+id/nav_estadisticas"
-            android:title="Estadísticas"
-            android:icon="@drawable/estadistica" />
+            android:icon="@drawable/estadistica"
+            android:title="Estadísticas" />
 
         <item
             android:id="@+id/nav_news"
-            android:title="@string/menu_News"
-            android:icon="@drawable/noticias" />
+            android:icon="@drawable/noticias"
+            android:title="@string/menu_News" />
 
         <item
             android:id="@+id/nav_acerca_de"
-            android:title="Contacto"
-            android:icon="@drawable/contacto_info" />
+            android:icon="@drawable/contacto_info"
+            android:title="Contacto" />
     </group>
 </menu>

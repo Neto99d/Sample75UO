@@ -1,6 +1,9 @@
 package com.uo75.ernestoDuvalonUO.ui.options;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -10,14 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.R;
+import com.uo75.ernestoDuvalonUO.ui.OkHttpUtil;
 import com.uo75.ernestoDuvalonUO.ui.RestClient;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AvisoEspecial;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
 import com.uo75.ernestoDuvalonUO.ui.options.Adapters.AvisoAdapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +38,21 @@ public class AvisoEspecialActivity extends AppCompatActivity {
 
     private AvisoAdapter nAdapter;
     private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
 
+    // Convertir a formato Fecha d-m-a
+    public static String ParseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            formato.setLenient(false);
+            fechaDate = formato.parse(fecha);
+            formato = new SimpleDateFormat("dd-MM-yyyy");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return formato.format(fechaDate);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +63,15 @@ public class AvisoEspecialActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
-
+        progressBar = findViewById(R.id.progressBarAvisosEsp);
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -52,15 +79,16 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("db", "odooDB");
-        params.put("login", "admin@example.com");
-        params.put("password", "admin");
+        params.put("db", "odoo_db");
+        params.put("login", "uo75App@uo.cu");
+        params.put("password", "app#75");
         // ... as much as you need.
 
         Call<AccesOdoo> call = service.getAcceso(params);
@@ -68,29 +96,36 @@ public class AvisoEspecialActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
                     ArrayList<AvisoEspecial> avisoEspecials = new ArrayList<>();
+                    try {
+                        OkHttpUtil.init(true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
+                            .client(OkHttpUtil.getClient())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
                     //Se crea el servicio
                     RestClient service = retrofit.create(RestClient.class);
                     //Se realiza la llamada
                     Map<String, String> params = new HashMap<>();
-                    params.put("access_token", acceso.getAccesToken());
+                    params.put("access-token", acceso.getAccesToken());
 
 
                     Call<Data> callS = service.getAviso(params);
@@ -98,22 +133,29 @@ public class AvisoEspecialActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
-                            System.out.println("[Code: " + response.code() + "]");
+                            // // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
 
-                                    System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                                    //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
                                     for (int i = 0; i < data.getData().size(); i++) {
                                         AvisoEspecial avisoEspecial = new AvisoEspecial();
                                         avisoEspecial.setContenido(data.getData().get(i).get("contenido").getAsString());
-                                        avisoEspecial.setFecha(data.getData().get(i).get("fecha").getAsString());
+                                        avisoEspecial.setFecha(ParseFecha(data.getData().get(i).get("fecha").getAsString()));
                                         avisoEspecials.add(avisoEspecial);
                                     }
                                     Collections.reverse(avisoEspecials);
+                                    if (avisoEspecials.isEmpty()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast toastData = Toast.makeText(getApplicationContext(), "No hay avisos en este momento", Toast.LENGTH_LONG);
+                                        toastData.show();
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+
                                     nAdapter = new AvisoAdapter(avisoEspecials);
                                     mRecyclerView.setAdapter(nAdapter);
-                                    //tText.setValue(patrimonio.getContenido());
                                 } catch (Exception e) {
                                     System.out.println("ERROR: " + e.getMessage());
                                 }
@@ -144,6 +186,5 @@ public class AvisoEspecialActivity extends AppCompatActivity {
         });
 
     }
-
 }
 

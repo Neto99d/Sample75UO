@@ -20,10 +20,10 @@ import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.HonorCausa;
 import java.util.List;
 
 public class HonorCausaAdapter extends RecyclerView.Adapter<HonorCausaAdapter.ViewHolder> {
-    private List<HonorCausa> honor;
     Context conntext;
     ImageView image;
     CardView imageFull;
+    private List<HonorCausa> honor;
 
     public HonorCausaAdapter(List<HonorCausa> honor, Context conntext, ImageView image, CardView imageFull) {
         this.honor = honor;

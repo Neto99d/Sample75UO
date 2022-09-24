@@ -55,7 +55,7 @@ public class MOVFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (!mViewModel.getStatus().getValue()) {
-                    Toast toast = Toast.makeText(getActivity(), "Error de Conexión con el servicio", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getActivity(), "Error de Conexión al servicio, además verifique su conexión a internet", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }

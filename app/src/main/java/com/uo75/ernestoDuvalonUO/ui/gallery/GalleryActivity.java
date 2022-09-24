@@ -21,6 +21,7 @@ import com.glidebitmappool.GlideBitmapPool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.uo75.ernestoDuvalonUO.R;
+import com.uo75.ernestoDuvalonUO.ui.OkHttpUtil;
 import com.uo75.ernestoDuvalonUO.ui.RestClient;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
@@ -38,12 +39,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GalleryActivity extends AppCompatActivity {
 
-    private GalleryAdaper nAdapter;
-    private RecyclerView mRecyclerView;
-    Context mContext;
-    private ProgressBar progressBar;
     public ImageView imageFull;
     public CardView fondoImageFull;
+    Context mContext;
+    private GalleryAdaper nAdapter;
+    private RecyclerView mRecyclerView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,13 @@ public class GalleryActivity extends AppCompatActivity {
         GlideBitmapPool.initialize(5 * 800 * 600); // 2mb max memory size
 
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/";
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -69,15 +76,16 @@ public class GalleryActivity extends AppCompatActivity {
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("db", "odooDB");
-        params.put("login", "admin@example.com");
-        params.put("password", "admin");
+        params.put("db", "odoo_db");
+        params.put("login", "uo75App@uo.cu");
+        params.put("password", "app#75");
         // ... as much as you need.
 
         Call<AccesOdoo> call = service.getAcceso(params);
@@ -85,29 +93,36 @@ public class GalleryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
-                System.out.println("[Code: " + response.code() + "]");
+                // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     ////////////////////////////////////////////////////////////////
                     //Definimos la URL base del API REST que utilizamos
-                    String baseUrl = "http://192.168.1.2:8069/";
+                    String baseUrl = "https://dcomi.uo.edu.cu/";
 
                     ArrayList<Postales> postales = new ArrayList<>();
+                    try {
+                        OkHttpUtil.init(true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
+                            .client(OkHttpUtil.getClient())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
                     //Se crea el servicio
                     RestClient service = retrofit.create(RestClient.class);
                     //Se realiza la llamada
                     Map<String, String> params = new HashMap<>();
-                    params.put("access_token", acceso.getAccesToken());
+                    params.put("access-token", acceso.getAccesToken());
 
 
                     Call<Data> callS = service.getPostales(params);
@@ -116,7 +131,7 @@ public class GalleryActivity extends AppCompatActivity {
                         public void onResponse(Call<Data> callS, Response<Data> response) {
                             //Codigo de respuesta
 
-                            System.out.println("[Code: " + response.code() + "]");
+                            // System.out.println("[Code: " + response.code() + "]");
                             if (response.isSuccessful()) {//si la peticion se completo con exito
                                 Data data = response.body();
                                 try {
@@ -126,15 +141,21 @@ public class GalleryActivity extends AppCompatActivity {
                                         postales1.setImagen(StringToBitMap(data.getData().get(i).get("imagen").getAsString().substring(data.getData().get(i).get("imagen").getAsString().indexOf("'") + 1)));
                                         postales.add(postales1);
                                     }
-                                    progressBar.setVisibility(View.GONE);
+                                    if (postales.isEmpty()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast toastData = Toast.makeText(getApplicationContext(), "No hay postales en este momento", Toast.LENGTH_LONG);
+                                        toastData.show();
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                    }
                                     nAdapter = new GalleryAdaper(postales, mContext, imageFull, fondoImageFull);
                                     mRecyclerView.setAdapter(nAdapter);
                                     GlideBitmapPool.clearMemory();
                                 } catch (OutOfMemoryError e) {
                                     System.out.println("ERROR: " + e.getMessage());
-                                    Toast toast = Toast.makeText(mContext, "Puede que algunas imágenes no salgan en su dispositivo por la alta resolución de estas.", Toast.LENGTH_LONG);
-                                    toast.show();
                                     progressBar.setVisibility(View.GONE);
+                                    Toast toast = Toast.makeText(mContext, "Puede que su dispositivo no soporte la alta resolución de las imágenes.", Toast.LENGTH_LONG);
+                                    toast.show();
                                 }
 
                             } else {//La peticion se realizo, pero ocurrio un error

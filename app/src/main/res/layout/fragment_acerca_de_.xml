@@ -5,52 +5,137 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondoContacto"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:textAlignment="center">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10px">
+        android:padding="10dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="119dp"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/icon_app" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="511dp"
-                android:paddingStart="10dp"
-                android:paddingTop="180dp"
-                android:paddingEnd="10dp"
-                app:srcCompat="@drawable/pulover_atras" />
-
-            <TextView
-                android:id="@+id/textVersion"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="600dp"
-                android:text="Versión 2.0"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textAño"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="640dp"
-                android:text="2022"
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="362dp"
+                    android:contentDescription="@string/todo"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    app:srcCompat="@drawable/pulover_atras" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="325dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/colorPrimaryDark">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/DireccionTitulo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/direcci_n"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/Direccion"
+                            android:layout_width="match_parent"
+                            android:layout_height="53dp"
+                            android:layout_marginStart="5dp"
+                            android:text="@string/avenida_patricio_lumumba_no_507_entre_avenida_de_las_am_ricas_y_calle_1ra_reparto_jim_nez_consejo_popular_jos_mart_norte_cp_90500"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/TelefonoTitulo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tel_fonos"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/Telefono"
+                            android:layout_width="380dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:autoLink="phone"
+                            android:text="@string/dir_de_comunicaci_n_institucional_5322631832"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/Telefono2"
+                            android:layout_width="377dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:autoLink="phone"
+                            android:text="@string/oficina_de_atenci_n_a_la_poblaci_n_5322633031"
+                            android:textAlignment="gravity"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/CorreoTitulo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/correos"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/Correo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoLink="email"
+                            android:text="@string/comunicacion_uo_edu_cu"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/Correo2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoLink="email"
+                            android:text="@string/poblacion_consejo_uo_edu_cu"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/textVersion"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="80dp"
+                            android:text="@string/versi_n_2_0"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/textAño"
+                            android:layout_width="match_parent"
+                            android:layout_height="29dp"
+                            android:text="@string/año_2022"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
         </FrameLayout>
     </ScrollView>
 </LinearLayout>

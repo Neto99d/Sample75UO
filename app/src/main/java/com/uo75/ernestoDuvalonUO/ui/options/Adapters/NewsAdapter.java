@@ -71,6 +71,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         viewHolder.title.setText(currentArticle.getTitle());
 
+        viewHolder.descripcion.setText(currentArticle.getDescription().substring(currentArticle.getDescription().indexOf("<em>") + 4, currentArticle.getDescription().indexOf("</em>")));
+        //viewHolder.descripcion.setText(currentArticle.getDescription().substring(currentArticle.getDescription().indexOf(">") + 1, currentArticle.getDescription().indexOf("]")));
+
+
         Picasso.get()
                 .load(currentArticle.getImage())
                 .placeholder(R.drawable.placeholder)
@@ -100,6 +104,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         TextView title;
         TextView pubDate;
         ImageView image;
+        TextView descripcion;
 
         public ViewHolder(View itemView) {
 
@@ -107,6 +112,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             title = itemView.findViewById(R.id.title);
             pubDate = itemView.findViewById(R.id.pubDate);
             image = itemView.findViewById(R.id.image);
+            descripcion = itemView.findViewById(R.id.description);
 
         }
     }

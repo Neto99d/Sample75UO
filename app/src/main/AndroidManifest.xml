@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.uo75.ernestoDuvalonUO">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -14,77 +17,88 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sample75UO"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
 
-        <service android:name=".ui.ServicioSearchAvisos" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
-        <activity
-            android:name=".ui.options.GraficoActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Gráfico">
+        <service
+            android:name=".ui.ServicioSearchAvisos"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-        </activity>
-        <activity
-            android:name=".ui.options.MultimediaActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Multimedia" />
-        <activity
-            android:name=".ui.gallery.GalleryActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Postales" />
-        <activity
-            android:name=".ui.options.AvisoEspecialActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Avisos UO" />
-        <activity
-            android:name=".ui.options.PteFeuActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Presidentes de la FEU" />
-        <activity
-            android:name=".ui.options.CampannaActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Campañas" />
-        <activity
-            android:name=".ui.options.HonorCausaActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Honoris Causa" />
-        <activity
-            android:name=".ui.options.ProfeMeritoActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Profesores Eméritos" />
-        <activity
-            android:name=".ui.options.EstadisticasActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:label="Estadísticas" />
+        <receiver
+            android:name=".ui.MonitorAvisoService"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".ui.options.IdentidadActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Identidad" />
         <activity
+            android:name=".ui.options.PatrimonioActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Patrimonio" />
+        <activity
             android:name=".ui.options.RectoresActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Rectores" />
+            android:label="Nuestros Rectores" />
+        <activity
+            android:name=".ui.options.ProfeMeritoActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Profesores Eméritos" />
+        <activity
+            android:name=".ui.options.PteFeuActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Presidentes de la FEU" />
+        <activity
+            android:name=".ui.options.HonorCausaActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Doctores Honoris Causa" />
+        <activity
+            android:name=".ui.options.CampannaActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Campañas Comunicativas" />
+        <activity
+            android:name=".ui.gallery.GalleryActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Postales" />
+        <activity
+            android:name=".ui.options.MultimediaActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Multimedia" />
+        <activity
+            android:name=".ui.options.AvisoEspecialActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:label="Avisos Especiales" />
         <activity
             android:name=".ui.options.EfemeridesActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Efemérides" />
         <activity
-            android:name=".ui.options.PatrimonioActivity"
+            android:name=".ui.graficosEstadisticas.GraficoActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
-            android:label="Patrimonio" />
+            android:label="Estadísticas" />
         <activity
             android:name=".ui.options.NewsActivity"
             android:configChanges="orientation|screenSize"

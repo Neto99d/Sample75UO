@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.uo75.ernestoDuvalonUO.ui.OkHttpUtil;
 import com.uo75.ernestoDuvalonUO.ui.RestClient;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.Data;
@@ -33,7 +34,13 @@ public class MOVViewModel extends ViewModel {
 
     public MOVViewModel() {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
+
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -41,15 +48,16 @@ public class MOVViewModel extends ViewModel {
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("db", "odooDB");
-        params.put("login", "admin@example.com");
-        params.put("password", "admin");
+        params.put("db", "odoo_db");
+        params.put("login", "uo75App@uo.cu");
+        params.put("password", "app#75");
         // ... as much as you need.
 
         Call<AccesOdoo> call = service.getAcceso(params);
@@ -58,10 +66,10 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                // // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     AccesOdoo acceso = response.body();
-                    System.out.println("Response:\n" + acceso);
+                    //  // System.out.println("Response:\n" + acceso);
                     //// LLAMANDO A LAS API
                     getMision(acceso.getAccesToken());
                     getObjeto(acceso.getAccesToken());
@@ -89,21 +97,28 @@ public class MOVViewModel extends ViewModel {
 
     public Mision getMision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Mision mision = new Mision();
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("access_token", token);
+        params.put("access-token", token);
 
 
         Call<Data> call = service.getMision(params);
@@ -112,12 +127,12 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                //    // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     Data data = response.body();
                     try {
-                        System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
-                        for (int i = 0; i < data.getData().size(); i++) {
+                        //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                        for (int i = 0; i < 1; i++) {
                             mision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         mText.setValue(mision.getContenido());
@@ -142,21 +157,28 @@ public class MOVViewModel extends ViewModel {
 
     public Objeto getObjeto(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Objeto objeto = new Objeto();
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("access_token", token);
+        params.put("access-token", token);
         // ... as much as you need.
 
         Call<Data> call = service.getObjeto(params);
@@ -165,12 +187,12 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                //  // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     Data data = response.body();
                     try {
-                        System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
-                        for (int i = 0; i < data.getData().size(); i++) {
+                        // // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                        for (int i = 0; i < 1; i++) {
                             objeto.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         oText.setValue(objeto.getContenido());
@@ -195,21 +217,28 @@ public class MOVViewModel extends ViewModel {
 
     public Vision getVision(String token) {
         //Definimos la URL base del API REST que utilizamos
-        String baseUrl = "http://192.168.1.2:8069/";
+        String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Vision vision = new Vision();
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
         RestClient service = retrofit.create(RestClient.class);
         //Se realiza la llamada
         Map<String, String> params = new HashMap<>();
-        params.put("access_token", token);
+        params.put("access-token", token);
         // ... as much as you need.
 
         Call<Data> call = service.getVision(params);
@@ -218,12 +247,12 @@ public class MOVViewModel extends ViewModel {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 //Codigo de respuesta
                 status.setValue(true);
-                System.out.println("[Code: " + response.code() + "]");
+                //  // System.out.println("[Code: " + response.code() + "]");
                 if (response.isSuccessful()) {//si la peticion se completo con exito
                     Data data = response.body();
                     try {
-                        System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
-                        for (int i = 0; i < data.getData().size(); i++) {
+                        //  // System.out.println("Response:\n" + data.getData().get(0).get("contenido"));
+                        for (int i = 0; i < 1; i++) {
                             vision.setContenido(data.getData().get(i).get("contenido").getAsString());
                         }
                         vText.setValue(vision.getContenido());

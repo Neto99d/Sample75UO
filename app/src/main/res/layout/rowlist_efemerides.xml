@@ -29,37 +29,60 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/textViewFecha"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10px">
+        android:layout_height="31dp">
 
         <TextView
-            android:id="@+id/textEfemeride"
-            android:layout_width="match_parent"
+            android:id="@+id/textViewFecha"
+            android:layout_width="146dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="8dp"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="italic"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/calendario_efemeride"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/textEfemeride"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="10dp"
+                android:textAlignment="center"
+                android:textColor="#DB000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 
 </LinearLayout>
 
