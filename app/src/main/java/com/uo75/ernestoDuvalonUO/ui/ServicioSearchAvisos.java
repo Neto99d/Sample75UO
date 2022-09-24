@@ -69,29 +69,6 @@ public class ServicioSearchAvisos extends Service {
 
     }
 
-
-    //// CREANDO LAS NOTIFICACIONES DE AVISOS
-    public void showNotificacion(String contenido) {
-        setPendingIntent(AvisoEspecialActivity.class);
-        String id = "basic_channel";
-        int notificationId = 0;
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
-                .setSmallIcon(R.drawable.escudo_color) // ICONO
-                .setContentTitle("Aviso de Universidad de Oriente")
-                .setContentText(contenido)
-                .setAutoCancel(true)
-                .setVibrate(new long[]{100, 250, 100, 500})
-                .setContentIntent(pendingIntent)
-                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification)) // Sonido agregado un audio mp3
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(notificationId, builder.build());
-
-    }
-
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -109,6 +86,28 @@ public class ServicioSearchAvisos extends Service {
         }
     }
 
+    //// CREANDO LAS NOTIFICACIONES DE AVISOS
+    public void showNotificacion(String contenido) {
+        setPendingIntent(AvisoEspecialActivity.class);
+        String id = "basic_channel";
+        int notificationId = 0;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
+                .setSmallIcon(R.drawable.escudo_color) // ICONO
+                .setContentTitle("Aviso de Universidad de Oriente")
+                .setContentText(contenido)
+                .setAutoCancel(true) // Al tocar se Cierre o desaparezca
+                .setVibrate(new long[]{100, 250, 100, 500})
+                .setContentIntent(pendingIntent)
+                .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.message_notification)) // Sonido agregado un audio mp3
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(notificationId, builder.build());
+
+    }
+
     // Abir Activity desde la notificacion
     private void setPendingIntent(Class<?> clasActivity) {
         Intent intent = new Intent(this, clasActivity);
@@ -119,16 +118,16 @@ public class ServicioSearchAvisos extends Service {
 
     }
 
-    //////////Ejecutar funcion cada cierto tiempo (Buscar Avisos nuevos)
+    //// Ejecutar funcion cada cierto tiempo (Buscar Avisos nuevos)
     private void ejecutar() {
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 metodoBuscarAviso();//llamamos nuestro metodo
-                handler.postDelayed(this, 900000);//se ejecutara cada 15 minutos
+                handler.postDelayed(this, 900000); // se ejecutara cada 15 minutos
             }
-        }, 900000);//empezara a ejecutarse después de 15 minutos
+        }, 3000);//empezara a ejecutarse después de 3 segundos de iniciada la app
     }
 
     private void metodoBuscarAviso() {
