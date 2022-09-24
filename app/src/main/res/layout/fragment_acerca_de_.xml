@@ -127,7 +127,7 @@
                         <TextView
                             android:id="@+id/textAño"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="29dp"
                             android:text="@string/año_2022"
                             android:textAlignment="center"
                             android:textColor="@color/white" />

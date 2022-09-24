@@ -10,6 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 
 
+// Interfaz de Peticiones Rest API
 public interface RestClient {
 
     // Acces a Odoo obteniendo Token

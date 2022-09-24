@@ -29,6 +29,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.uo75.ernestoDuvalonUO.ui.OkHttpUtil;
 import com.uo75.ernestoDuvalonUO.ui.RestClient;
 import com.uo75.ernestoDuvalonUO.ui.ServicioSearchAvisos;
 import com.uo75.ernestoDuvalonUO.ui.modelsOdoo.AccesOdoo;
@@ -43,10 +44,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,19 +56,28 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private PendingIntent pendingIntent;
 
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Solo Orientacion Vertical
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /// Iniciando servicio de busqueda de avisos
+        // Iniciando servicio de busqueda de avisos para Android 5 y 5.1
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            startService(new Intent(this,
+                    ServicioSearchAvisos.class));
+            // Buscar aviso al abrir app, para Android 5 muestra la notificion cada vez que inicia la app y ademas cada 15 min.
+            metodoBuscarAviso();
+        }
+        /// Iniciando servicio de busqueda de avisos Android >= 6
         if (!isMyServiceRunning(ServicioSearchAvisos.class)) { // Si el servicio no esta en ejcucion
             System.out.println("SERVICIO INICIADO");
             startService(new Intent(this,
                     ServicioSearchAvisos.class));
-            // Buscar aviso al abrir app
+            // Buscar aviso al abrir app ::: En algunas versiones anteriores de Android (como la 6 y quiza 7, 8) una vez instalada, la app mostrará la
+            // notificación una vez y luego la mostrará cada 15 min y no cada vez que abre la app ya que el servicio de busqueda de avisos
+            // esta en ejecucion permanentemente.
             metodoBuscarAviso();
         } else {      // Si el servicio esta en ejecucion
             System.out.println("SERVICIO YA ESTA EN EJECUCION");
@@ -97,13 +103,12 @@ public class MainActivity extends AppCompatActivity {
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "https://dcomi.uo.edu.cu/";
 
-        // Saltar verificacion de nombre de host, por problema de certificado
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
-            @Override
-            public boolean verify(String hostname, SSLSession session) {
-                return true;
-            }
-        }).build();
+        // Iniciando Clase OkHttpUtil para ignorar validez del certificado
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //Instancia a GSON
         Gson gson = new GsonBuilder()
@@ -111,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(okHttpClient)
+                .client(OkHttpUtil.getClient()) // Obteniedno el client de Clase OkHttpUtil
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
         RestClient service = retrofit.create(RestClient.class);
-        //Se realiza la llamada
+        // se pasa los parametros y Se realiza la llamada
         Map<String, String> params = new HashMap<>();
         params.put("db", "odoo_db");  // Nombre de base de Datos en el Sistema: odoo_db
         params.put("login", "uo75App@uo.cu"); // Usuario de la App en el Sitema: uo75App@uo.cu
@@ -127,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<AccesOdoo>() {
             @Override
             public void onResponse(Call<AccesOdoo> call, Response<AccesOdoo> response) {
-                //Codigo de respuesta
+                // Codigo de respuesta 200 OK
                 Toast toast = Toast.makeText(getApplicationContext(), "Conexión al servicio exitosa", Toast.LENGTH_LONG);
                 toast.show();
                 System.out.println("[Code: " + response.code() + "]");
@@ -143,10 +148,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            // Error al comunicar con el servicio o la peticion no se realizo
             @Override
             public void onFailure(Call<AccesOdoo> call, Throwable t) {
                 System.out.println("Network Error :: " + t.getLocalizedMessage());
-                Toast toast = Toast.makeText(getApplicationContext(), "Error de Conexión con el servicio", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Error de Conexión al servicio, además verifique su conexión a internet", Toast.LENGTH_LONG);
                 toast.show();
             }
         });
@@ -249,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Pregunta  Si el servicio esta corriendo
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M) // Android >= 6
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -266,19 +272,19 @@ public class MainActivity extends AppCompatActivity {
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "https://dcomi.uo.edu.cu/";
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
-            @Override
-            public boolean verify(String hostname, SSLSession session) {
-                return true;
-            }
-        }).build();
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(okHttpClient)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -304,19 +310,19 @@ public class MainActivity extends AppCompatActivity {
                     //Definimos la URL base del API REST que utilizamos
                     String baseUrl = "https://dcomi.uo.edu.cu/";
 
-                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session) {
-                            return true;
-                        }
-                    }).build();
+                    try {
+                        OkHttpUtil.init(true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
-                            .client(okHttpClient)
+                            .client(OkHttpUtil.getClient())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
                     //Se crea el servicio

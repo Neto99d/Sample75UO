@@ -34,15 +34,12 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class ServicioSearchAvisos extends Service {
     private PendingIntent pendingIntent;
@@ -65,7 +62,6 @@ public class ServicioSearchAvisos extends Service {
         }
         /////////////
         return Service.START_STICKY; // crear hilo
-        // return Service.START_NOT_STICKY; // No crear hilo, al ser un solo servicio
     }
 
     @Override
@@ -140,19 +136,19 @@ public class ServicioSearchAvisos extends Service {
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "https://dcomi.uo.edu.cu/";
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
-            @Override
-            public boolean verify(String hostname, SSLSession session) {
-                return true;
-            }
-        }).build();
+        try {
+            OkHttpUtil.init(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //Instancia a GSON
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(okHttpClient)
+                .client(OkHttpUtil.getClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         //Se crea el servicio
@@ -178,19 +174,19 @@ public class ServicioSearchAvisos extends Service {
                     //Definimos la URL base del API REST que utilizamos
                     String baseUrl = "https://dcomi.uo.edu.cu/";
 
-                    OkHttpClient okHttpClient = new OkHttpClient.Builder().hostnameVerifier(new HostnameVerifier() {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session) {
-                            return true;
-                        }
-                    }).build();
+                    try {
+                        OkHttpUtil.init(true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     //Instancia a GSON
                     Gson gson = new GsonBuilder()
                             .setDateFormat("yyyy-MM-dd HH:mm:ss")
                             .create();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
-                            .client(okHttpClient)
+                            .client(OkHttpUtil.getClient())
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .build();
                     //Se crea el servicio
@@ -257,7 +253,7 @@ public class ServicioSearchAvisos extends Service {
         });
     }
 
-    ///VER SI HAY O NO CONEXION
+    ///VER SI HAY O NO CONEXION a INTERNET
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

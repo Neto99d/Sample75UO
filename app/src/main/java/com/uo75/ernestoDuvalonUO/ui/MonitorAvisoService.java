@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 public class MonitorAvisoService extends BroadcastReceiver {
+    // Clase para iniciar servicio una vez iniciado el dispositivo
+    // No funciona en algunas versiones recientes de Android a no ser que active el inicio automatico de la app
     @Override
     public void onReceive(Context context, Intent intent) {
         /*Intent i = new Intent(context, MainEventos.class);
