@@ -14,8 +14,6 @@
     <string name="alert_positive">Cerrar</string>
     <string name="menu_News">Noticias UO</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="contacto">todo</string>
     <string name="datos_de_la_plantilla">Datos de la Plantilla</string>
     <string name="datos_sobre_trabajadores">Datos sobre Trabajadores</string>
     <string name="datos_sobre_categor_a_cient_fica">Datos sobre Categoría Científica</string>
@@ -25,10 +23,10 @@
     <string name="total_de_becados">Total de Becados</string>
     <string name="todo">TODO</string>
     <string name="direcci_n">Dirección</string>
-    <string name="avenida_patricio_lumumba_no_507_entre_avenida_de_las_am_ricas_y_calle_1ra_reparto_jim_nez_consejo_popular_jos_mart_norte_cp_90500">Avenida Patricio Lumumba No. 507 entre Avenida de las Américas y Calle 1ra, Reparto Jiménez, Consejo Popular José Martí Norte. CP 90500</string>
+    <string name="valor_direccion">Avenida Patricio Lumumba No. 507 entre Avenida de las Américas y Calle 1ra, Reparto Jiménez, Consejo Popular José Martí Norte. CP 90500</string>
     <string name="tel_fonos">Teléfonos</string>
-    <string name="dir_de_comunicaci_n_institucional_5322631832">Dir. de Comunicación Institucional: +5322631832</string>
-    <string name="oficina_de_atenci_n_a_la_poblaci_n_5322633031">Oficina de Atención a la Población: +5322633031</string>
+    <string name="tel_dir_com">Dir. de Comunicación Institucional: +5322631832</string>
+    <string name="tel_ofi_Poblacion">Oficina de Atención a la Población: +5322633031</string>
     <string name="correos">Correos</string>
     <string name="comunicacion_uo_edu_cu">comunicacion@uo.edu.cu</string>
     <string name="poblacion_consejo_uo_edu_cu">poblacion@consejo.uo.edu.cu</string>
@@ -39,4 +37,5 @@
     <string name="visi_n">VISIÓN</string>
     <string name="objeto_social">OBJETO SOCIAL</string>
     <string name="No_info_ahora">No hay información en este momento</string>
+    <string name="ir_noticias_infoCompleta_UO">Toque encima de la imagen para ir vía web a la información completa</string>
 </resources>

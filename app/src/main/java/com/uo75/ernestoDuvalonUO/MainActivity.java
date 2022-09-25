@@ -1,14 +1,11 @@
 package com.uo75.ernestoDuvalonUO;
 
 import android.app.ActivityManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -41,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private AppBarConfiguration mAppBarConfiguration;
-    private PendingIntent pendingIntent;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -50,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Solo Orientacion Vertical
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         // Iniciando servicio de busqueda de avisos para Android 5 y 5.1
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
             startService(new Intent(this,
@@ -76,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_MOV)
+                R.id.nav_home, R.id.nav_MOV, R.id.nav_reseña, R.id.nav_acerca_de)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
 
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "https://dcomi.uo.edu.cu/";
@@ -142,43 +141,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /// Fab Redes Sociales
-    public void facebookFab(View view) {
-        String url = "https://www.facebook.com/UOCuba";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-    public void instagramFab(View view) {
-        String url = "https://www.instagram.com/uocuba_oficial/";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-    public void twitterFab(View view) {
-        String url = "https://twitter.com/UOCuba";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-    public void linkedinFab(View view) {
-        String url = "https://cu.linkedin.com/school/universidad-de-oriente-cuba/";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-    public void telegramFab(View view) {
-        String url = "https://t.me/uo_cuba";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-    public void youtubeFab(View view) {
-        String url = "https://youtube.com/c/UniversidaddeOrienteCuba";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -198,6 +160,13 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    // Manejo de boton flotante de content_main.xml de redes sociales en vistas
+   /* public void ocultarFab(){
+        FabButtonRedes.setVisibility(View.GONE);
+    }
 
+   /* public void mostrarFab(){
+        FabButtonRedes.setVisibility(View.VISIBLE);
+    }*/
 }
 

@@ -27,6 +27,7 @@ public class ResennaHistoryFragment extends Fragment {
         // TODO: Use the ViewModel
         View root = inflater.inflate(R.layout.resenna_history_fragment, container, false);
         final TextView textView = root.findViewById(R.id.textReseña);
+
         mViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

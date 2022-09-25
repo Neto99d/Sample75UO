@@ -5,9 +5,12 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,6 +59,12 @@ public class NewsActivity extends AppCompatActivity {
                 mRecyclerView.setAdapter(nAdapter);
                 nAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
+
+                // Agrandar tamaño de fuente a un Toast, fijada en 1.35f
+                SpannableStringBuilder biggerText = new SpannableStringBuilder(getString(R.string.ir_noticias_infoCompleta_UO));
+                biggerText.setSpan(new RelativeSizeSpan(1.35f), 0, getString(R.string.ir_noticias_infoCompleta_UO).length(), 0);
+                Toast toast = Toast.makeText(getApplicationContext(), biggerText, Toast.LENGTH_LONG);
+                toast.show();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });

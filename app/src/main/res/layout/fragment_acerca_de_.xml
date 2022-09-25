@@ -3,6 +3,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
@@ -19,9 +20,10 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -33,106 +35,130 @@
                     android:paddingEnd="10dp"
                     app:srcCompat="@drawable/pulover_atras" />
 
-                <androidx.cardview.widget.CardView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="325dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/colorPrimaryDark">
+                    android:layout_height="match_parent">
 
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/DireccionTitulo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/direcci_n"
-                            android:textAlignment="center"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/Direccion"
-                            android:layout_width="match_parent"
-                            android:layout_height="67dp"
-                            android:layout_marginStart="5dp"
-                            android:text="@string/avenida_patricio_lumumba_no_507_entre_avenida_de_las_am_ricas_y_calle_1ra_reparto_jim_nez_consejo_popular_jos_mart_norte_cp_90500"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/TelefonoTitulo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tel_fonos"
-                            android:textAlignment="center"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/Telefono"
-                            android:layout_width="380dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:autoLink="phone"
-                            android:text="@string/dir_de_comunicaci_n_institucional_5322631832"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/Telefono2"
-                            android:layout_width="377dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:autoLink="phone"
-                            android:text="@string/oficina_de_atenci_n_a_la_poblaci_n_5322633031"
-                            android:textAlignment="gravity"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/CorreoTitulo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/correos"
-                            android:textAlignment="center"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/Correo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="email"
-                            android:text="@string/comunicacion_uo_edu_cu"
-                            android:textAlignment="center"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/Correo2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="email"
-                            android:text="@string/poblacion_consejo_uo_edu_cu"
-                            android:textAlignment="center"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:id="@+id/textVersion"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="60dp"
-                            android:text="@string/versi_n_2_0"
-                            android:textAlignment="center"
-                            android:textColor="@color/white" />
+                            android:layout_marginEnd="6dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textAño"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/año_2022"
-                            android:textAlignment="center"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:id="@+id/DireccionTitulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/direcci_n"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/Direccion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/valor_direccion"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/TelefonoTitulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/tel_fonos"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/Telefono"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:autoLink="phone"
+                                android:text="@string/tel_dir_com"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/Telefono2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:autoLink="phone"
+                                android:text="@string/tel_ofi_Poblacion"
+                                android:textAlignment="gravity"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/CorreoTitulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/correos"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/Correo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autoLink="email"
+                                android:text="@string/comunicacion_uo_edu_cu"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/Correo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autoLink="email"
+                                android:text="@string/poblacion_consejo_uo_edu_cu"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+
+                            <TextView
+                                android:id="@+id/textVersion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="60dp"
+                                android:text="@string/versi_n_2_0"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+                            <TextView
+                                android:id="@+id/textAño"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/año_2022"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15.5sp" />
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 

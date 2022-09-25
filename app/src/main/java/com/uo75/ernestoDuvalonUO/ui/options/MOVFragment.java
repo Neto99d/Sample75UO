@@ -29,6 +29,8 @@ public class MOVFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.textMovM);
         final TextView textViewO = root.findViewById(R.id.textMovO);
         final TextView textViewV = root.findViewById(R.id.textMovV);
+
+
         mViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

@@ -71,8 +71,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         viewHolder.title.setText(currentArticle.getTitle());
 
+        // Parseo de la etiqueta descripcion
         viewHolder.descripcion.setText(currentArticle.getDescription().substring(currentArticle.getDescription().indexOf("<em>") + 4, currentArticle.getDescription().indexOf("</em>")));
-        //viewHolder.descripcion.setText(currentArticle.getDescription().substring(currentArticle.getDescription().indexOf(">") + 1, currentArticle.getDescription().indexOf("]")));
 
 
         Picasso.get()
