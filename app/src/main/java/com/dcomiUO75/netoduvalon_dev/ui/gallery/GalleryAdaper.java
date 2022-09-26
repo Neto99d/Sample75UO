@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.glidebitmappool.GlideBitmapPool;
 import com.dcomiUO75.netoduvalon_dev.R;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Postales;
+import com.glidebitmappool.GlideBitmapPool;
 
 import java.util.List;
 

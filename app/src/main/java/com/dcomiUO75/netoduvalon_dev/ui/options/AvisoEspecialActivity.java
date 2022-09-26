@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.dcomiUO75.netoduvalon_dev.R;
 import com.dcomiUO75.netoduvalon_dev.ui.OkHttpUtil;
 import com.dcomiUO75.netoduvalon_dev.ui.RestClient;
@@ -19,6 +17,8 @@ import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AccesOdoo;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AvisoEspecial;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Data;
 import com.dcomiUO75.netoduvalon_dev.ui.options.Adapters.AvisoAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

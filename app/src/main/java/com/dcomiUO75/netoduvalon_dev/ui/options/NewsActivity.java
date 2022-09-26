@@ -20,9 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.dcomiUO75.netoduvalon_dev.R;
 import com.dcomiUO75.netoduvalon_dev.ui.options.Adapters.NewsAdapter;
+import com.google.android.material.snackbar.Snackbar;
 
 public class NewsActivity extends AppCompatActivity {
     private NewsViewModel viewModel;

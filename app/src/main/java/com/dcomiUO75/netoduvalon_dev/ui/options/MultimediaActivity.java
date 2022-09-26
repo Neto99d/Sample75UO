@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.dcomiUO75.netoduvalon_dev.R;
 import com.dcomiUO75.netoduvalon_dev.ui.OkHttpUtil;
 import com.dcomiUO75.netoduvalon_dev.ui.RestClient;
@@ -24,6 +22,8 @@ import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AccesOdoo;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Data;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Multimedia;
 import com.dcomiUO75.netoduvalon_dev.ui.options.Adapters.MultimediaAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.github.clans.fab.FloatingActionButton;
 import com.dcomiUO75.netoduvalon_dev.R;
+import com.github.clans.fab.FloatingActionButton;
 
 public class HomeFragment extends Fragment {
 

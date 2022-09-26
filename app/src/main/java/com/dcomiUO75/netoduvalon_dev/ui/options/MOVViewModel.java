@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.dcomiUO75.netoduvalon_dev.ui.OkHttpUtil;
 import com.dcomiUO75.netoduvalon_dev.ui.RestClient;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AccesOdoo;
@@ -13,6 +11,8 @@ import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Data;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Mision;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Objeto;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Vision;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 import java.util.Map;

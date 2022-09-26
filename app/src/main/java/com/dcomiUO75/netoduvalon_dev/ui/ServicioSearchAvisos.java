@@ -19,13 +19,13 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.dcomiUO75.netoduvalon_dev.R;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AccesOdoo;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AvisoEspecial;
 import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Data;
 import com.dcomiUO75.netoduvalon_dev.ui.options.AvisoEspecialActivity;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.jetbrains.annotations.NotNull;
 

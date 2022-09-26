@@ -6,6 +6,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dcomiUO75.netoduvalon_dev.R;
+import com.dcomiUO75.netoduvalon_dev.ui.OkHttpUtil;
+import com.dcomiUO75.netoduvalon_dev.ui.RestClient;
+import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AccesOdoo;
+import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Data;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -18,11 +23,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.dcomiUO75.netoduvalon_dev.R;
-import com.dcomiUO75.netoduvalon_dev.ui.OkHttpUtil;
-import com.dcomiUO75.netoduvalon_dev.ui.RestClient;
-import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.AccesOdoo;
-import com.dcomiUO75.netoduvalon_dev.ui.modelsOdoo.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;

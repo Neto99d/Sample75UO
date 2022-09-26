@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.dcomiUO75.netoduvalon_dev.ui.OkHttpUtil;
 import com.prof.rssparser.Article;
 import com.prof.rssparser.Channel;
 import com.prof.rssparser.OnTaskCompleted;
 import com.prof.rssparser.Parser;
-import com.dcomiUO75.netoduvalon_dev.ui.OkHttpUtil;
 
 import java.util.ArrayList;
 
