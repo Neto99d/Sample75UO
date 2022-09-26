@@ -37,7 +37,7 @@ public class MOVViewModel extends ViewModel {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +100,7 @@ public class MOVViewModel extends ViewModel {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Mision mision = new Mision();
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,7 +160,7 @@ public class MOVViewModel extends ViewModel {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Objeto objeto = new Objeto();
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -220,7 +220,7 @@ public class MOVViewModel extends ViewModel {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Vision vision = new Vision();
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }

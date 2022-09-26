@@ -31,7 +31,7 @@ public class ResennaHistoryViewModel extends ViewModel {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class ResennaHistoryViewModel extends ViewModel {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
         Reseña reseña = new Reseña();
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }

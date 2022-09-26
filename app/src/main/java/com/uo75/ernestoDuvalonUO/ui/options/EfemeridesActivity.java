@@ -96,7 +96,7 @@ public class EfemeridesActivity extends AppCompatActivity {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,7 +135,7 @@ public class EfemeridesActivity extends AppCompatActivity {
 
                     ArrayList<Efemerides> efemerides = new ArrayList<>();
                     try {
-                        OkHttpUtil.init(true);
+                        OkHttpUtil.verificar();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

@@ -9,6 +9,7 @@ import com.prof.rssparser.Article;
 import com.prof.rssparser.Channel;
 import com.prof.rssparser.OnTaskCompleted;
 import com.prof.rssparser.Parser;
+import com.uo75.ernestoDuvalonUO.ui.OkHttpUtil;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,14 @@ public class NewsViewModel extends ViewModel {
 
     public void fetchFeed() {
 
+        try {
+            OkHttpUtil.verificar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Parser parser = new Parser.Builder()
+                .okHttpClient(OkHttpUtil.getClient())
                 // If you want to provide a custom charset (the default is utf-8):
                 // .charset(Charset.forName("ISO-8859-7"))
                 // .cacheExpirationMillis() and .context() not called because on Java side, caching is NOT supported

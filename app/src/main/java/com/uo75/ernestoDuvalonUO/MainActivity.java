@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         //Definimos la URL base del API REST que utilizamos
         String baseUrl = "https://dcomi.uo.edu.cu/";
 
-        // Iniciando Clase OkHttpUtil para ignorar validez del certificado
+        // Verificando Version de Android para problema de certificado
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,13 +160,5 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    // Manejo de boton flotante de content_main.xml de redes sociales en vistas
-   /* public void ocultarFab(){
-        FabButtonRedes.setVisibility(View.GONE);
-    }
-
-   /* public void mostrarFab(){
-        FabButtonRedes.setVisibility(View.VISIBLE);
-    }*/
 }
 

@@ -65,7 +65,7 @@ public class GalleryActivity extends AppCompatActivity {
         String baseUrl = "https://dcomi.uo.edu.cu/";
 
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +104,7 @@ public class GalleryActivity extends AppCompatActivity {
 
                     ArrayList<Postales> postales = new ArrayList<>();
                     try {
-                        OkHttpUtil.init(true);
+                        OkHttpUtil.verificar();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

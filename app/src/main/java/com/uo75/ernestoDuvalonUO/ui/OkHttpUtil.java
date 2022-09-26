@@ -1,5 +1,7 @@
 package com.uo75.ernestoDuvalonUO.ui;
 
+import android.os.Build;
+
 import java.security.cert.CertificateException;
 import java.util.logging.Logger;
 
@@ -17,7 +19,7 @@ import static java.util.logging.Logger.getLogger;
 /*
 okhttp version used 3.8.1 -> 4.9.0
 
-Clase para salatar verificacion de certificados (Bajo propio riesgo si sabe que esta haciendo)
+Clase para ignorar verificacion de certificados, conexion considerada insegura. (Solo ignorada en Android 5 y 6)
 */
 public class OkHttpUtil {
 
@@ -28,6 +30,20 @@ public class OkHttpUtil {
 
     public static OkHttpClient getClient() {
         return client;
+    }
+
+    // Verificar version Android para ignorar o no certificado
+    public static void verificar() throws Exception {
+        // Conexión insegura para versiones de Android 5 y 6. Problema de certificados en estas versiones viejas
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+            LOGGER.info("CONEXION ANDROID 5 o 6");
+            init(true);
+        } else {
+            // Conexion segura para versiones de Android >=7
+            LOGGER.info("CONEXION ANDROID MAYOR o IGUAL a 7");
+            init(false);
+
+        }
     }
 
     public static void init(boolean ignoreCertificate) throws Exception {

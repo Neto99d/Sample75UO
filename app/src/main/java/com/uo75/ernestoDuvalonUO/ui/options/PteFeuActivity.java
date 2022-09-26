@@ -65,7 +65,7 @@ public class PteFeuActivity extends AppCompatActivity {
         String baseUrl = "https://dcomi.uo.edu.cu/ ";
 
         try {
-            OkHttpUtil.init(true);
+            OkHttpUtil.verificar();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +104,7 @@ public class PteFeuActivity extends AppCompatActivity {
 
                     ArrayList<PdteFeu> pdteFeus = new ArrayList<>();
                     try {
-                        OkHttpUtil.init(true);
+                        OkHttpUtil.verificar();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
