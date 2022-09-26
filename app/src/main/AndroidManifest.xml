@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.uo75.ernestoDuvalonUO">
+    package="com.dcomiUO75.netoduvalon_dev">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,18 +20,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
 
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
         <service
-            android:name=".ui.ServicioSearchAvisos"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.ServicioSearchAvisos"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
 
         <receiver
-            android:name=".ui.MonitorAvisoService"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.MonitorAvisoService"
             android:enabled="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
@@ -40,72 +36,72 @@
         </receiver>
 
         <activity
-            android:name=".ui.options.IdentidadActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.IdentidadActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Identidad" />
         <activity
-            android:name=".ui.options.PatrimonioActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.PatrimonioActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Patrimonio" />
         <activity
-            android:name=".ui.options.RectoresActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.RectoresActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Nuestros Rectores" />
         <activity
-            android:name=".ui.options.ProfeMeritoActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.ProfeMeritoActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Profesores Eméritos" />
         <activity
-            android:name=".ui.options.PteFeuActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.PteFeuActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Presidentes de la FEU" />
         <activity
-            android:name=".ui.options.HonorCausaActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.HonorCausaActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Doctores Honoris Causa" />
         <activity
-            android:name=".ui.options.CampannaActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.CampannaActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Campañas Comunicativas" />
         <activity
-            android:name=".ui.gallery.GalleryActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.gallery.GalleryActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Postales" />
         <activity
-            android:name=".ui.options.MultimediaActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.MultimediaActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Multimedia" />
         <activity
-            android:name=".ui.options.AvisoEspecialActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.AvisoEspecialActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Avisos Especiales" />
         <activity
-            android:name=".ui.options.EfemeridesActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.EfemeridesActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Efemérides" />
         <activity
-            android:name=".ui.graficosEstadisticas.GraficoActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.graficosEstadisticas.GraficoActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="Estadísticas" />
         <activity
-            android:name=".ui.options.NewsActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.ui.options.NewsActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:label="La Tablilla" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.dcomiUO75.netoduvalon_dev.MainActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/Theme.Sample75UO.NoActionBar">
